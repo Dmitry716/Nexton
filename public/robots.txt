@@ -1,0 +1,25 @@
+# robots.txt для Nexton Полоцк
+# Домен: nexton.vip
+
+User-agent: *
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*.txt$
+
+# Для Яндекс
+User-agent: Yandex
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+Crawl-delay: 2
+
+# Для Google
+User-agent: Googlebot
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+
+# Карта сайта
+Sitemap: https://nexton.vip/sitemap.xml
