@@ -1,116 +1,162 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Download, X, Share2, PlusCircle } from "lucide-react";
+import Link from "next/link";
+import ThemeSwitcher from "./ThemeSwitcher";
+import { Menu, X, Phone, Send } from "lucide-react";
 
-export default function PWAPrompt() {
-  const [showPrompt, setShowPrompt] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const checkStandalone = () => {
-      const standalone = window.matchMedia(
-        "(display-mode: standalone)",
-      ).matches;
-      setIsStandalone(standalone);
-      return standalone;
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
-
-    const checkIOS = () => {
-      const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      setIsIOS(ios);
-      return ios;
-    };
-
-    const standalone = checkStandalone();
-    checkIOS();
-
-    // Показываем через 3 секунды, если не в standalone режиме
-    if (!standalone) {
-      const timer = setTimeout(() => {
-        setShowPrompt(true);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-
-    // Слушаем событие из Navbar
-    const handleShowPrompt = () => {
-      setShowPrompt(true);
-    };
-
-    window.addEventListener("show-pwa-prompt", handleShowPrompt);
-
-    return () => {
-      window.removeEventListener("show-pwa-prompt", handleShowPrompt);
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!showPrompt || isStandalone) return null;
+  const menuItems = [
+    { name: "Главная", href: "/" },
+    { name: "Услуги", href: "#services" },
+    { name: "О нас", href: "#about" },
+    { name: "Контакты", href: "#contacts" },
+  ];
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 md:bottom-6 md:right-6 md:left-auto md:max-w-sm z-[100] animate-slide-up">
-      <div className="relative">
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] rounded-2xl blur opacity-30 animate-pulse"></div>
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+        scrolled
+          ? "bg-white/95 dark:bg-black/95 backdrop-blur-md border-gray-200 dark:border-gray-800 py-3"
+          : "bg-white dark:bg-black border-gray-200 dark:border-gray-800 py-5"
+      }`}
+      role="navigation"
+      aria-label="Главное меню"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center">
+          {/* Логотип */}
+          <Link
+            href="/"
+            className="relative group outline-none focus:outline-none"
+            aria-label="Nexton - главная страница"
+          >
+            <div className="absolute -inset-2 bg-gradient-to-r from-gray-300 to-gray-100 dark:from-gray-400 dark:to-gray-600 rounded-lg blur-xl opacity-0 group-hover:opacity-40 transition-all duration-700"></div>
+            <span className="relative text-2xl md:text-3xl font-bold text-black dark:text-white transition-all duration-500 transform group-hover:scale-110 inline-block">
+              NEXTON
+            </span>
+            <span className="sr-only">Автосервис в Полоцке</span>
+          </Link>
 
-        <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-          <div className="p-5">
-            <div className="flex items-start gap-3">
-              <div className="shrink-0">
-                <div className="w-10 h-10 bg-[#1e3a5f] dark:bg-[#7a9bcb] rounded-xl flex items-center justify-center">
-                  <Download className="w-5 h-5 text-white" />
-                </div>
-              </div>
+          {/* Десктопное меню */}
+          <div className="hidden md:flex items-center space-x-8">
+            {menuItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-300 font-medium relative group"
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white group-hover:w-full transition-all duration-300"></span>
+              </Link>
+            ))}
 
-              <div className="flex-1">
-                <h3 className="text-base font-bold text-black dark:text-white mb-1">
-                  Установите приложение
-                </h3>
+            <div className="flex items-center space-x-3 ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
+              <a
+                href="tel:+375297115091"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Позвонить"
+              >
+                <Phone className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
+              </a>
+              <a
+                href="https://t.me/+375297115091"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Telegram"
+              >
+                <Send className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
+              </a>
+            </div>
 
-                {isIOS ? (
-                  <div className="space-y-2">
-                    <p className="text-xs text-gray-600 dark:text-gray-400">
-                      1. Нажмите
-                      <span className="inline-flex items-center mx-1 px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">
-                        <Share2 size={12} className="mr-1" /> Поделиться
-                      </span>
-                    </p>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">
-                      2. Прокрутите вниз и нажмите
-                      <span className="inline-flex items-center mx-1 px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded">
-                        <PlusCircle size={12} className="mr-1" /> На экран
-                        &quot;Домой&quot;
-                      </span>
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
-                    Нажмите в меню браузера &quot;Добавить на главный
-                    экран&quot;
-                  </p>
-                )}
+            <ThemeSwitcher />
+          </div>
 
-                <div className="flex items-center gap-2 mt-3">
-                  <button
-                    onClick={() => setShowPrompt(false)}
-                    className="flex-1 px-3 py-1.5 bg-[#1e3a5f] hover:bg-[#2b4c7c] dark:bg-[#7a9bcb] dark:hover:bg-[#5a7bb0] text-white text-xs font-medium rounded-lg transition-all duration-300"
-                  >
-                    Понятно
-                  </button>
+          {/* Мобильное меню */}
+          <div className="md:hidden flex items-center space-x-4">
+            <a
+              href="tel:+375297115091"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+              aria-label="Позвонить"
+            >
+              <Phone className="w-5 h-5 text-black dark:text-white" />
+            </a>
+            <a
+              href="https://t.me/+375297115091"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+              aria-label="Telegram"
+            >
+              <Send className="w-5 h-5 text-black dark:text-white" />
+            </a>
+            <ThemeSwitcher />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-800"
+              aria-label={isOpen ? "Закрыть меню" : "Открыть меню"}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
 
-                  <button
-                    onClick={() => setShowPrompt(false)}
-                    className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-300"
-                    aria-label="Закрыть"
-                  >
-                    <X className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                  </button>
-                </div>
+        {/* Мобильное выпадающее меню */}
+        {isOpen && (
+          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800 mt-4">
+            {menuItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="block py-3 text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 font-medium border-b border-gray-100 dark:border-gray-900 last:border-0 hover:pl-2 transition-all duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                Свяжитесь с нами:
+              </p>
+              <div className="flex flex-col space-y-2">
+                <a
+                  href="tel:+375297115091"
+                  className="flex items-center space-x-2 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-all duration-300 hover:pl-2"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Позвонить по номеру +375 29 711-50-91"
+                >
+                  <Phone size={18} />
+                  <span>+375 (29) 711-50-91</span>
+                </a>
+                <a
+                  href="https://t.me/+375297115091"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-all duration-300 hover:pl-2"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Написать в Telegram"
+                >
+                  <Send size={18} />
+                  <span>Telegram</span>
+                </a>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-    </div>
+    </nav>
   );
 }

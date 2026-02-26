@@ -16,11 +16,16 @@
   --text-secondary: #4a4a4a;
 
   /* Темно-синий акцент - благородный и стильный */
-  --accent-dark: #1e3a5f; /* Темно-синий */
-  --accent-medium: #2b4c7c; /* Средне-синий */
-  --accent-light: #3a5f8f; /* Светло-синий */
+  --accent-dark: #1e3a5f;
+  --accent-medium: #2b4c7c;
+  --accent-light: #3a5f8f;
   --accent-glow: rgba(30, 58, 95, 0.15);
-  --accent-subtle: #d4e0f0; /* Очень светлый синий для фона */
+  --accent-subtle: #d4e0f0;
+
+  /* Темно-красный акцент для цифр */
+  --burgundy: #800020;
+  --burgundy-light: #a0454f;
+  --burgundy-glow: rgba(128, 0, 32, 0.15);
 }
 
 .dark {
@@ -37,11 +42,16 @@
   --text-secondary: #b0b0b0;
 
   /* Темно-синий акцент для темной темы */
-  --accent-dark: #7a9bcb; /* Светло-синий для темной темы */
-  --accent-medium: #5a7bb0; /* Приглушенный синий */
-  --accent-light: #3a5f8f; /* Темно-синий для темной темы */
+  --accent-dark: #7a9bcb;
+  --accent-medium: #5a7bb0;
+  --accent-light: #3a5f8f;
   --accent-glow: rgba(122, 155, 203, 0.2);
   --accent-subtle: #1a2a3a;
+
+  /* Темно-красный для темной темы */
+  --burgundy: #b3545e;
+  --burgundy-light: #d47d86;
+  --burgundy-glow: rgba(180, 70, 90, 0.2);
 }
 
 body {
@@ -101,55 +111,7 @@ body {
   color: var(--background);
 }
 
-/* Стили для таблиц */
-.dark table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1rem 0;
-}
-
-.dark th,
-.dark td {
-  border: 1px solid #444 !important;
-  padding: 0.75rem !important;
-  text-align: left;
-  color: #fff !important;
-}
-
-.dark th {
-  background-color: #2a2a2a !important;
-  font-weight: 600;
-  border-bottom: 2px solid #555 !important;
-}
-
-.dark td {
-  background-color: #1a1a1a !important;
-}
-
-.dark tr:hover td {
-  background-color: #252525 !important;
-}
-
-/* Стили для светлой темы */
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1rem 0;
-}
-
-th,
-td {
-  border: 1px solid #ddd !important;
-  padding: 0.75rem !important;
-  text-align: left;
-}
-
-th {
-  background-color: #f5f5f5 !important;
-  font-weight: 600;
-}
-
-/* Анимация для градиентного текста - теперь с синим */
+/* Анимация для градиентного текста */
 @keyframes gradientFlow {
   0% {
     background-position: 0% 50%;
@@ -189,7 +151,7 @@ th {
   color: transparent;
 }
 
-/* Анимация свечения границ - теперь с синим */
+/* Анимация свечения границ */
 @keyframes borderGlow {
   0%,
   100% {
@@ -284,20 +246,6 @@ th {
   animation: slideUp 0.5s ease-out forwards;
 }
 
-/* новое  */
-/* Темно-красный акцент для цифр */
-:root {
-  --burgundy: #800020; /* Благородный бордовый */
-  --burgundy-light: #a0454f; /* Светлее для градиентов */
-  --burgundy-glow: rgba(128, 0, 32, 0.15);
-}
-
-.dark {
-  --burgundy: #b3545e; /* Светлее для темной темы */
-  --burgundy-light: #d47d86;
-  --burgundy-glow: rgba(180, 70, 90, 0.2);
-}
-
 /* Анимация для цифр */
 @keyframes countPulse {
   0%,
@@ -315,8 +263,14 @@ th {
   animation: countPulse 3s ease-in-out infinite;
 }
 
-/* Исправление для HeroSection на мобильных */
+/* Единые медиа-запросы для мобильных */
 @media (max-width: 640px) {
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    word-break: break-word;
+  }
+
   .hero-title {
     font-size: 2rem !important;
     line-height: 1.2 !important;
@@ -328,20 +282,6 @@ th {
 
   .hero-description {
     font-size: 0.95rem !important;
-    padding: 0 1rem;
-  }
-}
-
-/* Исправление для мобильных устройств */
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-    word-break: break-word;
-  }
-
-  .hero-description {
-    font-size: 1rem !important;
     padding: 0 1rem;
   }
 
