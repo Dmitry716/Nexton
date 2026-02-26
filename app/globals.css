@@ -14,7 +14,13 @@
   --secondary: #f0f0f0;
   --secondary-hover: #e0e0e0;
   --text-secondary: #4a4a4a;
-  --accent: #666666;
+
+  /* Темно-синий акцент - благородный и стильный */
+  --accent-dark: #1e3a5f; /* Темно-синий */
+  --accent-medium: #2b4c7c; /* Средне-синий */
+  --accent-light: #3a5f8f; /* Светло-синий */
+  --accent-glow: rgba(30, 58, 95, 0.15);
+  --accent-subtle: #d4e0f0; /* Очень светлый синий для фона */
 }
 
 .dark {
@@ -29,14 +35,25 @@
   --secondary: #2a2a2a;
   --secondary-hover: #3a3a3a;
   --text-secondary: #b0b0b0;
-  --accent: #999999;
+
+  /* Темно-синий акцент для темной темы */
+  --accent-dark: #7a9bcb; /* Светло-синий для темной темы */
+  --accent-medium: #5a7bb0; /* Приглушенный синий */
+  --accent-light: #3a5f8f; /* Темно-синий для темной темы */
+  --accent-glow: rgba(122, 155, 203, 0.2);
+  --accent-subtle: #1a2a3a;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: system-ui, -apple-system, sans-serif;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 /* Стили для карточек */
@@ -83,6 +100,7 @@ body {
   background-color: var(--foreground);
   color: var(--background);
 }
+
 /* Стили для таблиц */
 .dark table {
   border-collapse: collapse;
@@ -112,7 +130,7 @@ body {
   background-color: #252525 !important;
 }
 
-/* Стили для светлой темы (на всякий случай) */
+/* Стили для светлой темы */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -129,4 +147,170 @@ td {
 th {
   background-color: #f5f5f5 !important;
   font-weight: 600;
+}
+
+/* Анимация для градиентного текста - теперь с синим */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    var(--accent-dark) 50%,
+    #000000 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientFlow 6s ease infinite;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--accent-dark) 50%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Анимация свечения границ - теперь с синим */
+@keyframes borderGlow {
+  0%,
+  100% {
+    border-color: var(--accent-dark);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+  50% {
+    border-color: var(--accent-medium);
+    box-shadow: 0 0 15px var(--accent-glow);
+  }
+}
+
+.animate-border-glow {
+  animation: borderGlow 3s ease infinite;
+}
+
+/* Анимация появления с масштабированием */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-scale {
+  animation: fadeInScale 0.6s ease-out forwards;
+}
+
+/* Анимации для HeroSection */
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Анимация для PWA промпта */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+/* новое  */
+/* Темно-красный акцент для цифр */
+:root {
+  --burgundy: #800020; /* Благородный бордовый */
+  --burgundy-light: #a0454f; /* Светлее для градиентов */
+  --burgundy-glow: rgba(128, 0, 32, 0.15);
+}
+
+.dark {
+  --burgundy: #b3545e; /* Светлее для темной темы */
+  --burgundy-light: #d47d86;
+  --burgundy-glow: rgba(180, 70, 90, 0.2);
+}
+
+/* Анимация для цифр */
+@keyframes countPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 10px var(--burgundy-glow);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 20px var(--burgundy-glow);
+    transform: scale(1.05);
+  }
+}
+
+.animate-count {
+  animation: countPulse 3s ease-in-out infinite;
 }
