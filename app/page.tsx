@@ -15,21 +15,21 @@ import type { Metadata } from "next";
 // Метаданные для главной страницы
 export const metadata: Metadata = {
   title:
-    "Ремонт кондиционеров, вебасто и систем охлаждения авто в Полоцке | Nexton", // ИЗМЕНЕНО
+    "Заправка и ремонт кондиционеров, ремонт вебасто и систем охлаждения авто в Полоцке и Новополоцке | Nexton",
   description:
-    "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке. Заправка кондиционеров, ремонт Webasto, аргонная сварка. Гарантия 6 месяцев. Звоните: +375297115091",
+    "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке и Новополоцке. Заправка кондиционеров, ремонт Webasto, аргонная сварка. Гарантия 6 месяцев. Звоните: +375297115091",
   openGraph: {
-    title: "Ремонт кондиционеров, вебасто и систем охлаждения авто в Полоцке", // ИЗМЕНЕНО
+    title: "Заправка и ремонт кондиционеров, ремонт вебасто и систем охлаждения авто в Полоцке и Новополоцке",
     description:
-      "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов. Заправка кондиционеров, ремонт Webasto, аргонная сварка.",
+      "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке и Новополоцке. Заправка кондиционеров, ремонт Webasto, аргонная сварка.",
     url: "https://nexton.vip",
-    siteName: "Nexton Полоцк",
+    siteName: "Nexton Полоцк — Новополоцк",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Nexton - ремонт систем охлаждения в Полоцке",
+        alt: "Nexton - ремонт систем охлаждения в Полоцке и Новополоцке",
       },
     ],
     locale: "ru_RU",
@@ -91,17 +91,17 @@ export default function Home() {
       address: {
         "@type": "PostalAddress",
         streetAddress: "ул. Строительная 21в/3, блок 9, бокс 3",
-        addressLocality: "Полоцк",
+        addressLocality: "Полоцк, Новополоцк",
         addressRegion: "Витебская область",
         postalCode: "211400",
         addressCountry: "BY",
       },
       telephone: "+375297115091",
     },
-    areaServed: {
-      "@type": "City",
-      name: "Полоцк",
-    },
+    areaServed: [
+      { "@type": "City", name: "Полоцк" },
+      { "@type": "City", name: "Новополоцк" },
+    ],
   }));
 
   return (
@@ -131,7 +131,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white animate-fade-in">
               Услуги по ремонту систем охлаждения в{" "}
               <span className="bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] dark:from-[#7a9bcb] dark:to-[#5a7bb0] bg-clip-text text-transparent">
-                Полоцке
+                Полоцке и Новополоцке
               </span>
             </h1>
 
@@ -190,7 +190,7 @@ export default function Home() {
                   <h2 className="text-2xl font-bold text-black dark:text-white">
                     {category.name} в{" "}
                     <span className="bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] dark:from-[#7a9bcb] dark:to-[#5a7bb0] bg-clip-text text-transparent">
-                      Полоцке
+                      Полоцке и Новополоцке
                     </span>
                   </h2>
                   <span className="text-sm text-gray-500 dark:text-gray-500 ml-auto">
@@ -230,12 +230,12 @@ export default function Home() {
                 О компании
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white">
-                Nexton в <span className="gradient-text">Полоцке</span>
+                Nexton в <span className="gradient-text">Полоцке и Новополоцке</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Мы специализируемся на ремонте систем охлаждения и
                 автокондиционеров с 2010 года. За это время мы помогли тысячам
-                автовладельцев в Полоцке и области.
+                автовладельцев в Полоцке, Новополоцке и области.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Наши мастера проходят регулярное обучение и используют
@@ -331,7 +331,7 @@ export default function Home() {
               Свяжитесь с нами
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">
-              Контакты в <span className="gradient-text">Полоцке</span>
+              Контакты в <span className="gradient-text">Полоцке и Новополоцке</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Ответим на все вопросы и запишем на удобное время
@@ -350,7 +350,7 @@ export default function Home() {
               {
                 title: "Адрес",
                 content: "ул. Строительная 21в/3, блок 9, бокс 3",
-                link: "https://yandex.by/maps/?text=Полоцк%20ул.%20Строительная%2021в",
+                link: "https://yandex.by/maps/?text=Полоцк%20Новополоцк%20ул.%20Строительная%2021в",
                 icon: "📍",
                 delay: "0.2s",
               },
@@ -402,7 +402,7 @@ export default function Home() {
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">
                 <span className="font-medium">Ориентир:</span> Северный рынок,
-                г. Полоцк
+                г. Полоцк. Обслуживаем Полоцк и Новополоцк.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
                 <span className="font-medium">Режим работы:</span> с 10:00 до

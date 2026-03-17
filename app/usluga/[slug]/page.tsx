@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
   if (!service) {
     return {
-      title: 'Услуга не найдена | Nexton Полоцк',
+      title: 'Услуга не найдена | Nexton Полоцк — Новополоцк',
     };
   }
 
@@ -31,27 +31,27 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const categoryText = categoryNames[service.category] || "ремонту";
 
   return {
-    title: `${service.name} в Полоцке | Nexton`,
-    description: `Профессиональный ${service.name.toLowerCase()} в Полоцке. ${service.description}. Гарантия до 6 месяцев. Звоните: +375297115091`,
+    title: `${service.name} в Полоцке и Новополоцке | Nexton`,
+    description: `Профессиональный ${service.name.toLowerCase()} в Полоцке и Новополоцке. ${service.description}. Гарантия до 6 месяцев. Звоните: +375297115091`,
     keywords: [
       service.name.toLowerCase(),
-      `${service.name.toLowerCase()} Полоцк`,
+      `${service.name.toLowerCase()} Полоцк Новополоцк`,
       `ремонт ${categoryText} Полоцк`,
-      "ремонт систем охлаждения Полоцк",
+      "ремонт систем охлаждения Новополоцк",
       "заправка кондиционера Полоцк",
-      "Webasto Полоцк",
+      "Webasto Новополоцк",
     ],
     openGraph: {
-      title: `${service.name} в Полоцке`,
+      title: `${service.name} в Полоцке и Новополоцке`,
       description: service.description,
       url: `https://nexton.vip/usluga/${service.slug}`,
-      siteName: 'Nexton Полоцк',
+      siteName: 'Nexton Полоцк — Новополоцк',
       images: [
         {
           url: '/og-image.jpg',
           width: 1200,
           height: 630,
-          alt: `${service.name} в Полоцке - Nexton`,
+          alt: `${service.name} в Полоцке и Новополоцке - Nexton`,
         },
       ],
       locale: 'ru_RU',
@@ -96,17 +96,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "ул. Строительная 21в/3, блок 9, бокс 3",
-        "addressLocality": "Полоцк",
+        "addressLocality": "Полоцк, Новополоцк",
         "addressRegion": "Витебская область",
         "postalCode": "211400",
         "addressCountry": "BY"
       },
       "telephone": "+375297115091"
     },
-    "areaServed": {
-      "@type": "City",
-      "name": "Полоцк"
-    }
+    "areaServed": [
+      { "@type": "City", "name": "Полоцк" },
+      { "@type": "City", "name": "Новополоцк" }
+    ]
   };
 
   return (
@@ -148,7 +148,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
           <div className="border-2 border-gray-200 dark:border-gray-800 p-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white">
-              {service.name} в Полоцке
+              {service.name} в Полоцке и Новополоцке
             </h1>
             
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
@@ -162,13 +162,13 @@ export default async function ServicePage({ params }: ServicePageProps) {
             {/* Контактный блок */}
             <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8">
               <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">
-                Записаться на {service.name.toLowerCase()} в Полоцке
+                Записаться на {service.name.toLowerCase()} в Полоцке и Новополоцке
               </h2>
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <p className="text-gray-600 dark:text-gray-400 mb-2">
-                    <strong>Адрес:</strong> г. Полоцк, ул. Строительная 21в/3, блок 9, бокс 3
+                    <strong>Адрес:</strong> г. Полоцк, ул. Строительная 21в/3, блок 9, бокс 3. Обслуживаем Полоцк и Новополоцк.
                   </p>
                   <p className="text-gray-600 dark:text-gray-400 mb-2">
                     <strong>Режим работы:</strong> Пн-Пт 09:00-19:00, Сб 10:00-16:00

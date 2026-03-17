@@ -46,7 +46,7 @@ export default function Navbar() {
             <span className="relative text-2xl md:text-3xl font-bold text-black dark:text-white transition-all duration-500 transform group-hover:scale-110 inline-block">
               NEXTON
             </span>
-            <span className="sr-only">Автосервис в Полоцке</span>
+            <span className="sr-only">Автосервис в Полоцке и Новополоцке</span>
           </Link>
 
           {/* Десктопное меню */}

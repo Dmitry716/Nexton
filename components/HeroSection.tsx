@@ -17,13 +17,13 @@ export default function HeroSection() {
           {/* Заголовок с анимацией слева направо - ОБНОВЛЕН */}
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-black dark:text-white">
             <span className="inline-block animate-slide-left">
-              Ремонт кондиционеров,
+              Заправка и ремонт кондиционеров,
             </span>
             <span
               className="block text-3xl md:text-4xl mt-3 text-gray-800 dark:text-gray-200 animate-slide-left"
               style={{ animationDelay: "0.2s" }}
             >
-              вебасто и системы охлаждения авто в Полоцке
+              ремонт вебасто и систем охлаждения авто в Полоцке и Новополоцке
             </span>
           </h1>
 

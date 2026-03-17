@@ -26,6 +26,10 @@ export default function Footer() {
       name: "Ремонт радиаторов и топливных баков для грузовиков",
       href: "#gruzovye",
     },
+    {
+      name: "Обслуживание и ремонт пневмосистем",
+      href: "/usluga/obsluzhivanie-remont-pnevmosistem",
+    },
     { name: "Ремонт автопластика", href: "#plastik" },
   ];
 
@@ -57,7 +61,7 @@ export default function Footer() {
 
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
               Профессиональный ремонт систем охлаждения и автокондиционеров в
-              Полоцке. Работаем с 2010 года, гарантия до 6 месяцев.
+              Полоцке и Новополоцке. Работаем с 2010 года, гарантия до 6 месяцев.
             </p>
 
             {/* Реквизиты ИП */}
@@ -75,7 +79,7 @@ export default function Footer() {
                 <span className="font-medium text-black dark:text-white">
                   Ориентир:
                 </span>{" "}
-                Северный рынок, г. Полоцк
+                Северный рынок, г. Полоцк. Обслуживаем Полоцк и Новополоцк.
                 <br />
                 <span className="font-medium text-black dark:text-white">
                   Режим работы:
@@ -193,6 +197,8 @@ export default function Footer() {
                   г. Полоцк, ул. Строительная 21в/3
                   <br />
                   блок 9, бокс 3
+                  <br />
+                  <span className="text-xs text-gray-500 dark:text-gray-500">Работаем в Полоцке и Новополоцке</span>
                 </span>
               </div>
             </div>
