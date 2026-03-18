@@ -14,25 +14,25 @@ export default function Footer() {
 
   const menuItems = [
     { name: "Главная", href: "/" },
-    { name: "Услуги", href: "#services" },
-    { name: "О нас", href: "#about" },
-    { name: "Контакты", href: "#contacts" },
+    { name: "Услуги", href: "/#services" },
+    { name: "О нас", href: "/#about" },
+    { name: "Контакты", href: "/#contacts" },
     { name: "Политика конфиденциальности", href: "/privacy" },
   ];
 
   const services = [
-    { name: "Автокондиционеры", href: "#avtokondicionery" },
-    { name: "Автономные отопители", href: "#otopiteli" },
-    { name: "Ремонт радиаторов", href: "#radiatory" },
+    { name: "Автокондиционеры", href: "/#avtokondicionery" },
+    { name: "Автономные отопители", href: "/#otopiteli" },
+    { name: "Ремонт радиаторов", href: "/#radiatory" },
     {
       name: "Ремонт радиаторов и топливных баков для грузовиков",
-      href: "#gruzovye",
+      href: "/#gruzovye",
     },
     {
       name: "Обслуживание и ремонт пневмосистем",
       href: "/usluga/obsluzhivanie-remont-pnevmosistem",
     },
-    { name: "Ремонт автопластика", href: "#plastik" },
+    { name: "Ремонт автопластика", href: "/#plastik" },
   ];
 
   return (

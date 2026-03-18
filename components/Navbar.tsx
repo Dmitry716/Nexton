@@ -21,9 +21,9 @@ export default function Navbar() {
 
   const menuItems = [
     { name: "Главная", href: "/" },
-    { name: "Услуги", href: "#services" },
-    { name: "О нас", href: "#about" },
-    { name: "Контакты", href: "#contacts" },
+    { name: "Услуги", href: "/#services" },
+    { name: "О нас", href: "/#about" },
+    { name: "Контакты", href: "/#contacts" },
   ];
 
   return (

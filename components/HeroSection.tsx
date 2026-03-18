@@ -60,14 +60,14 @@ export default function HeroSection() {
             style={{ animationDelay: "0.6s" }}
           >
             <Link
-              href="#services"
+              href="/#services"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 border-2 border-transparent shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
             >
               Наши услуги
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
-              href="#contacts"
+              href="/#contacts"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
             >
               Связаться с нами
