@@ -1,45 +1,49 @@
-import { services } from '@/data/services';
-import type { MetadataRoute } from 'next';
+import { services } from "@/data/services";
+import type { MetadataRoute } from "next";
+import { statSync } from "node:fs";
+import { join } from "node:path";
 
+const BASE_URL = "https://nexton.vip";
+
+function getLastModified(): Date {
+  try {
+    const servicesPath = join(process.cwd(), "data", "services.ts");
+    return statSync(servicesPath).mtime;
+  } catch {
+    return new Date();
+  }
+}
+
+/**
+ * Sitemap содержит только реальные страницы (URL без hash).
+ * Якоря (#avtokondicionery, #services и т.д.) — это секции главной страницы,
+ * они не являются отдельными страницами для поисковиков.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://nexton.vip';
-  const currentDate = new Date();
-  
-  // Основные страницы
-  const staticPages = [
+  const lastModified = getLastModified();
+
+  const staticPages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'daily' as const,
+      url: BASE_URL,
+      lastModified,
+      changeFrequency: "daily",
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/#services`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#about`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/#contacts`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      url: `${BASE_URL}/privacy`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.3,
     },
   ];
 
-  // Динамические страницы услуг
-  const servicePages = services.map((service) => ({
-    url: `${baseUrl}/usluga/${service.slug}`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly' as const,
+  const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
+    url: `${BASE_URL}/usluga/${service.slug}`,
+    lastModified,
+    changeFrequency: "weekly",
     priority: 0.8,
   }));
 
   return [...staticPages, ...servicePages];
 }
+

@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
   if (!service) {
     return {
-      title: 'Услуга не найдена | Nexton Полоцк',
+      title: 'Услуга не найдена | Nexton',
     };
   }
 
@@ -32,33 +32,53 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   };
 
   const categoryText = categoryNames[service.category] || "ремонту";
+  const absoluteOgImage =
+    (categoryImages[service.category] || "").startsWith("http")
+      ? (categoryImages[service.category] as string)
+      : `https://nexton.vip${categoryImages[service.category] || "/og-image.jpg"}`;
+  const ogTitle = `${service.name} в Полоцке и Новополоцке`;
+  const ogDescription = `${service.description} Гарантия до 6 месяцев. Запись: +375 (29) 711-50-91.`;
 
   return {
-    title: `${service.name} в Полоцке | Nexton`,
-    description: `Профессиональный ${service.name.toLowerCase()} в Полоцке. ${service.description}. Гарантия до 6 месяцев. Звоните: +375297115091`,
+    title: `${service.name} в Полоцке и Новополоцке | Nexton`,
+    description: `Профессиональный ${service.name.toLowerCase()} в Полоцке и Новополоцке. ${service.description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`,
+    alternates: {
+      canonical: `/usluga/${service.slug}`,
+    },
     keywords: [
       service.name.toLowerCase(),
       `${service.name.toLowerCase()} Полоцк`,
+      `${service.name.toLowerCase()} Новополоцк`,
       `ремонт ${categoryText} Полоцк`,
+      `ремонт ${categoryText} Новополоцк`,
       "ремонт систем охлаждения Полоцк",
+      "ремонт систем охлаждения Новополоцк",
       "заправка кондиционера Полоцк",
+      "заправка кондиционера Новополоцк",
       "Webasto Полоцк",
+      "Webasto Новополоцк",
     ],
     openGraph: {
-      title: `${service.name} в Полоцке`,
-      description: service.description,
+      title: ogTitle,
+      description: ogDescription,
       url: `https://nexton.vip/usluga/${service.slug}`,
-      siteName: 'Nexton Полоцк',
+      siteName: 'Nexton Полоцк — Новополоцк',
       images: [
         {
-          url: '/og-image.jpg',
+          url: absoluteOgImage,
           width: 1200,
           height: 630,
-          alt: `${service.name} в Полоцке - Nexton`,
+          alt: ogTitle,
         },
       ],
       locale: 'ru_RU',
       type: 'website',
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description: ogDescription,
+      images: [absoluteOgImage],
     },
   };
 }

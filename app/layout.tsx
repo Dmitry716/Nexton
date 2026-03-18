@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     "Nexton Полоцк Новополоцк",
   ],
   metadataBase: new URL("https://nexton.vip"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Ремонт систем охлаждения и автокондиционеров в Полоцке и Новополоцке",
     description:

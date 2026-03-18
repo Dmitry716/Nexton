@@ -2,9 +2,9 @@ import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import VideoBackground from "./VideoBackground";
 
-// Бесплатное видео Bugatti/суперкар с Pexels; постер — Unsplash Bugatti Chiron
-const HERO_VIDEO =
-  "https://videos.pexels.com/video-files/3066427/3066427-uhd_2560_1440_24fps.mp4";
+// Hero-video: используем локальный файл (внешние CDN часто блокируют хотлинк/автоплей).
+// Положите видео сюда: public/videos/hero-bugatti.mp4
+const HERO_VIDEO = "/videos/hero-bugatti.mp4";
 const HERO_POSTER =
   "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=1920&h=1080&fit=crop";
 
