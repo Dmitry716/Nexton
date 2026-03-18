@@ -487,8 +487,8 @@ export const services: Service[] = [
       <table class="min-w-full border-collapse border border-gray-300 dark:border-gray-600">
         <thead>
           <tr class="bg-gray-100 dark:bg-gray-700">
-            <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Неисправность</th>
-            <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left">Решение</th>
+            <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-900 dark:text-white font-semibold">Неисправность</th>
+            <th class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-900 dark:text-white font-semibold">Решение</th>
           </tr>
         </thead>
         <tbody>

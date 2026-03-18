@@ -1,23 +1,44 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface VideoBackgroundProps {
   videoSrc: string;
+  posterSrc?: string;
   opacity?: number;
 }
 
 export default function VideoBackground({
   videoSrc,
+  posterSrc,
   opacity = 0.35,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [useFallback, setUseFallback] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && !useFallback) {
       videoRef.current.playbackRate = 0.7;
     }
-  }, []);
+  }, [useFallback]);
+
+  const handleError = () => setUseFallback(true);
+
+  if (useFallback && posterSrc) {
+    return (
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+        <img
+          src={posterSrc}
+          alt=""
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover scale-105"
+          style={{
+            opacity,
+            filter: "contrast(1.1) brightness(1.1)",
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -27,6 +48,8 @@ export default function VideoBackground({
         loop
         muted
         playsInline
+        poster={posterSrc}
+        onError={handleError}
         className="absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover scale-105"
         style={{
           opacity,
