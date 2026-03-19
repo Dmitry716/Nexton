@@ -212,7 +212,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.instagram.com/seregakorchako/"
+                href="https://www.instagram.com/nextonservice/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"

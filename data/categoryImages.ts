@@ -13,6 +13,8 @@ export const categoryImages: Record<string, string> = {
     "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=800&h=500&fit=crop",
   gruzovye:
     "/images/gruzovye.png",
+  pnevmosistemy_legkovyh:
+    "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=800&h=500&fit=crop",
   plastik:
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=800&h=500&fit=crop",
 };
@@ -29,6 +31,8 @@ export const categoryImageThumbs: Record<string, string> = {
     "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=600&h=400&fit=crop",
   gruzovye:
     "/images/gruzovye.png",
+  pnevmosistemy_legkovyh:
+    "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=600&h=400&fit=crop",
   plastik:
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=600&h=400&fit=crop",
 };

@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     radiatory: "радиаторов",
     svarka: "аргонной сварки",
     gruzovye: "грузовых автомобилей",
+    pnevmosistemy_legkovyh: "пневмосистем легковых автомобилей",
     plastik: "автопластика"
   };
 
@@ -38,9 +39,31 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       : `https://nexton.vip${categoryImages[service.category] || "/og-image.jpg"}`;
   const ogTitle = `${service.name} в Полоцке и Новополоцке`;
   const ogDescription = `${service.description} Гарантия до 6 месяцев. Запись: +375 (29) 711-50-91.`;
+  const pnevmoBrandsKeywords = [
+    "bmw",
+    "mercedes-benz",
+    "audi",
+    "volkswagen",
+    "skoda",
+    "toyota",
+    "lexus",
+    "honda",
+    "hyundai",
+    "kia",
+    "ford",
+    "mazda",
+    "nissan",
+    "subaru",
+    "volvo",
+    "land rover",
+    "range rover",
+    "renault",
+    "peugeot",
+    "citroen",
+  ];
 
   return {
-    title: `${service.name} в Полоцке и Новополоцке | Nexton`,
+    title: `${service.name} в Полоцке и Новополоцке`,
     description: `Профессиональный ${service.name.toLowerCase()} в Полоцке и Новополоцке. ${service.description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`,
     alternates: {
       canonical: `/usluga/${service.slug}`,
@@ -57,6 +80,9 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       "заправка кондиционера Новополоцк",
       "Webasto Полоцк",
       "Webasto Новополоцк",
+      ...(service.category === "pnevmosistemy_legkovyh"
+        ? pnevmoBrandsKeywords
+        : []),
     ],
     openGraph: {
       title: ogTitle,
@@ -103,8 +129,32 @@ export default async function ServicePage({ params }: ServicePageProps) {
     radiatory: "Ремонт радиаторов",
     svarka: "Сварка и пайка",
     gruzovye: "Ремонт систем охлаждения и топлывных баков грузовых авто",
+    pnevmosistemy_legkovyh: "Ремонт и обслуживание пневмосистем легковых авто",
     plastik: "Ремонт автопластика"
   };
+
+  const pnevmoBrands = [
+    "BMW",
+    "Mercedes-Benz",
+    "Audi",
+    "Volkswagen",
+    "Skoda",
+    "Toyota",
+    "Lexus",
+    "Honda",
+    "Hyundai",
+    "Kia",
+    "Ford",
+    "Mazda",
+    "Nissan",
+    "Subaru",
+    "Volvo",
+    "Land Rover",
+    "Range Rover",
+    "Renault",
+    "Peugeot",
+    "Citroen",
+  ];
 
   // Schema.org разметка
   const serviceSchema = {
@@ -205,6 +255,31 @@ export default async function ServicePage({ params }: ServicePageProps) {
               <div dangerouslySetInnerHTML={{ __html: service.detailedDescription }} />
             </div>
 
+            {service.category === "pnevmosistemy_legkovyh" && (
+              <div className="mt-10 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-6">
+                <h2 className="text-2xl font-bold mb-3 text-black dark:text-white">
+                  Ремонт пневмы популярных марок
+                </h2>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                  Выполняем ремонт пневмы{" "}
+                  <span className="font-semibold">в Полоцке и Новополоцке</span>{" "}
+                  для следующих марок:
+                </p>
+
+                <ul className="flex flex-wrap gap-2">
+                  {pnevmoBrands.map((brand) => (
+                    <li
+                      key={brand}
+                      className="px-3 py-2 rounded-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 text-sm text-gray-800 dark:text-gray-200"
+                    >
+                      <span className="font-semibold">{brand}</span>
+                      {` — ремонт пневмы в Полоцке и Новополоцке`}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* Контактный блок */}
             <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8">
               <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">
@@ -245,7 +320,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     Группа ВКонтакте
                   </a>
                   <a
-                    href="https://www.instagram.com/seregakorchako/"
+                    href="https://www.instagram.com/nextonservice/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-outline text-center"
@@ -263,18 +338,28 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <h2 className="text-2xl font-bold mb-6 text-black dark:text-white">
               Другие услуги в этой категории
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services
-                .filter(s => s.category === service.category && s.id !== service.id)
-                .slice(0, 6)
-                .map((relatedService) => (
-                  <ServiceCard
-                    key={relatedService.id}
-                    service={relatedService}
-                    imageUrl={categoryImageThumbs[service.category]}
-                  />
-                ))}
-            </div>
+            {services.filter((s) => s.category === service.category && s.id !== service.id)
+              .slice(0, 6).length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services
+                  .filter((s) => s.category === service.category && s.id !== service.id)
+                  .slice(0, 6)
+                  .map((relatedService) => (
+                    <ServiceCard
+                      key={relatedService.id}
+                      service={relatedService}
+                      imageUrl={categoryImageThumbs[service.category]}
+                    />
+                  ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-6">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  В категории <span className="font-semibold">{categoryNames[service.category]}</span> пока нет других услуг. 
+                  Мы выполняем диагностику и ремонт по вашей проблеме, звоните или оставляйте заявку — подскажем по стоимости и срокам.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

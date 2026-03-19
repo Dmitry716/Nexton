@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Политика конфиденциальности и cookies | Nexton Полоцк — Новополоцк",
+  title: "Политика конфиденциальности и cookies",
   description:
     "Политика обработки персональных данных и использования файлов cookie в автосервисе Nexton (Полоцк, Новополоцк).",
 };

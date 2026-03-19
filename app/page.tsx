@@ -74,6 +74,13 @@ const categories = [
     description: "Радиаторы и топливные баки для грузовиков",
   },
   {
+    id: "pnevmosistemy_legkovyh",
+    name: "Пневмосистемы легковых авто",
+    // Пневмоподвеска/пневмоприводы по смыслу ближе к работам по узлам и ремонту
+    icon: Wrench,
+    description: "Диагностика и ремонт пневмоподвески легковых автомобилей",
+  },
+  {
     id: "plastik",
     name: "Ремонт автопластика",
     icon: Wrench,
@@ -523,7 +530,7 @@ export default function Home() {
                   />
                 </a>
                 <a
-                  href="https://www.instagram.com/seregakorchako/"
+                  href="https://www.instagram.com/nextonservice/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline inline-flex items-center gap-2 group/btn"

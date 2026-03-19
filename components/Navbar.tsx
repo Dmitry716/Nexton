@@ -84,7 +84,7 @@ export default function Navbar() {
                 <VkIcon className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
               </a>
               <a
-                href="https://www.instagram.com/seregakorchako/"
+                href="https://www.instagram.com/nextonservice/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
@@ -118,7 +118,7 @@ export default function Navbar() {
               <VkIcon className="w-5 h-5 text-black dark:text-white" />
             </a>
             <a
-              href="https://www.instagram.com/seregakorchako/"
+              href="https://www.instagram.com/nextonservice/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
@@ -188,7 +188,7 @@ export default function Navbar() {
                   <span>ВКонтакте</span>
                 </a>
                 <a
-                  href="https://www.instagram.com/seregakorchako/"
+                  href="https://www.instagram.com/nextonservice/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-all duration-300 hover:pl-2"
