@@ -292,7 +292,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     <strong>Адрес:</strong> г. Полоцк, ул. Строительная 21в/3, блок 9, бокс 3
                   </p>
                   <p className="text-gray-600 dark:text-gray-400 mb-2">
-                    <strong>Режим работы:</strong> Пн-Пт 09:00-19:00, Сб 10:00-16:00
+                    <strong>Режим работы:</strong> Пн-Пт 10.00-18.00, Сб-Вс - выходной
                   </p>
                 </div>
                 

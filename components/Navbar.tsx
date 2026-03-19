@@ -6,6 +6,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { Menu, X, Phone, Send } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
+import WorkTimeStatus from "@/components/WorkTimeStatus";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -199,6 +200,7 @@ export default function Navbar() {
                   <span>Instagram</span>
                 </a>
               </div>
+              <WorkTimeStatus className="mt-4" />
             </div>
           </div>
         )}

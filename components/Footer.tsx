@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Send, ArrowUp, ExternalLink } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
+import WorkTimeStatus from "@/components/WorkTimeStatus";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -86,11 +87,12 @@ export default function Footer() {
                 <span className="font-medium text-black dark:text-white">
                   Режим работы:
                 </span>{" "}
-                с 10:00 до 16:00
+                Пн-Пт: 10.00-18.00
                 <br />
-                Суббота, воскресенье - выходной
+                Сб-Вс - выходной
               </p>
             </div>
+            <WorkTimeStatus />
 
             <button
               onClick={scrollToTop}

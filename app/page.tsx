@@ -451,7 +451,7 @@ export default function Home() {
               },
               {
                 title: "Режим работы",
-                content: "Пн-Пт: 09:00-19:00\nСб: 10:00-16:00",
+                content: "Пн-Пт: 10.00-18.00\nСб-Вс: выходной",
                 icon: "🕐",
                 delay: "0.4s",
               },
@@ -500,8 +500,8 @@ export default function Home() {
                 г. Полоцк. Обслуживаем Полоцк и Новополоцк.
               </p>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                <span className="font-medium">Режим работы:</span> с 10:00 до
-                16:00, Суббота, воскресенье - выходной
+                <span className="font-medium">Режим работы:</span> Пн-Пт:
+                10.00-18.00, Сб-Вс - выходной
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
