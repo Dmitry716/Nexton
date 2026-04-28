@@ -27,6 +27,10 @@ For card thumbnail image:
 - `pnevmosistemy_legkovyh-thumb.webp`
 - `plastik-thumb.webp`
 
+## Placeholder files
+
+This folder already contains minimal placeholder `.webp` files with correct names.
+Replace them with your real images and keep the same filenames.
 ## Recommended formats
 
 - Full image: `800x500` (WebP)
@@ -37,4 +41,3 @@ For card thumbnail image:
 1. Export images to WebP using names above.
 2. Copy files into this folder.
 3. Redeploy (or restart local dev server).
-
