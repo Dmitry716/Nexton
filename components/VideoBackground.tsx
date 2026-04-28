@@ -48,6 +48,7 @@ export default function VideoBackground({
         loop
         muted
         playsInline
+        preload="metadata"
         poster={posterSrc}
         onError={handleError}
         className="absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover scale-105"

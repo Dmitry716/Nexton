@@ -182,6 +182,48 @@ export default async function ServicePage({ params }: ServicePageProps) {
     }
   };
 
+  const pnevmoFaqSchema =
+    service.category === "pnevmosistemy_legkovyh"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Какие легковые автомобили с пневмоподвеской вы обслуживаете?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Обслуживаем популярные марки: BMW, Mercedes-Benz, Audi, Volkswagen, Land Rover, Volvo и другие легковые автомобили с пневмоподвеской.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "По каким признакам понять, что нужна диагностика пневмоподвески?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Основные признаки: просадка кузова после стоянки, ошибки подвески на панели, неравномерная высота автомобиля и посторонние шумы компрессора.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Сколько стоит ремонт пневмосистемы?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Ориентировочные цены на странице услуги указаны в BYN. Точная стоимость зависит от результатов диагностики и объема работ.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Работаете ли вы в Полоцке и Новополоцке?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Да, выполняем диагностику и ремонт пневмосистем в Полоцке и Новополоцке по предварительной записи.",
+              },
+            },
+          ],
+        }
+      : null;
+
   return (
     <>
       <script
@@ -190,6 +232,14 @@ export default async function ServicePage({ params }: ServicePageProps) {
           __html: JSON.stringify(serviceSchema)
         }}
       />
+      {pnevmoFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(pnevmoFaqSchema),
+          }}
+        />
+      )}
 
       <div className="min-h-screen bg-white dark:bg-black pt-20">
         {/* Герой с изображением услуги */}
