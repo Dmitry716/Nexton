@@ -16,6 +16,9 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 
+const YANDEX_MAP_URL =
+  "https://yandex.ru/map-widget/v1/?um=constructor%3A091537b61c73c1e9afc0a1a9fdee72b65a2a03cf0ed761b60d52a61f2d0ea669&source=constructor";
+
 // Метаданные для главной страницы
 export const metadata: Metadata = {
   title:
@@ -445,7 +448,7 @@ export default function Home() {
               {
                 title: "Адрес",
                 content: "ул. Строительная 21в/3, блок 9, бокс 3",
-                link: "https://yandex.by/maps/?text=Полоцк%20Новополоцк%20ул.%20Строительная%2021в",
+                link: YANDEX_MAP_URL,
                 icon: "📍",
                 delay: "0.2s",
               },
@@ -503,6 +506,27 @@ export default function Home() {
                 <span className="font-medium">Режим работы:</span> Пн-Пт:
                 10.00-18.00, Сб-Вс - выходной
               </p>
+              <div className="mb-6 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
+                <iframe
+                  src={YANDEX_MAP_URL}
+                  width="100%"
+                  height="420"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Карта проезда Nexton"
+                  className="w-full"
+                />
+              </div>
+              <div className="mb-6">
+                <a
+                  href={YANDEX_MAP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center gap-2"
+                >
+                  Открыть карту в Яндекс
+                </a>
+              </div>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
                   href="https://t.me/+375297115091"
