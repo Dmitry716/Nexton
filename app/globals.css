@@ -263,6 +263,15 @@ body {
   animation: countPulse 3s ease-in-out infinite;
 }
 
+/* Заголовки таблиц в контенте услуг — контраст в тёмной теме */
+.dark .prose thead th {
+  color: #ffffff !important;
+}
+
+.dark .prose thead tr {
+  background-color: #374151 !important; /* gray-700 */
+}
+
 /* Единые медиа-запросы для мобильных */
 @media (max-width: 640px) {
   h1 {

@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { Phone, Mail, MapPin, Send, ArrowUp, ExternalLink } from "lucide-react";
+import VkIcon from "@/components/icons/VkIcon";
+import InstagramIcon from "@/components/icons/InstagramIcon";
+import WorkTimeStatus from "@/components/WorkTimeStatus";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,21 +15,25 @@ export default function Footer() {
 
   const menuItems = [
     { name: "Главная", href: "/" },
-    { name: "Услуги", href: "#services" },
-    { name: "О нас", href: "#about" },
-    { name: "Контакты", href: "#contacts" },
+    { name: "Услуги", href: "/#services" },
+    { name: "О нас", href: "/#about" },
+    { name: "Контакты", href: "/#contacts" },
     { name: "Политика конфиденциальности", href: "/privacy" },
   ];
 
   const services = [
-    { name: "Автокондиционеры", href: "#avtokondicionery" },
-    { name: "Автономные отопители", href: "#otopiteli" },
-    { name: "Ремонт радиаторов", href: "#radiatory" },
+    { name: "Автокондиционеры", href: "/#avtokondicionery" },
+    { name: "Автономные отопители", href: "/#otopiteli" },
+    { name: "Ремонт радиаторов", href: "/#radiatory" },
     {
       name: "Ремонт радиаторов и топливных баков для грузовиков",
-      href: "#gruzovye",
+      href: "/#gruzovye",
     },
-    { name: "Ремонт автопластика", href: "#plastik" },
+    {
+      name: "Обслуживание и ремонт пневмосистем",
+      href: "/usluga/obsluzhivanie-remont-pnevmosistem",
+    },
+    { name: "Ремонт автопластика", href: "/#plastik" },
   ];
 
   return (
@@ -57,7 +64,7 @@ export default function Footer() {
 
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
               Профессиональный ремонт систем охлаждения и автокондиционеров в
-              Полоцке. Работаем с 2010 года, гарантия до 6 месяцев.
+              Полоцке и Новополоцке. Работаем с 2010 года, гарантия до 6 месяцев.
             </p>
 
             {/* Реквизиты ИП */}
@@ -75,16 +82,17 @@ export default function Footer() {
                 <span className="font-medium text-black dark:text-white">
                   Ориентир:
                 </span>{" "}
-                Северный рынок, г. Полоцк
+                Северный рынок, г. Полоцк. Обслуживаем Полоцк и Новополоцк.
                 <br />
                 <span className="font-medium text-black dark:text-white">
                   Режим работы:
                 </span>{" "}
-                с 10:00 до 16:00
+                Пн-Пт: 10.00-18.00
                 <br />
-                Суббота, воскресенье - выходной
+                Сб-Вс - выходной
               </p>
             </div>
+            <WorkTimeStatus />
 
             <button
               onClick={scrollToTop}
@@ -185,6 +193,46 @@ export default function Footer() {
                 />
               </a>
 
+              <a
+                href="https://vk.com/club164841898"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+              >
+                <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
+                  <VkIcon
+                    width={16}
+                    height={16}
+                    className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                  />
+                </span>
+                <span>ВКонтакте</span>
+                <ExternalLink
+                  size={12}
+                  className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                />
+              </a>
+
+              <a
+                href="https://www.instagram.com/nextonservice/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+              >
+                <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
+                  <InstagramIcon
+                    width={16}
+                    height={16}
+                    className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                  />
+                </span>
+                <span>Instagram</span>
+                <ExternalLink
+                  size={12}
+                  className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                />
+              </a>
+
               <div className="flex items-start gap-3 text-gray-600 dark:text-gray-400">
                 <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl shrink-0">
                   <MapPin size={16} className="text-black dark:text-white" />
@@ -193,6 +241,8 @@ export default function Footer() {
                   г. Полоцк, ул. Строительная 21в/3
                   <br />
                   блок 9, бокс 3
+                  <br />
+                  <span className="text-xs text-gray-500 dark:text-gray-500">Работаем в Полоцке и Новополоцке</span>
                 </span>
               </div>
             </div>

@@ -6,7 +6,7 @@ import { Award, Wrench, Shield, Clock, Zap, Star } from "lucide-react";
 const advantages = [
   {
     title: "Опыт 15+ лет",
-    description: "Более 15 лет успешной работы в Полоцке и области",
+    description: "Более 15 лет успешной работы в Полоцке, Новополоцке и области",
     icon: Award,
   },
   {
