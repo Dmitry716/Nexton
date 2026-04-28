@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 /**
@@ -44,6 +44,9 @@ function getLocalCategoryImagePath(categoryId: string, thumb = false) {
   const filename = thumb ? `${categoryId}-thumb.webp` : `${categoryId}.webp`;
   const absolutePath = join(process.cwd(), "public", "images", "categories", filename);
   if (!existsSync(absolutePath)) return null;
+  // Защита от слишком маленьких заглушек/битых файлов.
+  // Если файл меньше 1KB, используем remote fallback.
+  if (statSync(absolutePath).size < 1024) return null;
   return `/images/categories/${filename}`;
 }
 
