@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:category-images": "node scripts/check-category-images.mjs"
   },
   "dependencies": {
     "classnames": "^2.5.1",
