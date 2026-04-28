@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import CookieConsent from "@/components/CookieConsent";
 import PWAPrompt from "@/components/PWAPrompt";
 import Footer from "@/components/Footer";
+import MobileStickyCta from "@/components/MobileStickyCta";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["cyrillic"] });
@@ -138,6 +139,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <MobileStickyCta />
           <CookieConsent />
           <PWAPrompt />
         </ThemeProvider>

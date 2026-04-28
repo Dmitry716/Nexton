@@ -31,9 +31,13 @@ For card thumbnail image:
 
 This folder already contains minimal placeholder `.webp` files with correct names.
 Replace them with your real images and keep the same filenames.
-
 ## Recommended formats
 
 - Full image: `800x500` (WebP)
 - Thumbnail: `600x400` (WebP)
 
+## Quick workflow
+
+1. Export images to WebP using names above.
+2. Copy files into this folder.
+3. Redeploy (or restart local dev server).
