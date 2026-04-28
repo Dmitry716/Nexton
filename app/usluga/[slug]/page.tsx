@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { services } from "@/data/services";
-import { categoryImages, categoryImageThumbs } from "@/data/categoryImages";
+import { getCategoryImage, getCategoryImageThumb } from "@/data/categoryImages";
 import ServiceCard from "@/components/ServiceCard";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -33,10 +33,10 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   };
 
   const categoryText = categoryNames[service.category] || "ремонту";
-  const absoluteOgImage =
-    (categoryImages[service.category] || "").startsWith("http")
-      ? (categoryImages[service.category] as string)
-      : `https://nexton.vip${categoryImages[service.category] || "/og-image.jpg"}`;
+  const categoryImage = getCategoryImage(service.category) || "/og-image.jpg";
+  const absoluteOgImage = categoryImage.startsWith("http")
+    ? categoryImage
+    : `https://nexton.vip${categoryImage}`;
   const ogTitle = `${service.name} в Полоцке и Новополоцке`;
   const ogDescription = `${service.description} Гарантия до 6 месяцев. Запись: +375 (29) 711-50-91.`;
   const pnevmoBrandsKeywords = [
@@ -156,6 +156,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
     "Citroen",
   ];
 
+  const categoryImage = getCategoryImage(service.category);
+
   // Schema.org разметка
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -180,6 +182,37 @@ export default async function ServicePage({ params }: ServicePageProps) {
       "@type": "City",
       "name": "Полоцк"
     }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Главная",
+        item: "https://nexton.vip/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Услуги",
+        item: "https://nexton.vip/#services",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: categoryNames[service.category] || "Категория услуг",
+        item: `https://nexton.vip/#${service.category}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: service.name,
+        item: `https://nexton.vip/usluga/${service.slug}`,
+      },
+    ],
   };
 
   const pnevmoFaqSchema =
@@ -232,6 +265,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
           __html: JSON.stringify(serviceSchema)
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       {pnevmoFaqSchema && (
         <script
           type="application/ld+json"
@@ -243,10 +282,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
       <div className="min-h-screen bg-white dark:bg-black pt-20">
         {/* Герой с изображением услуги */}
-        {categoryImages[service.category] && (
+        {categoryImage && (
           <div className="relative w-full h-56 sm:h-72 md:h-80 bg-gray-100 dark:bg-gray-900">
             <Image
-              src={categoryImages[service.category]}
+              src={categoryImage}
               alt=""
               fill
               className="object-cover"
@@ -291,7 +330,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
           <div className="rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden shadow-lg">
             <div className="p-6 sm:p-8 md:p-10">
-              {!categoryImages[service.category] && (
+              {!categoryImage && (
                 <h1 className="text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white">
                   {service.name} в Полоцке и Новополоцке
                 </h1>
@@ -398,7 +437,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     <ServiceCard
                       key={relatedService.id}
                       service={relatedService}
-                      imageUrl={categoryImageThumbs[service.category]}
+                      imageUrl={getCategoryImageThumb(service.category) ?? undefined}
                     />
                   ))}
               </div>
