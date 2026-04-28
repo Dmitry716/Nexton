@@ -40,6 +40,15 @@ export default function VideoBackground({
     );
   }
 
+  if (useFallback && !posterSrc) {
+    return (
+      <div
+        className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 dark:from-gray-900 dark:via-gray-950 dark:to-black"
+        style={{ opacity }}
+      />
+    );
+  }
+
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
       <video

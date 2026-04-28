@@ -5,8 +5,8 @@ import VideoBackground from "./VideoBackground";
 // Hero-video: используем локальный файл (внешние CDN часто блокируют хотлинк/автоплей).
 // Положите видео сюда: public/videos/hero-bugatti.mp4
 const HERO_VIDEO = "/videos/hero-bugatti.mp4";
-// Локальный постер быстрее и стабильнее, чем внешний CDN.
-const HERO_POSTER = "/og-image.jpg";
+// Файл гарантированно есть в репозитории, поэтому баннер не исчезает.
+const HERO_POSTER = "/file.svg";
 
 export default function HeroSection() {
   return (
