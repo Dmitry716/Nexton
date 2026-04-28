@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
 /**
  * Тематические изображения для категорий услуг.
  * Lamborghini Huracan, Porsche 911, Bugatti Chiron. Источник: Unsplash.
@@ -36,3 +39,28 @@ export const categoryImageThumbs: Record<string, string> = {
   plastik:
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=600&h=400&fit=crop",
 };
+
+function getLocalCategoryImagePath(categoryId: string, thumb = false) {
+  const filename = thumb ? `${categoryId}-thumb.webp` : `${categoryId}.webp`;
+  const absolutePath = join(process.cwd(), "public", "images", "categories", filename);
+  if (!existsSync(absolutePath)) return null;
+  return `/images/categories/${filename}`;
+}
+
+/**
+ * Возвращает изображение категории:
+ * 1) локальный WebP из /public/images/categories (если существует),
+ * 2) текущий URL из categoryImages.
+ */
+export function getCategoryImage(categoryId: string) {
+  return getLocalCategoryImagePath(categoryId, false) || categoryImages[categoryId] || null;
+}
+
+/**
+ * Возвращает превью категории:
+ * 1) локальный WebP-thumb из /public/images/categories (если существует),
+ * 2) URL из categoryImageThumbs.
+ */
+export function getCategoryImageThumb(categoryId: string) {
+  return getLocalCategoryImagePath(categoryId, true) || categoryImageThumbs[categoryId] || null;
+}

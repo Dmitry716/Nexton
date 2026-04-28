@@ -2,7 +2,7 @@ import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 import ServiceCard from "@/components/ServiceCard";
 import { services } from "@/data/services";
-import { categoryImages, categoryImageThumbs } from "@/data/categoryImages";
+import { getCategoryImageThumb } from "@/data/categoryImages";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import {
@@ -211,7 +211,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {categories.map((category, index) => {
               const Icon = category.icon;
-              const img = categoryImageThumbs[category.id];
+              const img = getCategoryImageThumb(category.id);
               return (
                 <a
                   key={category.id}
@@ -289,7 +289,7 @@ export default function Home() {
                     >
                       <ServiceCard
                         service={service}
-                        imageUrl={categoryImageThumbs[category.id]}
+                        imageUrl={getCategoryImageThumb(category.id) ?? undefined}
                       />
                     </div>
                   ))}
