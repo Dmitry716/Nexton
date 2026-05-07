@@ -4,7 +4,7 @@ import VideoBackground from "./VideoBackground";
 
 // Hero-video: используем локальный файл (внешние CDN часто блокируют хотлинк/автоплей).
 // Положите видео сюда: public/videos/hero-bugatti.mp4
-const HERO_VIDEO = "/videos/hero-bugatti.mp4";
+const HERO_VIDEO = "/videos/hero-bg.mp4";
 // Красивый постер для hero, пока локальный ролик не загружен/отсутствует.
 const HERO_POSTER =
   "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=1920&h=1080&fit=crop";
@@ -53,7 +53,8 @@ export default function HeroSection() {
             className="text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto animate-slide-right"
             style={{ animationDelay: "0.5s" }}
           >
-            Работаем с легковыми и грузовыми авто. Цены в BYN, без скрытых доплат.
+            Работаем с легковыми и грузовыми авто. Цены в BYN, без скрытых
+            доплат.
           </p>
 
           <div

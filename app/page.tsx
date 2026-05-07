@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HeroSection from "@/components/HeroSection";
 import ServiceCard from "@/components/ServiceCard";
+import ReviewsSection from "@/components/ReviewsSection"; // ← ЭТО ДОБАВИТЬ
 import { services } from "@/data/services";
 import { getCategoryImageThumb } from "@/data/categoryImages";
 import VkIcon from "@/components/icons/VkIcon";
@@ -26,7 +27,8 @@ export const metadata: Metadata = {
   description:
     "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке и Новополоцке. Заправка кондиционеров, ремонт Webasto, аргонная сварка. Гарантия 6 месяцев. Звоните: +375297115091",
   openGraph: {
-    title: "Заправка и ремонт кондиционеров, ремонт вебасто и систем охлаждения авто в Полоцке и Новополоцке",
+    title:
+      "Заправка и ремонт кондиционеров, ремонт вебасто и систем охлаждения авто в Полоцке и Новополоцке",
     description:
       "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке и Новополоцке. Заправка кондиционеров, ремонт Webasto, аргонная сварка.",
     url: "https://nexton.vip",
@@ -88,6 +90,13 @@ const categories = [
     name: "Ремонт автопластика",
     icon: Wrench,
     description: "Бамперы, бачки, патрубки",
+  },
+  // ↓↓↓ СЮДА ВСТАВИТЬ НОВУЮ КАТЕГОРИЮ ↓↓↓
+  {
+    id: "kuzovnye",
+    name: "Кузовные работы",
+    icon: Wrench,
+    description: "Восстановление геометрии кузова, рихтовка на стапеле",
   },
 ];
 
@@ -202,8 +211,9 @@ export default function Home() {
               className="text-sm text-gray-500 dark:text-gray-500 max-w-3xl mx-auto animate-fade-in"
               style={{ animationDelay: "0.3s" }}
             >
-              Ниже — полный перечень услуг с описанием и ориентировочными ценами в белорусских рублях (BYN).
-              На каждой странице услуги вы найдёте подробное описание работ, этапы и контакты для записи.
+              Ниже — полный перечень услуг с описанием и ориентировочными ценами
+              в белорусских рублях (BYN). На каждой странице услуги вы найдёте
+              подробное описание работ, этапы и контакты для записи.
             </p>
           </div>
 
@@ -289,7 +299,9 @@ export default function Home() {
                     >
                       <ServiceCard
                         service={service}
-                        imageUrl={getCategoryImageThumb(category.id) ?? undefined}
+                        imageUrl={
+                          getCategoryImageThumb(category.id) ?? undefined
+                        }
                       />
                     </div>
                   ))}
@@ -314,7 +326,8 @@ export default function Home() {
                 О компании
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white leading-tight">
-                Nexton в <span className="gradient-text">Полоцке и Новополоцке</span>
+                Nexton в{" "}
+                <span className="gradient-text">Полоцке и Новополоцке</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Мы специализируемся на ремонте систем охлаждения и
@@ -327,8 +340,9 @@ export default function Home() {
                 аргонная сварка, пайка. Гарантия до 6 месяцев на все виды работ.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                Работаем с частными лицами и организациями. Выезжаем на место при
-                необходимости. Цены фиксируем после осмотра — без скрытых доплат.
+                Работаем с частными лицами и организациями. Выезжаем на место
+                при необходимости. Цены фиксируем после осмотра — без скрытых
+                доплат.
               </p>
               <ul className="space-y-2 text-gray-600 dark:text-gray-400">
                 <li className="flex items-center gap-2">
@@ -414,7 +428,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      {/* Отзывы клиентов */}
+      <ReviewsSection />
       {/* Контакты */}
       <section
         id="contacts"
@@ -429,7 +444,8 @@ export default function Home() {
               Свяжитесь с нами
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">
-              Контакты в <span className="gradient-text">Полоцке и Новополоцке</span>
+              Контакты в{" "}
+              <span className="gradient-text">Полоцке и Новополоцке</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Ответим на все вопросы и запишем на удобное время
