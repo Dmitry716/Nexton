@@ -588,6 +588,16 @@ export default function Home() {
                 >
                   Позвонить
                 </a>
+                <a
+                  href="https://yandex.ru/maps/?rtext=~55.487337,28.758335&rtt=auto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-flex items-center gap-2"
+                  aria-label="Проложить маршрут до автосервиса в Яндекс Картах"
+                >
+                  🧭 Проложить маршрут
+                  <Send size={16} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </div>
