@@ -14,12 +14,13 @@ export const categoryImages: Record<string, string> = {
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=800&h=500&fit=crop",
   svarka:
     "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=800&h=500&fit=crop",
-  gruzovye:
-    "/images/gruzovye.png",
+  gruzovye: "/images/gruzovye.png",
   pnevmosistemy_legkovyh:
     "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=800&h=500&fit=crop",
   plastik:
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=800&h=500&fit=crop",
+  kuzovnye:
+    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=800&h=500&fit=crop",
 };
 
 /** Уменьшенные версии для карточек (быстрая загрузка) */
@@ -32,17 +33,24 @@ export const categoryImageThumbs: Record<string, string> = {
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=600&h=400&fit=crop",
   svarka:
     "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=600&h=400&fit=crop",
-  gruzovye:
-    "/images/gruzovye.png",
+  gruzovye: "/images/gruzovye.png",
   pnevmosistemy_legkovyh:
     "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=600&h=400&fit=crop",
   plastik:
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=600&h=400&fit=crop",
+  kuzovnye:
+    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=600&h=400&fit=crop",
 };
 
 function getLocalCategoryImagePath(categoryId: string, thumb = false) {
   const filename = thumb ? `${categoryId}-thumb.webp` : `${categoryId}.webp`;
-  const absolutePath = join(process.cwd(), "public", "images", "categories", filename);
+  const absolutePath = join(
+    process.cwd(),
+    "public",
+    "images",
+    "categories",
+    filename,
+  );
   if (!existsSync(absolutePath)) return null;
   // Защита от слишком маленьких заглушек/битых файлов.
   // Если файл меньше 1KB, используем remote fallback.
@@ -56,7 +64,11 @@ function getLocalCategoryImagePath(categoryId: string, thumb = false) {
  * 2) текущий URL из categoryImages.
  */
 export function getCategoryImage(categoryId: string) {
-  return getLocalCategoryImagePath(categoryId, false) || categoryImages[categoryId] || null;
+  return (
+    getLocalCategoryImagePath(categoryId, false) ||
+    categoryImages[categoryId] ||
+    null
+  );
 }
 
 /**
@@ -65,5 +77,9 @@ export function getCategoryImage(categoryId: string) {
  * 2) URL из categoryImageThumbs.
  */
 export function getCategoryImageThumb(categoryId: string) {
-  return getLocalCategoryImagePath(categoryId, true) || categoryImageThumbs[categoryId] || null;
+  return (
+    getLocalCategoryImagePath(categoryId, true) ||
+    categoryImageThumbs[categoryId] ||
+    null
+  );
 }
