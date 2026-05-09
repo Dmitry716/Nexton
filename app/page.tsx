@@ -509,7 +509,7 @@ export default function Home() {
           </div>
 
           {/* Схема проезда */}
-          <div className="mt-12 text-center">
+          {/* <div className="mt-12 text-center">
             <div className="border border-gray-200 dark:border-gray-800 p-8 max-w-2xl mx-auto hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] transition-all duration-500 group">
               <h3 className="text-2xl font-bold mb-4 text-black dark:text-white group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors">
                 Как нас найти
@@ -597,6 +597,111 @@ export default function Home() {
                 >
                   🧭 Проложить маршрут
                   <Send size={16} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </div> */}
+          {/* Схема проезда */}
+          <div className="mt-12 text-center">
+            <div className="border border-gray-200 dark:border-gray-800 p-8 max-w-2xl mx-auto hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] transition-all duration-500 group">
+              <h3 className="text-2xl font-bold mb-4 text-black dark:text-white group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors">
+                Как нас найти
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <span className="font-medium">Ориентир:</span> Северный рынок,
+                г. Полоцк. Обслуживаем Полоцк и Новополоцк.
+              </p>
+              <p className="text-gray-600 dark:text-gray-400 mb-6">
+                <span className="font-medium">Режим работы:</span> Пн-Пт:
+                10.00-18.00, Сб-Вс - выходной
+              </p>
+              <div className="mb-6 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
+                <iframe
+                  src={YANDEX_MAP_URL}
+                  width="100%"
+                  height="420"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Карта проезда Nexton"
+                  className="w-full"
+                />
+              </div>
+
+              {/* ДВЕ КНОПКИ В СТОЛБИК (вертикально) */}
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+                <a
+                  href={YANDEX_MAP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center justify-center gap-2"
+                  aria-label="Открыть карту в Яндексе"
+                >
+                  🗺️ Открыть карту в Яндекс
+                </a>
+                <a
+                  href="https://yandex.ru/maps/?rtext=~55.487337,28.758335&rtt=auto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary inline-flex items-center justify-center gap-2 bg-[#1e3a5f] hover:bg-[#2b4c7c] text-white"
+                  aria-label="Проложить маршрут до автосервиса в Яндекс Картах"
+                >
+                  🧭 Проложить маршрут
+                  <Send size={16} aria-hidden="true" />
+                </a>
+              </div>
+
+              {/* Социальные кнопки (оставляем как есть) */}
+              <div className="flex flex-wrap justify-center gap-4">
+                <a
+                  href="https://t.me/+375297115091"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center gap-2 group/btn"
+                  aria-label="Написать в Telegram"
+                >
+                  <span>Telegram</span>
+                  <Send
+                    size={16}
+                    className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </a>
+                <a
+                  href="https://vk.com/club164841898"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center gap-2 group/btn"
+                  aria-label="Перейти в группу ВКонтакте"
+                >
+                  <span>ВКонтакте</span>
+                  <VkIcon
+                    width={16}
+                    height={16}
+                    className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/nextonservice/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center gap-2 group/btn"
+                  aria-label="Перейти в Instagram"
+                >
+                  <span>Instagram</span>
+                  <InstagramIcon
+                    width={16}
+                    height={16}
+                    className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </a>
+                <a
+                  href="tel:+375297115091"
+                  className="btn-primary bg-black text-white dark:bg-white dark:text-black hover:bg-[#1e3a5f] dark:hover:bg-[#7a9bcb] hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb]"
+                  aria-label="Позвонить в сервис Nexton"
+                >
+                  Позвонить
                 </a>
               </div>
             </div>
