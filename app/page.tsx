@@ -545,7 +545,7 @@ export default function Home() {
                   🗺️ Открыть карту в Яндекс
                 </a>
                 <a
-                  href="https://yandex.ru/maps/?rtext=~55.487337,28.758335&rtt=auto"
+                  href="https://yandex.ru/maps/?rtext=~Витебская область, Полоцк, Строительная улица, 21В блок 9к3&rtt=auto"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary inline-flex items-center justify-center gap-2 bg-[#1e3a5f] hover:bg-[#2b4c7c] text-white"
