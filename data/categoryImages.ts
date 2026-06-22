@@ -3,7 +3,6 @@ import { join } from "node:path";
 
 /**
  * Тематические изображения для категорий услуг.
- * Lamborghini Huracan, Porsche 911, Bugatti Chiron. Источник: Unsplash.
  */
 export const categoryImages: Record<string, string> = {
   avtokondicionery:
@@ -52,8 +51,6 @@ function getLocalCategoryImagePath(categoryId: string, thumb = false) {
     filename,
   );
   if (!existsSync(absolutePath)) return null;
-  // Защита от слишком маленьких заглушек/битых файлов.
-  // Если файл меньше 1KB, используем remote fallback.
   if (statSync(absolutePath).size < 1024) return null;
   return `/images/categories/${filename}`;
 }
