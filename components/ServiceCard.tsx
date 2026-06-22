@@ -6,15 +6,23 @@ import { ArrowRight } from "lucide-react";
 interface ServiceCardProps {
   service: Service;
   imageUrl?: string | null;
+  city?: string;
 }
 
-export default function ServiceCard({ service, imageUrl }: ServiceCardProps) {
+export default function ServiceCard({
+  service,
+  imageUrl,
+  city,
+}: ServiceCardProps) {
+  const href = city
+    ? `/${city}/usluga/${service.slug}`
+    : `/usluga/${service.slug}`;
+
   return (
     <article
       className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl hover:shadow-[#1e3a5f]/10 dark:hover:shadow-[#7a9bcb]/10 transition-all duration-300 flex flex-col h-full focus-within:ring-2 focus-within:ring-[#1e3a5f] dark:focus-within:ring-[#7a9bcb] focus-within:ring-offset-2 focus-within:ring-offset-white dark:focus-within:ring-offset-black"
       aria-labelledby={`service-title-${service.id}`}
     >
-      {/* Изображение услуги */}
       {imageUrl && (
         <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
           <Image
@@ -41,7 +49,7 @@ export default function ServiceCard({ service, imageUrl }: ServiceCardProps) {
         </p>
 
         <Link
-          href={`/usluga/${service.slug}`}
+          href={href}
           className="inline-flex items-center gap-2 text-[#1e3a5f] dark:text-[#7a9bcb] font-semibold text-sm hover:gap-3 transition-all duration-300 focus:outline-none focus-visible:underline"
           aria-label={`Подробнее: ${service.name}`}
         >

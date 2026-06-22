@@ -244,6 +244,7 @@ export default async function CityPage({
                       key={service.id}
                       service={service}
                       imageUrl={getCategoryImageThumb(category.id) ?? undefined}
+                      city={city} // 👈 ДОБАВЛЯЕМ
                     />
                   ))}
                 </div>
