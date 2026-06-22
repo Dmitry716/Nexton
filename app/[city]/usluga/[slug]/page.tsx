@@ -63,7 +63,9 @@ export async function generateMetadata({
   const absoluteOgImage = categoryImage.startsWith("http")
     ? categoryImage
     : `https://nexton.vip${categoryImage}`;
-  const ogTitle = `${service.name} в ${cityData.name}`;
+
+  // ✅ ИСПРАВЛЕНО: используем cityPrep (предложный падеж) для заголовков
+  const ogTitle = `${service.name} в ${cityPrep}`;
 
   // Заменяем город в описании для SEO
   const description = replaceCityInText(
@@ -97,8 +99,8 @@ export async function generateMetadata({
   ];
 
   return {
-    title: `${service.name} в ${cityData.name}`,
-    description: `Профессиональный ${service.name.toLowerCase()} в ${cityData.name} (${cityData.region}). ${description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`,
+    title: `${service.name} в ${cityPrep}`, // ✅ ИСПРАВЛЕНО
+    description: `Профессиональный ${service.name.toLowerCase()} в ${cityPrep} (${cityData.region}). ${description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`, // ✅ ИСПРАВЛЕНО
     alternates: {
       canonical: `/${city}/usluga/${service.slug}`,
     },
@@ -114,7 +116,7 @@ export async function generateMetadata({
         : []),
     ],
     openGraph: {
-      title: ogTitle,
+      title: ogTitle, // ✅ ИСПРАВЛЕНО
       description: ogDescription,
       url: `https://nexton.vip/${city}/usluga/${service.slug}`,
       siteName: "Nexton",
@@ -131,7 +133,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: ogTitle,
+      title: ogTitle, // ✅ ИСПРАВЛЕНО
       description: ogDescription,
       images: [absoluteOgImage],
     },

@@ -1,4 +1,5 @@
 import { services } from "@/data/services";
+import { cities } from "@/data/cities";
 import type { MetadataRoute } from "next";
 import { statSync } from "node:fs";
 import { join } from "node:path";
@@ -14,14 +15,10 @@ function getLastModified(): Date {
   }
 }
 
-/**
- * Sitemap содержит только реальные страницы (URL без hash).
- * Якоря (#avtokondicionery, #services и т.д.) — это секции главной страницы,
- * они не являются отдельными страницами для поисковиков.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = getLastModified();
 
+  // Статические страницы
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -37,13 +34,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
-    url: `${BASE_URL}/usluga/${service.slug}`,
+  // Страницы городов (9 городов)
+  const cityPages: MetadataRoute.Sitemap = cities.map((city) => ({
+    url: `${BASE_URL}/${city.slug}`,
     lastModified,
     changeFrequency: "weekly",
-    priority: 0.8,
+    priority: 0.9,
   }));
 
-  return [...staticPages, ...servicePages];
-}
+  // Страницы услуг для каждого города (9 городов × все услуги)
+  const cityServicePages: MetadataRoute.Sitemap = [];
+  for (const city of cities) {
+    for (const service of services) {
+      cityServicePages.push({
+        url: `${BASE_URL}/${city.slug}/usluga/${service.slug}`,
+        lastModified,
+        changeFrequency: "weekly",
+        priority: 0.8,
+      });
+    }
+  }
 
+  return [...staticPages, ...cityPages, ...cityServicePages];
+}

@@ -46,12 +46,14 @@ export async function generateMetadata({
   const cityData = cities.find((c) => c.slug === city);
   if (!cityData) return { title: "Страница не найдена" };
 
+  const cityPrep = cityData.namePrepositional || cityData.name;
+
   return {
-    title: `Ремонт кондиционеров и систем охлаждения в ${cityData.name} | Nexton`,
-    description: `Профессиональный ремонт автокондиционеров, вебасто и систем охлаждения в ${cityData.name} (${cityData.region}). Гарантия 6 месяцев. Звоните: +375297115091`,
+    title: `Ремонт кондиционеров и систем охлаждения в ${cityPrep} | Nexton`,
+    description: `Профессиональный ремонт автокондиционеров, вебасто и систем охлаждения в ${cityPrep} (${cityData.region}). Гарантия 6 месяцев. Звоните: +375297115091`,
     openGraph: {
-      title: `Ремонт систем охлаждения в ${cityData.name} | Nexton`,
-      description: `Профессиональный ремонт кондиционеров и систем охлаждения в ${cityData.name}.`,
+      title: `Ремонт систем охлаждения в ${cityPrep} | Nexton`,
+      description: `Профессиональный ремонт кондиционеров и систем охлаждения в ${cityPrep}.`,
       url: `https://nexton.vip/${city}`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -99,7 +101,6 @@ export default async function CityPage({
 
       <HeroSection city={cityPrep} />
 
-      {/* Блок "Почему выбирают Nexton" */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-black dark:text-white mb-12">
@@ -140,7 +141,6 @@ export default async function CityPage({
         </div>
       </section>
 
-      {/* УСЛУГИ — с динамическим городом */}
       <section
         id="services"
         className="py-20 bg-white dark:bg-black border-y border-gray-200 dark:border-gray-800 relative overflow-hidden"
@@ -171,7 +171,6 @@ export default async function CityPage({
             </p>
           </div>
 
-          {/* Категории с картинками */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {categoriesWithServices.map((category, index) => {
               const Icon = category.icon;
@@ -216,7 +215,6 @@ export default async function CityPage({
             })}
           </div>
 
-          {/* Услуги по категориям */}
           {categoriesWithServices.map((category) => {
             if (category.services.length === 0) return null;
             const Icon = category.icon;
@@ -244,7 +242,7 @@ export default async function CityPage({
                       key={service.id}
                       service={service}
                       imageUrl={getCategoryImageThumb(category.id) ?? undefined}
-                      city={city} // 👈 ДОБАВЛЯЕМ
+                      city={city}
                     />
                   ))}
                 </div>
@@ -254,7 +252,6 @@ export default async function CityPage({
         </div>
       </section>
 
-      {/* О КОМПАНИИ — с динамическим городом */}
       <section
         id="about"
         className="py-20 bg-gray-50 dark:bg-gray-900 border-y border-gray-200 dark:border-gray-800 relative overflow-hidden"
@@ -363,7 +360,6 @@ export default async function CityPage({
 
       <ReviewsSection />
 
-      {/* КОНТАКТЫ — оставляем Полоцк и Новополоцк (НЕ МЕНЯЕМ!) */}
       <section
         id="contacts"
         className="py-20 bg-white dark:bg-black relative overflow-hidden"
