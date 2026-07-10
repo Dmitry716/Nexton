@@ -6,6 +6,7 @@ import { services } from "@/data/services";
 import { getCategoryImageThumb } from "@/data/categoryImages";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
+import YoutubeGallery from "@/components/YoutubeGallery";
 import {
   Thermometer,
   Wind,
@@ -521,7 +522,7 @@ export default function Home() {
                 <span className="font-medium">Режим работы:</span> Пн-Пт:
                 10.00-18.00, Сб-Вс - выходной
               </p>
-              {/* YouTube ссылка */}
+
               {/* YouTube ссылка */}
               <div className="mt-8 mb-6 text-center">
                 <a
@@ -547,6 +548,7 @@ export default function Home() {
                   </span>
                 </a>
               </div>
+
               <div className="mb-6 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
                 <iframe
                   src={YANDEX_MAP_URL}
@@ -635,6 +637,43 @@ export default function Home() {
                 >
                   Позвонить
                 </a>
+              </div>
+
+              {/* 👇 НОВЫЙ БЛОК С ВИДЕО (ПОСЛЕ КАРТЫ) */}
+              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+                <h3 className="text-2xl font-bold text-black dark:text-white mb-4 text-center">
+                  Наши видео
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto mb-6">
+                  Смотрите наши работы и процессы в реальных видео
+                </p>
+                <YoutubeGallery />
+                <div className="text-center mt-6">
+                  <a
+                    href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1e3a5f] dark:text-[#7a9bcb] hover:underline font-medium inline-flex items-center gap-2"
+                    aria-label="Все видео на YouTube канале"
+                  >
+                    Все видео на YouTube
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
