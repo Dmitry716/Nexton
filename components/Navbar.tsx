@@ -6,6 +6,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { Menu, X, Phone, Send } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
+import YoutubeIcon from "@/components/icons/YoutubeIcon";
 import WorkTimeStatus from "@/components/WorkTimeStatus";
 
 export default function Navbar() {
@@ -65,6 +66,7 @@ export default function Navbar() {
               </Link>
             ))}
 
+            {/* Десктопные соцсети */}
             <div className="flex items-center space-x-3 ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
               <a
                 href="https://t.me/+375297115091"
@@ -92,6 +94,16 @@ export default function Navbar() {
                 aria-label="Instagram"
               >
                 <InstagramIcon className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
+              </a>
+              {/* 👇 YOUTUBE В ДЕСКТОПЕ */}
+              <a
+                href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                aria-label="Наш YouTube канал"
+              >
+                <YoutubeIcon className="w-5 h-5 text-black dark:text-white hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300" />
               </a>
             </div>
 
@@ -126,6 +138,16 @@ export default function Navbar() {
               aria-label="Instagram"
             >
               <InstagramIcon className="w-5 h-5 text-black dark:text-white" />
+            </a>
+            {/* 👇 YOUTUBE В МОБИЛЬНОЙ ШАПКЕ */}
+            <a
+              href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+              aria-label="Наш YouTube канал"
+            >
+              <YoutubeIcon className="w-5 h-5 text-black dark:text-white" />
             </a>
             <ThemeSwitcher />
             <button
@@ -187,6 +209,17 @@ export default function Navbar() {
                 >
                   <VkIcon width={18} height={18} />
                   <span>ВКонтакте</span>
+                </a>
+                <a
+                  href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-all duration-300 hover:pl-2"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Наш YouTube канал"
+                >
+                  <YoutubeIcon size={18} />
+                  <span>YouTube</span>
                 </a>
                 <a
                   href="https://www.instagram.com/nextonservice/"

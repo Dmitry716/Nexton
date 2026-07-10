@@ -521,6 +521,32 @@ export default function Home() {
                 <span className="font-medium">Режим работы:</span> Пн-Пт:
                 10.00-18.00, Сб-Вс - выходной
               </p>
+              {/* YouTube ссылка */}
+              {/* YouTube ссылка */}
+              <div className="mt-8 mb-6 text-center">
+                <a
+                  href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-6 py-3 border-2 border-[#1e3a5f] dark:border-[#7a9bcb] rounded-xl bg-gray-50 dark:bg-gray-900/50 hover:bg-[#1e3a5f] dark:hover:bg-[#7a9bcb] hover:text-white dark:hover:text-black text-[#1e3a5f] dark:text-[#7a9bcb] transition-all duration-300 group shadow-sm hover:shadow-md"
+                  aria-label="Наш YouTube канал (откроется в новом окне)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6 text-[#1e3a5f] dark:text-[#7a9bcb] group-hover:text-white dark:group-hover:text-black transition-colors duration-300"
+                    aria-hidden="true"
+                  >
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  <span className="font-medium transition-colors duration-300">
+                    Смотрите наши видео на YouTube
+                  </span>
+                </a>
+              </div>
               <div className="mb-6 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
                 <iframe
                   src={YANDEX_MAP_URL}

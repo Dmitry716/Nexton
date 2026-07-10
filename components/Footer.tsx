@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Send, ArrowUp, ExternalLink } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
+import YoutubeIcon from "@/components/icons/YoutubeIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import WorkTimeStatus from "@/components/WorkTimeStatus";
 
@@ -64,7 +65,8 @@ export default function Footer() {
 
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
               Профессиональный ремонт систем охлаждения и автокондиционеров в
-              Полоцке и Новополоцке. Работаем с 2010 года, гарантия до 6 месяцев.
+              Полоцке и Новополоцке. Работаем с 2010 года, гарантия до 6
+              месяцев.
             </p>
 
             {/* Реквизиты ИП */}
@@ -212,6 +214,19 @@ export default function Footer() {
                   className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
                 />
               </a>
+              <a
+                href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline inline-flex items-center gap-2 group/btn"
+                aria-label="Наш YouTube канал (откроется в новом окне)"
+              >
+                <span>YouTube</span>
+                <YoutubeIcon
+                  size={16}
+                  className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                />
+              </a>
 
               <a
                 href="https://www.instagram.com/nextonservice/"
@@ -242,7 +257,9 @@ export default function Footer() {
                   <br />
                   блок 9, бокс 3
                   <br />
-                  <span className="text-xs text-gray-500 dark:text-gray-500">Работаем в Полоцке и Новополоцке</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-500">
+                    Работаем в Полоцке и Новополоцке
+                  </span>
                 </span>
               </div>
             </div>
