@@ -7,7 +7,15 @@ import { cities } from "@/data/cities";
 import { getCategoryImageThumb } from "@/data/categoryImages";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Wind, Flame, Thermometer, Zap, Truck, Wrench } from "lucide-react";
+import {
+  Wind,
+  Flame,
+  Thermometer,
+  Zap,
+  Truck,
+  Wrench,
+  Car,
+} from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 
@@ -27,6 +35,12 @@ const categories = [
     id: "pnevmosistemy_legkovyh",
     name: "Пневмосистемы легковых авто",
     icon: Wrench,
+  },
+  // 👇 ДОБАВЬ ЭТУ КАТЕГОРИЮ
+  {
+    id: "diagnostika_podveski",
+    name: "Диагностика подвески",
+    icon: Car, // не забудь импортировать Car
   },
 ];
 
