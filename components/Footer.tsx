@@ -35,6 +35,8 @@ export default function Footer() {
       href: "/usluga/obsluzhivanie-remont-pnevmosistem",
     },
     { name: "Ремонт автопластика", href: "/#plastik" },
+    // 👇 НОВАЯ УСЛУГА
+    { name: "Диагностика подвески", href: "/#diagnostika_podveski" },
   ];
 
   return (

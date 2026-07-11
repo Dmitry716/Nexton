@@ -20,6 +20,9 @@ export const categoryImages: Record<string, string> = {
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=800&h=500&fit=crop",
   kuzovnye:
     "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=800&h=500&fit=crop",
+  // 👇 НОВАЯ КАТЕГОРИЯ
+
+  diagnostika_podveski: "/images/categories/diagnostika_podveski.webp",
 };
 
 /** Уменьшенные версии для карточек (быстрая загрузка) */
@@ -39,6 +42,8 @@ export const categoryImageThumbs: Record<string, string> = {
     "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=600&h=400&fit=crop",
   kuzovnye:
     "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=600&h=400&fit=crop",
+  // 👇 НОВАЯ КАТЕГОРИЯ
+  diagnostika_podveski: "/images/categories/diagnostika_podveski.webp",
 };
 
 function getLocalCategoryImagePath(categoryId: string, thumb = false) {

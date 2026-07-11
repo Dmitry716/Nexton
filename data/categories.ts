@@ -9,4 +9,5 @@ export const categories = [
   },
   { id: "plastik", name: "Ремонт автопластика" },
   { id: "kuzovnye", name: "Кузовные работы" },
+  { id: "diagnostika_podveski", name: "Диагностика подвески" }, // 👈 НОВАЯ КАТЕГОРИЯ
 ];

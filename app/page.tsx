@@ -15,6 +15,7 @@ import {
   Wrench,
   Zap,
   Send,
+  Car, // 👈 ДОБАВЬ
 } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -98,6 +99,12 @@ const categories = [
     name: "Кузовные работы",
     icon: Wrench,
     description: "Восстановление геометрии кузова, рихтовка на стапеле",
+  },
+  {
+    id: "diagnostika_podveski",
+    name: "Диагностика подвески",
+    icon: Car,
+    description: "Проверка подвески на вибростенде",
   },
 ];
 
