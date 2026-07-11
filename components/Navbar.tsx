@@ -110,17 +110,9 @@ export default function Navbar() {
             <ThemeSwitcher />
           </div>
 
-          {/* Мобильное меню */}
-          <div className="md:hidden flex items-center space-x-4">
-            <a
-              href="https://t.me/+375297115091"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
-              aria-label="Telegram"
-            >
-              <Send className="w-5 h-5 text-black dark:text-white" />
-            </a>
+          {/* Мобильное меню - ИСПРАВЛЕНО! */}
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Telegram УБРАН из шапки (есть в меню и футере) */}
             <a
               href="https://vk.com/club164841898"
               target="_blank"
@@ -139,7 +131,6 @@ export default function Navbar() {
             >
               <InstagramIcon className="w-5 h-5 text-black dark:text-white" />
             </a>
-            {/* 👇 YOUTUBE В МОБИЛЬНОЙ ШАПКЕ */}
             <a
               href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
               target="_blank"
