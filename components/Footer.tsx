@@ -19,6 +19,7 @@ export default function Footer() {
     { name: "Услуги", href: "/#services" },
     { name: "О нас", href: "/#about" },
     { name: "Контакты", href: "/#contacts" },
+    { name: "Оплата", href: "/payment" },
     { name: "Политика конфиденциальности", href: "/privacy" },
   ];
 
@@ -35,7 +36,6 @@ export default function Footer() {
       href: "/usluga/obsluzhivanie-remont-pnevmosistem",
     },
     { name: "Ремонт автопластика", href: "/#plastik" },
-    // 👇 НОВАЯ УСЛУГА
     { name: "Диагностика подвески", href: "/#diagnostika_podveski" },
   ];
 
@@ -48,7 +48,6 @@ export default function Footer() {
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-black dark:via-white to-transparent opacity-20"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        {/* Основная сетка */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Колонка 1: Логотип и информация */}
           <div className="lg:col-span-4 space-y-6">
@@ -71,7 +70,6 @@ export default function Footer() {
               месяцев.
             </p>
 
-            {/* Реквизиты ИП */}
             <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-800 space-y-2">
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 <span className="font-medium text-black dark:text-white">
@@ -96,6 +94,31 @@ export default function Footer() {
                 Сб-Вс - выходной
               </p>
             </div>
+
+            {/* 👇 ПЛАТЁЖНЫЕ СИСТЕМЫ */}
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-800">
+              <p className="text-xs text-gray-500 dark:text-gray-500 mb-2">
+                Принимаем к оплате:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                  💳 Visa
+                </span>
+                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                  💳 MasterCard
+                </span>
+                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                  💳 Белкарт
+                </span>
+                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                  🏢 Безналичный
+                </span>
+              </div>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                Работаем с физ. и юр. лицами
+              </p>
+            </div>
+
             <WorkTimeStatus />
 
             <button
@@ -111,7 +134,7 @@ export default function Footer() {
             </button>
           </div>
 
-          {/* Остальные колонки без изменений */}
+          {/* Колонка 2: Навигация */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="text-lg font-bold text-black dark:text-white mb-4">
               Навигация
@@ -129,6 +152,7 @@ export default function Footer() {
             </nav>
           </div>
 
+          {/* Колонка 3: Услуги */}
           <div className="lg:col-span-3 space-y-4">
             <h3 className="text-lg font-bold text-black dark:text-white mb-4">
               Наши услуги
@@ -146,12 +170,12 @@ export default function Footer() {
             </nav>
           </div>
 
+          {/* Колонка 4: Контакты */}
           <div className="lg:col-span-3 space-y-4">
             <h3 className="text-lg font-bold text-black dark:text-white mb-4">
               Контакты
             </h3>
             <div className="space-y-4">
-              {/* Контакты без изменений */}
               <a
                 href="tel:+375297115091"
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
@@ -216,6 +240,7 @@ export default function Footer() {
                   className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
                 />
               </a>
+
               <a
                 href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
                 target="_blank"

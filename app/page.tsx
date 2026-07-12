@@ -7,6 +7,7 @@ import { getCategoryImageThumb } from "@/data/categoryImages";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import YoutubeGallery from "@/components/YoutubeGallery";
+import PaymentInfo from "@/components/PaymentInfo";
 import {
   Thermometer,
   Wind,
@@ -645,6 +646,8 @@ export default function Home() {
                   Позвонить
                 </a>
               </div>
+              {/* Способы оплаты */}
+              <PaymentInfo />
 
               {/* 👇 НОВЫЙ БЛОК С ВИДЕО (ПОСЛЕ КАРТЫ) */}
               <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
