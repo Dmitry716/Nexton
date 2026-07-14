@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getCategoryImage, getCategoryImageThumb } from "@/data/categoryImages";
 import ServiceCard from "@/components/ServiceCard";
+import PaymentInfo from "@/components/PaymentInfo"; // 👈 ДОБАВИТЬ ИМПОРТ
 
 interface CityServicePageProps {
   params: Promise<{ city: string; slug: string }>;
@@ -64,10 +65,8 @@ export async function generateMetadata({
     ? categoryImage
     : `https://nexton.vip${categoryImage}`;
 
-  // ✅ ИСПРАВЛЕНО: используем cityPrep (предложный падеж) для заголовков
   const ogTitle = `${service.name} в ${cityPrep}`;
 
-  // Заменяем город в описании для SEO
   const description = replaceCityInText(
     service.description,
     cityName,
@@ -99,8 +98,8 @@ export async function generateMetadata({
   ];
 
   return {
-    title: `${service.name} в ${cityPrep}`, // ✅ ИСПРАВЛЕНО
-    description: `Профессиональный ${service.name.toLowerCase()} в ${cityPrep} (${cityData.region}). ${description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`, // ✅ ИСПРАВЛЕНО
+    title: `${service.name} в ${cityPrep}`,
+    description: `Профессиональный ${service.name.toLowerCase()} в ${cityPrep} (${cityData.region}). ${description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`,
     alternates: {
       canonical: `/${city}/usluga/${service.slug}`,
     },
@@ -116,7 +115,7 @@ export async function generateMetadata({
         : []),
     ],
     openGraph: {
-      title: ogTitle, // ✅ ИСПРАВЛЕНО
+      title: ogTitle,
       description: ogDescription,
       url: `https://nexton.vip/${city}/usluga/${service.slug}`,
       siteName: "Nexton",
@@ -133,7 +132,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: ogTitle, // ✅ ИСПРАВЛЕНО
+      title: ogTitle,
       description: ogDescription,
       images: [absoluteOgImage],
     },
@@ -188,7 +187,6 @@ export default async function CityServicePage({
 
   const categoryImage = getCategoryImage(service.category);
 
-  // Заменяем город в описании услуги
   const descriptionWithCity = replaceCityInText(
     service.description,
     cityName,
@@ -458,6 +456,12 @@ export default async function CityServicePage({
                   </div>
                 </div>
               </div>
+
+              {/* 👇👇👇 СЮДА ВСТАВИТЬ PaymentInfo 👇👇👇 */}
+              <div className="mt-12">
+                <PaymentInfo />
+              </div>
+              {/* 👆👆👆 КОНЕЦ ВСТАВКИ 👆👆👆 */}
             </div>
           </div>
 

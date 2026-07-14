@@ -6,6 +6,7 @@ import VkIcon from "@/components/icons/VkIcon";
 import YoutubeIcon from "@/components/icons/YoutubeIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import WorkTimeStatus from "@/components/WorkTimeStatus";
+import PaymentMethods from "@/components/PaymentMethods"; // 👈 ИМПОРТ
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -95,29 +96,8 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* 👇 ПЛАТЁЖНЫЕ СИСТЕМЫ */}
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-              <p className="text-xs text-gray-500 dark:text-gray-500 mb-2">
-                Принимаем к оплате:
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                  💳 Visa
-                </span>
-                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                  💳 MasterCard
-                </span>
-                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                  💳 Белкарт
-                </span>
-                <span className="text-xs px-3 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-                  🏢 Безналичный
-                </span>
-              </div>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
-                Работаем с физ. и юр. лицами
-              </p>
-            </div>
+            {/* 👇 ВСТАВЛЯЕМ КОМПОНЕНТ ОПЛАТЫ */}
+            <PaymentMethods />
 
             <WorkTimeStatus />
 
@@ -139,7 +119,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-black dark:text-white mb-4">
               Навигация
             </h3>
-            <nav className="space-y-3">
+            <nav className="space-y-3" aria-label="Основная навигация">
               {menuItems.map((item) => (
                 <Link
                   key={item.name}
@@ -157,7 +137,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-black dark:text-white mb-4">
               Наши услуги
             </h3>
-            <nav className="space-y-3">
+            <nav className="space-y-3" aria-label="Список услуг">
               {services.map((service) => (
                 <Link
                   key={service.name}
@@ -175,15 +155,18 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-black dark:text-white mb-4">
               Контакты
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-4" role="list">
               <a
                 href="tel:+375297115091"
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+                role="listitem"
+                aria-label="Позвонить по телефону +375 29 711-50-91"
               >
                 <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
                   <Phone
                     size={16}
                     className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                    aria-hidden="true"
                   />
                 </span>
                 <span>+375 (29) 711-50-91</span>
@@ -192,11 +175,14 @@ export default function Footer() {
               <a
                 href="mailto:info@nexton.vip"
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+                role="listitem"
+                aria-label="Написать на email info@nexton.vip"
               >
                 <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
                   <Mail
                     size={16}
                     className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                    aria-hidden="true"
                   />
                 </span>
                 <span>info@nexton.vip</span>
@@ -207,17 +193,21 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+                role="listitem"
+                aria-label="Написать в Telegram (откроется в новом окне)"
               >
                 <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
                   <Send
                     size={16}
                     className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                    aria-hidden="true"
                   />
                 </span>
                 <span>Telegram</span>
                 <ExternalLink
                   size={12}
                   className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
                 />
               </a>
 
@@ -226,18 +216,22 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+                role="listitem"
+                aria-label="ВКонтакте (откроется в новом окне)"
               >
                 <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
                   <VkIcon
                     width={16}
                     height={16}
                     className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                    aria-hidden="true"
                   />
                 </span>
                 <span>ВКонтакте</span>
                 <ExternalLink
                   size={12}
                   className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
                 />
               </a>
 
@@ -245,13 +239,22 @@ export default function Footer() {
                 href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline inline-flex items-center gap-2 group/btn"
-                aria-label="Наш YouTube канал (откроется в новом окне)"
+                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+                role="listitem"
+                aria-label="YouTube канал (откроется в новом окне)"
               >
+                <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
+                  <YoutubeIcon
+                    size={16}
+                    className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                    aria-hidden="true"
+                  />
+                </span>
                 <span>YouTube</span>
-                <YoutubeIcon
-                  size={16}
-                  className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                <ExternalLink
+                  size={12}
+                  className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
                 />
               </a>
 
@@ -260,26 +263,37 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+                role="listitem"
+                aria-label="Instagram (откроется в новом окне)"
               >
                 <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
                   <InstagramIcon
                     width={16}
                     height={16}
                     className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                    aria-hidden="true"
                   />
                 </span>
                 <span>Instagram</span>
                 <ExternalLink
                   size={12}
                   className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
                 />
               </a>
 
-              <div className="flex items-start gap-3 text-gray-600 dark:text-gray-400">
+              <div
+                className="flex items-start gap-3 text-gray-600 dark:text-gray-400"
+                role="listitem"
+              >
                 <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl shrink-0">
-                  <MapPin size={16} className="text-black dark:text-white" />
+                  <MapPin
+                    size={16}
+                    className="text-black dark:text-white"
+                    aria-hidden="true"
+                  />
                 </span>
-                <span>
+                <address className="not-italic">
                   г. Полоцк, ул. Строительная 21в/3
                   <br />
                   блок 9, бокс 3
@@ -287,7 +301,7 @@ export default function Footer() {
                   <span className="text-xs text-gray-500 dark:text-gray-500">
                     Работаем в Полоцке и Новополоцке
                   </span>
-                </span>
+                </address>
               </div>
             </div>
           </div>
@@ -315,6 +329,7 @@ export default function Footer() {
                 <ExternalLink
                   size={14}
                   className="opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
                 />
               </a>
             </div>
