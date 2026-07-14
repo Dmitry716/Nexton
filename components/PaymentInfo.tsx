@@ -81,7 +81,7 @@ export default function PaymentInfo() {
               Для юридических лиц и ИП
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-500">
-              Счёт на оплату с НДС и без
+              Счёт на оплату без НДС
             </p>
           </div>
 
@@ -117,8 +117,7 @@ export default function PaymentInfo() {
             </span>
           </div>
           <p className="text-center text-xs text-gray-500 dark:text-gray-500 mt-3">
-            Работаем с НДС и без НДС. Для юридических лиц — договор и
-            закрывающие документы.
+            Для юридических лиц — договор и закрывающие документы.
           </p>
         </div>
       </div>
