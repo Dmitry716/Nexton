@@ -302,3 +302,39 @@ body {
     gap: 1rem !important;
   }
 }
+/* 1 августа */
+/* Бесконечная анимация для категорий */
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  display: flex;
+  animation: infinite-scroll 30s linear infinite;
+  width: fit-content;
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Анимация появления с масштабом */
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-scale {
+  animation: fadeScale 0.5s ease-out forwards;
+}

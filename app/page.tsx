@@ -23,6 +23,31 @@ import type { Metadata } from "next";
 const YANDEX_MAP_URL =
   "https://yandex.ru/map-widget/v1/?um=constructor%3A091537b61c73c1e9afc0a1a9fdee72b65a2a03cf0ed761b60d52a61f2d0ea669&source=constructor";
 
+// ✅ ИМПОРТЫ ДЛЯ БЛОГА
+import Link from "next/link";
+import { articles } from "@/app/blog/data/articles";
+import { Calendar, Clock } from "lucide-react";
+
+// ✅ Функция форматирования даты для блога
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  const months = [
+    "января",
+    "февраля",
+    "марта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря",
+  ];
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
 // Метаданные для главной страницы
 export const metadata: Metadata = {
   title:
@@ -434,6 +459,85 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* ✅ ПОСЛЕДНИЕ СТАТЬИ ИЗ БЛОГА (ПЕРЕД ОТЗЫВАМИ) */}
+      {/* ============================================================ */}
+      <section className="py-16 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-black dark:text-white">
+              Полезные <span className="gradient-text">статьи</span>
+            </h2>
+            <Link
+              href="/blog"
+              className="text-[#1e3a5f] dark:text-[#7a9bcb] hover:underline font-medium flex items-center gap-1 transition-all hover:translate-x-1"
+            >
+              Все статьи →
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {articles.slice(0, 3).map((article, index) => (
+              <Link
+                key={article.id}
+                href={`/blog/${article.slug}`}
+                className="group block rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-full">
+                      {article.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-black dark:text-white mb-2 group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors line-clamp-2">
+                    {article.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">
+                    {article.description}
+                  </p>
+
+                  {/* Метки (теги) */}
+                  {article.keywords && article.keywords.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {article.keywords.slice(0, 2).map((keyword, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[9px] text-gray-600 dark:text-gray-400 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-[#1e3a5f] dark:hover:bg-[#7a9bcb] hover:text-white dark:hover:text-black transition-all duration-300 cursor-pointer"
+                        >
+                          #{keyword}
+                        </span>
+                      ))}
+                      {article.keywords.length > 2 && (
+                        <span className="text-[9px] text-gray-400 dark:text-gray-600">
+                          +{article.keywords.length - 2}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                    <div className="flex items-center gap-3">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {formatDate(article.date)}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {article.readingTime} мин
+                      </span>
+                    </div>
+                    <span className="text-[#1e3a5f] dark:text-[#7a9bcb] font-medium group-hover:translate-x-1 transition-transform">
+                      Читать →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
