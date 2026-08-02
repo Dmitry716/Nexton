@@ -338,3 +338,188 @@ body {
 .animate-fade-scale {
   animation: fadeScale 0.5s ease-out forwards;
 }
+
+/* ===== СТИЛИ ДЛЯ СТАТЕЙ БЛОГА ===== */
+
+/* Заголовки */
+.prose h1 {
+  font-size: 2.25rem !important;
+  font-weight: 700 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  color: #1e3a5f !important;
+}
+
+.dark .prose h1 {
+  color: #7a9bcb !important;
+}
+
+.prose h2 {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+  color: #1e3a5f !important;
+  border-bottom: 2px solid #e5e7eb !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.dark .prose h2 {
+  color: #7a9bcb !important;
+  border-bottom-color: #1f2937 !important;
+}
+
+.prose h3 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  color: #1e3a5f !important;
+}
+
+.dark .prose h3 {
+  color: #7a9bcb !important;
+}
+
+/* Параграфы */
+.prose p {
+  color: #374151 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 1rem !important;
+}
+
+.dark .prose p {
+  color: #d1d5db !important;
+}
+
+/* Списки */
+.prose ul {
+  color: #374151 !important;
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
+  /* space-y: 0.25rem !important; */
+}
+
+.dark .prose ul {
+  color: #d1d5db !important;
+}
+
+.prose ul li {
+  margin-bottom: 0.25rem !important;
+}
+
+.prose ol {
+  color: #374151 !important;
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.dark .prose ol {
+  color: #d1d5db !important;
+}
+
+.prose ol li {
+  margin-bottom: 0.25rem !important;
+}
+
+/* Жирный текст */
+.prose strong {
+  color: #1e3a5f !important;
+  font-weight: 600 !important;
+}
+
+.dark .prose strong {
+  color: #7a9bcb !important;
+}
+
+/* Ссылки */
+.prose a {
+  color: #1e3a5f !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.dark .prose a {
+  color: #7a9bcb !important;
+}
+
+.prose a:hover {
+  text-decoration: none !important;
+}
+
+/* Цитаты */
+.prose blockquote {
+  border-left: 4px solid #1e3a5f !important;
+  padding-left: 1rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  font-style: italic !important;
+  color: #4b5563 !important;
+  background-color: #f9fafb !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+  margin: 1rem 0 !important;
+}
+
+.dark .prose blockquote {
+  border-left-color: #7a9bcb !important;
+  color: #9ca3af !important;
+  background-color: #111827 !important;
+}
+
+/* Блоки с подсказками (info, warning, success) */
+.prose .bg-blue-50,
+.prose .bg-yellow-50,
+.prose .bg-green-50,
+.prose .bg-red-50 {
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  margin: 1rem 0 !important;
+  border-left-width: 4px !important;
+}
+
+.prose .bg-blue-50 {
+  background-color: #eff6ff !important;
+  border-left-color: #3b82f6 !important;
+}
+
+.dark .prose .bg-blue-50 {
+  background-color: #1e293b !important;
+}
+
+.prose .bg-yellow-50 {
+  background-color: #fefce8 !important;
+  border-left-color: #eab308 !important;
+}
+
+.dark .prose .bg-yellow-50 {
+  background-color: #1e293b !important;
+}
+
+.prose .bg-green-50 {
+  background-color: #f0fdf4 !important;
+  border-left-color: #22c55e !important;
+}
+
+.dark .prose .bg-green-50 {
+  background-color: #1e293b !important;
+}
+
+.prose .bg-red-50 {
+  background-color: #fef2f2 !important;
+  border-left-color: #ef4444 !important;
+}
+
+.dark .prose .bg-red-50 {
+  background-color: #1e293b !important;
+}
+
+/* Текст в блоках подсказок */
+.prose .bg-blue-50 p,
+.prose .bg-yellow-50 p,
+.prose .bg-green-50 p,
+.prose .bg-red-50 p {
+  margin-bottom: 0 !important;
+}

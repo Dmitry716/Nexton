@@ -64,7 +64,6 @@ function formatDate(dateString: string): string {
   return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-// ✅ ВСЕ ВАШИ ВИДЕО ИСПОЛЬЗУЮТСЯ
 function getVideoForArticle(category: string): string | null {
   const videoMap: Record<string, string> = {
     "Ремонт кондиционеров": "/videos/blog/repair-ac.mp4",
@@ -72,7 +71,7 @@ function getVideoForArticle(category: string): string | null {
     "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
     "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",
   };
-  return videoMap[category] || "/videos/blog/hero.mp4";
+  return videoMap[category] || null;
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
@@ -114,7 +113,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </Link>
         </nav>
 
-        {/* ✅ ВИДЕО НА ВСЮ ШИРИНУ КОНТЕНТА - БЕЗ СКРОЛЛА */}
+        {/* ВИДЕО */}
         {videoSrc ? (
           <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] rounded-2xl overflow-hidden mb-8 border border-gray-200 dark:border-gray-800">
             <video
@@ -180,23 +179,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </header>
         )}
 
-        {/* Контент статьи */}
+        {/* ✅ КОНТЕНТ СТАТЬИ - ЧИСТО И ПРОСТО */}
         <div
-          className="prose prose-lg max-w-none dark:prose-invert 
-            prose-headings:text-[#1e3a5f] dark:prose-headings:text-[#7a9bcb] 
-            prose-h1:text-3xl prose-h1:font-bold prose-h1:mt-8 prose-h1:mb-4
-            prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-6 prose-h2:mb-3
-            prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-4 prose-h3:mb-2
-            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-4
-            prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-4
-            prose-ol:text-gray-700 dark:prose-ol:text-gray-300 prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-4
-            prose-li:mb-1 prose-li:text-gray-700 dark:prose-li:text-gray-300
-            prose-strong:text-[#1e3a5f] dark:prose-strong:text-[#7a9bcb] prose-strong:font-semibold
-            prose-a:text-[#1e3a5f] dark:prose-a:text-[#7a9bcb] prose-a:underline prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:no-underline
-            prose-blockquote:border-l-4 prose-blockquote:border-[#1e3a5f] dark:prose-blockquote:border-[#7a9bcb] 
-            prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-600 dark:prose-blockquote:text-gray-400
-            prose-img:rounded-xl prose-img:shadow-lg
-          "
+          className="prose prose-lg max-w-none dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: article.content }}
           itemProp="articleBody"
         />
@@ -258,7 +243,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </footer>
       </article>
 
-      {/* Похожие статьи */}
       {relatedArticles.length > 0 && (
         <section
           className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12"
