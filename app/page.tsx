@@ -17,6 +17,7 @@ import {
   Zap,
   Send,
   Car, // 👈 ДОБАВЬ
+  ArrowRight, // 👈 ДОБАВЬТЕ ЭТО!
 } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -464,80 +465,193 @@ export default function Home() {
       </section>
 
       {/* ============================================================ */}
-      {/* ✅ ПОСЛЕДНИЕ СТАТЬИ ИЗ БЛОГА (ПЕРЕД ОТЗЫВАМИ) */}
+      {/* ✅ ПОСЛЕДНИЕ СТАТЬИ ИЗ БЛОГА С ВИДЕО - ПО ОДНОЙ ИЗ КАЖДОЙ КАТЕГОРИИ */}
       {/* ============================================================ */}
       <section className="py-16 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold text-black dark:text-white">
-              Полезные <span className="gradient-text">статьи</span>
+            <h2 className="text-3xl font-bold text-black dark:text-white flex items-center gap-3">
+              <span className="text-3xl">📖</span>
+              Полезные статьи
             </h2>
             <Link
               href="/blog"
               className="text-[#1e3a5f] dark:text-[#7a9bcb] hover:underline font-medium flex items-center gap-1 transition-all hover:translate-x-1"
             >
-              Все статьи →
+              Все статьи <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {articles.slice(0, 3).map((article, index) => (
-              <Link
-                key={article.id}
-                href={`/blog/${article.slug}`}
-                className="group block rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-full">
-                      {article.category}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-black dark:text-white mb-2 group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors line-clamp-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">
-                    {article.description}
-                  </p>
+            {(() => {
+              // Группируем статьи по категориям
+              const categoriesMap: Record<string, typeof articles> = {};
+              articles.forEach((article) => {
+                if (!categoriesMap[article.category]) {
+                  categoriesMap[article.category] = [];
+                }
+                categoriesMap[article.category].push(article);
+              });
 
-                  {/* Метки (теги) */}
-                  {article.keywords && article.keywords.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mb-3">
-                      {article.keywords.slice(0, 2).map((keyword, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[9px] text-gray-600 dark:text-gray-400 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-[#1e3a5f] dark:hover:bg-[#7a9bcb] hover:text-white dark:hover:text-black transition-all duration-300 cursor-pointer"
+              // Берём по одной свежей статье из каждой категории
+              const featuredArticles: typeof articles = [];
+              const categoryKeys = Object.keys(categoriesMap);
+
+              // Приоритет категорий для отображения
+              const priorityCategories = [
+                "Ремонт кондиционеров",
+                "Ремонт Webasto",
+                "Ремонт радиаторов",
+                "Советы автовладельцам",
+              ];
+
+              // Сначала добавляем по приоритету
+              priorityCategories.forEach((cat) => {
+                if (categoriesMap[cat] && categoriesMap[cat].length > 0) {
+                  // Берём самую свежую статью из категории
+                  const sorted = [...categoriesMap[cat]].sort(
+                    (a, b) =>
+                      new Date(b.date).getTime() - new Date(a.date).getTime(),
+                  );
+                  featuredArticles.push(sorted[0]);
+                }
+              });
+
+              // Если нужно больше 4 статей, добираем из остальных
+              const remainingCategories = categoryKeys.filter(
+                (cat) => !priorityCategories.includes(cat),
+              );
+              remainingCategories.forEach((cat) => {
+                if (
+                  featuredArticles.length < 6 &&
+                  categoriesMap[cat].length > 0
+                ) {
+                  const sorted = [...categoriesMap[cat]].sort(
+                    (a, b) =>
+                      new Date(b.date).getTime() - new Date(a.date).getTime(),
+                  );
+                  featuredArticles.push(sorted[0]);
+                }
+              });
+
+              // Если всё ещё меньше 6, добираем свежими из любых категорий
+              if (featuredArticles.length < 6) {
+                const allSorted = [...articles].sort(
+                  (a, b) =>
+                    new Date(b.date).getTime() - new Date(a.date).getTime(),
+                );
+                const existingSlugs = new Set(
+                  featuredArticles.map((a) => a.slug),
+                );
+                for (const article of allSorted) {
+                  if (
+                    !existingSlugs.has(article.slug) &&
+                    featuredArticles.length < 6
+                  ) {
+                    featuredArticles.push(article);
+                  }
+                }
+              }
+
+              return featuredArticles.map((article, index) => {
+                const videoMap: Record<string, string> = {
+                  "Ремонт кондиционеров": "/videos/blog/repair-ac.mp4",
+                  "Ремонт Webasto": "/videos/blog/repair-webasto.mp4",
+                  "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
+                  "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",
+                };
+                const videoSrc =
+                  videoMap[article.category] || "/videos/blog/hero.mp4";
+
+                return (
+                  <Link
+                    key={article.id}
+                    href={`/blog/${article.slug}`}
+                    className="group block rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="relative h-48 w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
+                      <video
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        aria-hidden="true"
+                      >
+                        <source src={videoSrc} type="video/mp4" />
+                      </video>
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+
+                      <div className="absolute top-3 left-3 z-20">
+                        <span className="inline-block px-3 py-1 bg-black/70 dark:bg-white/20 text-white text-xs font-medium rounded-full backdrop-blur-sm">
+                          {article.category}
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-3 right-3 z-20 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-white/80 text-[10px] flex items-center gap-1">
+                        <svg
+                          className="w-3 h-3"
+                          fill="white"
+                          viewBox="0 0 24 24"
                         >
-                          #{keyword}
-                        </span>
-                      ))}
-                      {article.keywords.length > 2 && (
-                        <span className="text-[9px] text-gray-400 dark:text-gray-600">
-                          +{article.keywords.length - 2}
-                        </span>
-                      )}
+                          <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                        HD
+                      </div>
                     </div>
-                  )}
 
-                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {formatDate(article.date)}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {article.readingTime} мин
-                      </span>
+                    <div className="p-5 sm:p-6">
+                      <h3 className="text-xl font-bold text-black dark:text-white mb-2 group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors line-clamp-2">
+                        {article.title}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">
+                        {article.description}
+                      </p>
+
+                      {article.keywords && article.keywords.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 mb-3">
+                          {article.keywords.slice(0, 3).map((keyword, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] text-gray-600 dark:text-gray-400 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-[#1e3a5f] dark:hover:bg-[#7a9bcb] hover:text-white dark:hover:text-black hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] transition-all duration-300 cursor-pointer"
+                            >
+                              #{keyword}
+                            </span>
+                          ))}
+                          {article.keywords.length > 3 && (
+                            <span className="px-2.5 py-0.5 text-[10px] text-gray-400 dark:text-gray-600">
+                              +{article.keywords.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+                        <div className="flex items-center gap-4">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" aria-hidden="true" />
+                            <time dateTime={article.date}>
+                              {formatDate(article.date)}
+                            </time>
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" aria-hidden="true" />
+                            {article.readingTime} мин
+                          </span>
+                        </div>
+                        <span className="text-[#1e3a5f] dark:text-[#7a9bcb] font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                          Читать{" "}
+                          <ArrowRight className="w-3 h-3" aria-hidden="true" />
+                        </span>
+                      </div>
                     </div>
-                    <span className="text-[#1e3a5f] dark:text-[#7a9bcb] font-medium group-hover:translate-x-1 transition-transform">
-                      Читать →
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                  </Link>
+                );
+              });
+            })()}
           </div>
         </div>
       </section>
