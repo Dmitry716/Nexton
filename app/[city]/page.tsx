@@ -62,6 +62,25 @@ export async function generateMetadata({
 
   const cityPrep = cityData.namePrepositional || cityData.name;
 
+  // 👇 ПРОВЕРЯЕМ, ЕСТЬ ЛИ НА СТРАНИЦЕ КУЗОВНЫЕ РАБОТЫ
+  // Для всех городов, где есть услуга "Кузовные работы"
+  const hasKuzovnye =
+    city === "polotsk" || city === "novopolotsk" || city === "vitebsk";
+
+  if (hasKuzovnye) {
+    return {
+      title: `Кузовной ремонт в ${cityPrep}: рихтовка, восстановление геометрии, покраска | Nexton`,
+      description: `Профессиональный кузовной ремонт в ${cityPrep}. Рихтовка, восстановление геометрии кузова, покраска. Гарантия 6 месяцев. Звоните: +375297115091`,
+      openGraph: {
+        title: `Кузовной ремонт в ${cityPrep} | Nexton`,
+        description: `Кузовной ремонт в ${cityPrep}: рихтовка, восстановление геометрии, покраска.`,
+        url: `https://nexton.vip/${city}`,
+        images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+      },
+      alternates: { canonical: `https://nexton.vip/${city}` },
+    };
+  }
+
   return {
     title: `Ремонт кондиционеров и систем охлаждения в ${cityPrep} | Nexton`,
     description: `Профессиональный ремонт автокондиционеров, вебасто и систем охлаждения в ${cityPrep} (${cityData.region}). Гарантия 6 месяцев. Звоните: +375297115091`,

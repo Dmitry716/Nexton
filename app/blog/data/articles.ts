@@ -784,4 +784,89 @@ export const articles: Article[] = [
       </div>
     `,
   },
+  // ===== КУЗОВНЫЕ РАБОТЫ =====
+  {
+    id: 11,
+    slug: "kuzovnoy-remont-polotsk",
+    title: "Кузовной ремонт в Полоцке: восстановление кузова любой сложности",
+    description:
+      "Профессиональный кузовной ремонт в Полоцке и Новополоцке. Рихтовка, восстановление геометрии, покраска. Гарантия 6 месяцев.",
+    category: "Кузовные работы",
+    categorySlug: "kuzovnye-raboty",
+    date: "2026-08-07",
+    author: "Nexton",
+    image: "/images/blog/kuzovnoy-remont.jpg",
+    readingTime: 6,
+    keywords: [
+      "кузовной ремонт",
+      "рихтовка кузова",
+      "восстановление кузова",
+      "Полоцк",
+    ],
+    faq: [
+      {
+        question: "Сколько стоит кузовной ремонт?",
+        answer:
+          "Стоимость зависит от сложности повреждений. Проводим бесплатную оценку и составляем смету.",
+      },
+      {
+        question: "Как долго длится кузовной ремонт?",
+        answer: "В среднем от 2 до 7 дней, в зависимости от объёма работ.",
+      },
+    ],
+    content: `
+    <h1>Кузовной ремонт в Полоцке</h1>
+    <p>Профессиональный кузовной ремонт в сервисе <a href="/polotsk" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Nexton в Полоцке</a>.</p>
+    <h2>Виды кузовного ремонта</h2>
+    <ul>
+      <li>Восстановление геометрии кузова на стапеле</li>
+      <li>Рихтовка кузова (PDR и классическая)</li>
+      <li>Покраска кузова</li>
+      <li>Сварка кузова</li>
+    </ul>
+    <div class="bg-blue-50 dark:bg-gray-800 p-4 rounded-lg my-4 border-l-4 border-[#1e3a5f] dark:border-[#7a9bcb]">
+      <p class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb]">🔧 Кузовной ремонт</p>
+      <p class="text-gray-700 dark:text-gray-300">
+        <a href="/polotsk/usluga/kuzovnye-raboty" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Кузовной ремонт в Полоцке</a> — качественно и с гарантией.
+      </p>
+    </div>
+  `,
+  },
+  {
+    id: 12,
+    slug: "rihtovka-kuzova-polotsk",
+    title: "Рихтовка кузова в Полоцке: удаление вмятин без покраски",
+    description:
+      "Профессиональная рихтовка кузова в Полоцке. Удаление вмятин без покраски (PDR). Быстро, качественно, с гарантией.",
+    category: "Кузовные работы",
+    categorySlug: "kuzovnye-raboty",
+    date: "2026-08-06",
+    author: "Nexton",
+    image: "/images/blog/rihtovka.jpg",
+    readingTime: 5,
+    keywords: ["рихтовка кузова", "удаление вмятин", "PDR", "Полоцк"],
+    faq: [
+      {
+        question: "Что такое рихтовка без покраски?",
+        answer:
+          "Это технология удаления вмятин без повреждения ЛКП. Вмятины выравниваются специальными инструментами.",
+      },
+    ],
+    content: `
+    <h1>Рихтовка кузова в Полоцке</h1>
+    <p>Профессиональная рихтовка кузова в <a href="/polotsk" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Nexton в Полоцке</a>.</p>
+    <h2>Методы рихтовки</h2>
+    <ul>
+      <li>Бесконтактная рихтовка (PDR)</li>
+      <li>Контактная рихтовка</li>
+      <li>Рихтовка на стапеле</li>
+    </ul>
+    <div class="bg-green-50 dark:bg-gray-800 p-4 rounded-lg my-4 border-l-4 border-[#1e3a5f] dark:border-[#7a9bcb]">
+      <p class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb]">💡 PDR рихтовка</p>
+      <p class="text-gray-700 dark:text-gray-300">
+        <a href="/polotsk/usluga/rihtovka-kuzova" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Рихтовка кузова в Полоцке</a> — без покраски, за 1-3 часа.
+      </p>
+    </div>
+  `,
+  },
 ];

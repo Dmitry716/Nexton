@@ -56,7 +56,9 @@ export async function generateMetadata({
     gruzovye: "грузовых автомобилей",
     pnevmosistemy_legkovyh: "пневмосистем легковых автомобилей",
     plastik: "автопластика",
-    kuzovnye: "кузовных работ",
+    // kuzovnye: "кузовных работ",
+    kuzovnye: "кузовному ремонту", // 👈 ДОБАВИТЬ
+    diagnostika_podveski: "диагностике подвески",
   };
 
   const categoryText = categoryNames[service.category] || "ремонту";
