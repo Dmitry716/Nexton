@@ -70,6 +70,7 @@ function getVideoForArticle(category: string): string | null {
     "Ремонт Webasto": "/videos/blog/repair-webasto.mp4",
     "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
     "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",
+    "Кузовные работы": "/videos/blog/body-repair-1.mp4", // 👈 ВТОРОЕ ВИДЕО
   };
   return videoMap[category] || null;
 }

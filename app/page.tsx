@@ -503,6 +503,7 @@ export default function Home() {
                 "Ремонт Webasto",
                 "Ремонт радиаторов",
                 "Советы автовладельцам",
+                "Кузовные работы", // 👈 ДОБАВИТЬ ЭТУ СТРОКУ
               ];
 
               // Сначала добавляем по приоритету
@@ -559,6 +560,7 @@ export default function Home() {
                   "Ремонт Webasto": "/videos/blog/repair-webasto.mp4",
                   "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
                   "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",
+                  "Кузовные работы": "/videos/blog/body-repair.mp4", // 👈 ДОБАВИТЬ ЭТУ СТРОКУ
                 };
                 const videoSrc =
                   videoMap[article.category] || "/videos/blog/hero.mp4";

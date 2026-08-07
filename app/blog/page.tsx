@@ -47,6 +47,7 @@ function getVideoForCategory(category: string): string {
     "Ремонт Webasto": "/videos/blog/repair-webasto.mp4",
     "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
     "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",
+    "Кузовные работы": "/videos/blog/body-repair.mp4", // 👈 ДОБАВИТЬ ЭТУ СТРОКУ
   };
   return videoMap[category] || "/videos/blog/hero.mp4";
 }
@@ -69,6 +70,7 @@ function getCategoryIcon(category: string): string {
     "Ремонт Webasto": "🔥",
     "Ремонт радиаторов": "🌡️",
     "Советы автовладельцам": "🔧",
+    "Кузовные работы": "🔨", // 👈 ДОБАВИТЬ
   };
   return iconMap[category] || "🚗";
 }
