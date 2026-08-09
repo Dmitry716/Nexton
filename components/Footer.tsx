@@ -20,6 +20,7 @@ export default function Footer() {
     { name: "Услуги", href: "/#services" },
     { name: "О нас", href: "/#about" },
     { name: "Блог", href: "/blog" }, // 👈 ДОБАВИТЬ
+    { name: "Кузовной ремонт", href: "/polotsk/kuzovnye-remont" }, // 👈 ДОБАВИТЬ!
     { name: "Контакты", href: "/#contacts" },
     { name: "Оплата", href: "/payment" },
     { name: "Политика конфиденциальности", href: "/privacy" },
