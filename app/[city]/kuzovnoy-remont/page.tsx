@@ -40,11 +40,11 @@ export async function generateMetadata({
     openGraph: {
       title: `Кузовной ремонт в ${cityPrep} | Nexton`,
       description: `Профессиональный кузовной ремонт в ${cityPrep}: восстановление геометрии, рихтовка, покраска. Гарантия 12 месяцев.`,
-      url: `https://nexton.vip/${city}/kuzovnye-remont`,
+      url: `https://nexton.vip/${city}/kuzovnoy-remont`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
     alternates: {
-      canonical: `https://nexton.vip/${city}/kuzovnye-remont`,
+      canonical: `https://nexton.vip/${city}/kuzovnoy-remont`,
     },
   };
 }

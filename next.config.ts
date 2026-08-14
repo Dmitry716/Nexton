@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:city/kuzovnye-remont",
+        destination: "/:city/kuzovnoy-remont",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

@@ -110,7 +110,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 👇 СТРАНИЦЫ КУЗОВНОГО РЕМОНТА (НОВЫЕ)
   const kuzovnyePages: MetadataRoute.Sitemap = cities.map((city) => ({
-    url: `${BASE_URL}/${city.slug}/kuzovnye-remont`,
+    url: `${BASE_URL}/${city.slug}/kuzovnoy-remont`,
     lastModified,
     changeFrequency: "weekly",
     priority: 0.85,
