@@ -72,11 +72,11 @@ export async function generateMetadata({
   const cityPrep = cityData.namePrepositional || cityData.name;
 
   return {
-    title: `Автосервис и СТО в ${cityPrep}: кондиционеры, кузов, китайские авто, диагностика подвески | Nexton`,
-    description: `СТО Nexton в ${cityPrep} (${cityData.region}). Кондиционеры и охлаждение, вебасто, радиаторы, кузовной ремонт, бензиновые китайские авто, пневмосистемы, диагностика подвески, сварка. Гарантия до 6 месяцев. Звоните: +375297115091`,
+    title: `Автосервис Nexton в ${cityPrep} — климат, кузов и ходовая`,
+    description: `Автосервис и СТО Nexton в ${cityPrep} (${cityData.region}). Ремонтируем кондиционеры и системы охлаждения, восстанавливаем кузов, обслуживаем бензиновые китайские авто. Диагностика подвески, вебасто, радиаторы, сварка. Гарантия до 6 месяцев. Звоните: +375297115091`,
     openGraph: {
-      title: `Автосервис Nexton в ${cityPrep} | СТО, кондиционеры, кузов, китайские авто`,
-      description: `Полный автосервис в ${cityPrep}: кондиционеры, кузов, китайские авто, охлаждение, диагностика подвески.`,
+      title: `Автосервис Nexton в ${cityPrep} — климат, кузов и ходовая`,
+      description: `Климат, кузов и ходовая в одном сервисе. Кондиционеры, кузовной ремонт, бензиновые китайские авто, диагностика подвески.`,
       url: `https://nexton.vip/${city}`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -183,8 +183,8 @@ export default async function CityPage({
               className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto animate-fade-in mb-6"
               style={{ animationDelay: "0.2s" }}
             >
-              Ремонт и обслуживание систем охлаждения, кондиционеров и
-              автономных отопителей, кузов, ходовая, китайские автомобили
+              Ремонт климата и кузова, бензиновые китайские авто, диагностика
+              подвески. Ниже — все направления с описанием и ценами в BYN.
             </p>
             <p
               className="text-sm text-gray-500 dark:text-gray-500 max-w-3xl mx-auto animate-fade-in"

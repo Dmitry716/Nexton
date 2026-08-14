@@ -37,33 +37,31 @@ export default function HeroSection({
             <span>Гарантия до 6 месяцев · {cityText}</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-black dark:text-white tracking-tight">
-            <span className="inline-block animate-slide-left">
-              Автосервис и СТО в {cityText}
-            </span>
-            <span
-              className="block text-2xl sm:text-3xl md:text-4xl mt-3 text-gray-800 dark:text-gray-200 animate-slide-left"
-              style={{ animationDelay: "0.2s" }}
-            >
-              Кондиционеры, кузов, китайские авто, охлаждение и диагностика
-              подвески
-            </span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-black dark:text-white tracking-tight animate-slide-left">
+            Автосервис и СТО в {cityText}
           </h1>
+
+          <p
+            className="text-xl sm:text-2xl md:text-3xl text-gray-800 dark:text-gray-200 mb-6 font-semibold animate-slide-left leading-snug"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Климат, кузов и ходовая — в одном сервисе
+          </p>
 
           <p
             className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4 max-w-3xl mx-auto font-medium animate-slide-right leading-relaxed"
             style={{ animationDelay: "0.4s" }}
           >
-            Полный автосервис: системы охлаждения, кондиционеры, вебасто,
-            радиаторы, кузов, бензиновые китайские авто, пневмосистемы,
-            диагностика подвески, сварка и автопластик.
+            Ремонтируем кондиционеры и системы охлаждения, восстанавливаем
+            кузов, обслуживаем бензиновые китайские авто. Делаем диагностику
+            подвески на вибростенде, вебасто, радиаторы, пневмосистемы, сварку
+            и автопластик.
           </p>
           <p
             className="text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto animate-slide-right"
             style={{ animationDelay: "0.5s" }}
           >
-            Работаем с легковыми и грузовыми авто. Цены в BYN, без скрытых
-            доплат.
+            Легковые и грузовые. Цены в BYN, без скрытых доплат.
           </p>
 
           <div
