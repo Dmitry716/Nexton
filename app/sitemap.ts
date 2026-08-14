@@ -116,6 +116,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const kitayskiePages: MetadataRoute.Sitemap = cities.map((city) => ({
+    url: `${BASE_URL}/${city.slug}/remont-kitayskih-avto`,
+    lastModified,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
   // Страницы услуг для каждого города
   const cityServicePages: MetadataRoute.Sitemap = [];
   for (const city of cities) {
@@ -134,6 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...servicePages,
     ...cityPages,
     ...kuzovnyePages,
+    ...kitayskiePages,
     ...cityServicePages,
   ];
 }

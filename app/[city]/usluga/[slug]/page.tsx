@@ -60,6 +60,7 @@ export async function generateMetadata({
     // kuzovnye: "кузовных работ",
     kuzovnye: "кузовному ремонту", // 👈 ДОБАВИТЬ
     diagnostika_podveski: "диагностике подвески",
+    kitayskie_avto: "китайских автомобилей",
   };
 
   const categoryText = categoryNames[service.category] || "ремонту";
@@ -100,6 +101,25 @@ export async function generateMetadata({
     "citroen",
   ];
 
+  const kitayskieBrandsKeywords = [
+    "geely",
+    "chery",
+    "haval",
+    "changan",
+    "exeed",
+    "omoda",
+    "jaecoo",
+    "tank",
+    "great wall",
+    "belgee",
+  ];
+
+  const coolingKeywordCategories = [
+    "radiatory",
+    "gruzovye",
+    "avtokondicionery",
+  ];
+
   return {
     title: `${service.name} в ${cityPrep}`,
     description: `Профессиональный ${service.name.toLowerCase()} в ${cityPrep} (${cityData.region}). ${description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`,
@@ -112,9 +132,14 @@ export async function generateMetadata({
       `${service.name.toLowerCase()} ${cityData.region}`,
       `ремонт ${categoryText} ${cityData.name}`,
       `ремонт ${categoryText} ${cityData.region}`,
-      "ремонт систем охлаждения",
+      ...(coolingKeywordCategories.includes(service.category)
+        ? ["ремонт систем охлаждения"]
+        : []),
       ...(service.category === "pnevmosistemy_legkovyh"
         ? pnevmoBrandsKeywords
+        : []),
+      ...(service.category === "kitayskie_avto"
+        ? kitayskieBrandsKeywords
         : []),
     ],
     openGraph: {
@@ -163,6 +188,8 @@ export default async function CityServicePage({
     pnevmosistemy_legkovyh: "Ремонт и обслуживание пневмосистем легковых авто",
     plastik: "Ремонт автопластика",
     kuzovnye: "Кузовные работы",
+    diagnostika_podveski: "Диагностика подвески",
+    kitayskie_avto: "Ремонт китайских автомобилей",
   };
 
   const pnevmoBrands = [
@@ -186,6 +213,19 @@ export default async function CityServicePage({
     "Renault",
     "Peugeot",
     "Citroen",
+  ];
+
+  const kitayskieBrands = [
+    "Geely",
+    "Chery",
+    "Haval",
+    "Changan",
+    "Exeed",
+    "Omoda",
+    "Jaecoo",
+    "Tank",
+    "Great Wall",
+    "Belgee",
   ];
 
   const categoryImage = getCategoryImage(service.category);
@@ -363,17 +403,33 @@ export default async function CityServicePage({
             </Link>
             <span>/</span>
             <Link
-              href={`/${city}#services`}
+              href={
+                service.category === "kitayskie_avto"
+                  ? `/${city}/remont-kitayskih-avto`
+                  : service.category === "kuzovnye"
+                    ? `/${city}/kuzovnoy-remont`
+                    : `/${city}#services`
+              }
               className="hover:text-black dark:hover:text-white transition-colors"
             >
-              Услуги
+              {service.category === "kitayskie_avto"
+                ? "Китайские авто"
+                : service.category === "kuzovnye"
+                  ? "Кузовной ремонт"
+                  : "Услуги"}
             </Link>
             <span>/</span>
             <span className="text-black dark:text-white">{service.name}</span>
           </div>
 
           <Link
-            href={`/${city}#services`}
+            href={
+              service.category === "kitayskie_avto"
+                ? `/${city}/remont-kitayskih-avto`
+                : service.category === "kuzovnye"
+                  ? `/${city}/kuzovnoy-remont`
+                  : `/${city}#services`
+            }
             className="inline-flex items-center text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors mb-8 group"
           >
             <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
@@ -419,6 +475,31 @@ export default async function CityServicePage({
                       >
                         <span className="font-semibold">{brand}</span>
                         {` — ремонт пневмы в ${cityPrep}`}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {service.category === "kitayskie_avto" && (
+                <div className="mt-10 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-6">
+                  <h2 className="text-2xl font-bold mb-3 text-black dark:text-white">
+                    Ремонт китайских марок
+                  </h2>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Принимаем бензиновые модели на диагностику и ремонт{" "}
+                    <span className="font-semibold">в {cityPrep}</span>.
+                    Электромобили не обслуживаем:
+                  </p>
+
+                  <ul className="flex flex-wrap gap-2">
+                    {kitayskieBrands.map((brand) => (
+                      <li
+                        key={brand}
+                        className="px-3 py-2 rounded-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 text-sm text-gray-800 dark:text-gray-200"
+                      >
+                        <span className="font-semibold">{brand}</span>
+                        {` — ремонт в ${cityPrep}`}
                       </li>
                     ))}
                   </ul>

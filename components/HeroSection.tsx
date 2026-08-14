@@ -39,13 +39,14 @@ export default function HeroSection({
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-black dark:text-white tracking-tight">
             <span className="inline-block animate-slide-left">
-              Заправка и ремонт кондиционеров,
+              Автосервис и СТО в {cityText}
             </span>
             <span
               className="block text-2xl sm:text-3xl md:text-4xl mt-3 text-gray-800 dark:text-gray-200 animate-slide-left"
               style={{ animationDelay: "0.2s" }}
             >
-              ремонт вебасто и систем охлаждения авто в {cityText}
+              Кондиционеры, кузов, китайские авто, охлаждение и диагностика
+              подвески
             </span>
           </h1>
 
@@ -53,8 +54,9 @@ export default function HeroSection({
             className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4 max-w-3xl mx-auto font-medium animate-slide-right leading-relaxed"
             style={{ animationDelay: "0.4s" }}
           >
-            Профессиональный ремонт, диагностика и обслуживание систем
-            охлаждения, кондиционеров и автономных отопителей.
+            Полный автосервис: системы охлаждения, кондиционеры, вебасто,
+            радиаторы, кузов, бензиновые китайские авто, пневмосистемы,
+            диагностика подвески, сварка и автопластик.
           </p>
           <p
             className="text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto animate-slide-right"

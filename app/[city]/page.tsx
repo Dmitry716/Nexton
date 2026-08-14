@@ -41,11 +41,15 @@ const categories = [
     name: "Пневмосистемы легковых авто",
     icon: Wrench,
   },
-  // 👇 ДОБАВЬ ЭТУ КАТЕГОРИЮ
+  {
+    id: "kitayskie_avto",
+    name: "Ремонт китайских автомобилей",
+    icon: Car,
+  },
   {
     id: "diagnostika_podveski",
     name: "Диагностика подвески",
-    icon: Car, // не забудь импортировать Car
+    icon: Car,
   },
 ];
 
@@ -67,31 +71,12 @@ export async function generateMetadata({
 
   const cityPrep = cityData.namePrepositional || cityData.name;
 
-  // 👇 ПРОВЕРЯЕМ, ЕСТЬ ЛИ НА СТРАНИЦЕ КУЗОВНЫЕ РАБОТЫ
-  // Для всех городов, где есть услуга "Кузовные работы"
-  const hasKuzovnye =
-    city === "polotsk" || city === "novopolotsk" || city === "vitebsk";
-
-  if (hasKuzovnye) {
-    return {
-      title: `Кузовной ремонт в ${cityPrep}: рихтовка, восстановление геометрии, покраска | Nexton`,
-      description: `Профессиональный кузовной ремонт в ${cityPrep}. Рихтовка, восстановление геометрии кузова, покраска. Гарантия 6 месяцев. Звоните: +375297115091`,
-      openGraph: {
-        title: `Кузовной ремонт в ${cityPrep} | Nexton`,
-        description: `Кузовной ремонт в ${cityPrep}: рихтовка, восстановление геометрии, покраска.`,
-        url: `https://nexton.vip/${city}`,
-        images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
-      },
-      alternates: { canonical: `https://nexton.vip/${city}` },
-    };
-  }
-
   return {
-    title: `Ремонт кондиционеров и систем охлаждения в ${cityPrep} | Nexton`,
-    description: `Профессиональный ремонт автокондиционеров, вебасто и систем охлаждения в ${cityPrep} (${cityData.region}). Гарантия 6 месяцев. Звоните: +375297115091`,
+    title: `Автосервис и СТО в ${cityPrep}: кондиционеры, кузов, китайские авто, диагностика подвески | Nexton`,
+    description: `СТО Nexton в ${cityPrep} (${cityData.region}). Кондиционеры и охлаждение, вебасто, радиаторы, кузовной ремонт, бензиновые китайские авто, пневмосистемы, диагностика подвески, сварка. Гарантия до 6 месяцев. Звоните: +375297115091`,
     openGraph: {
-      title: `Ремонт систем охлаждения в ${cityPrep} | Nexton`,
-      description: `Профессиональный ремонт кондиционеров и систем охлаждения в ${cityPrep}.`,
+      title: `Автосервис Nexton в ${cityPrep} | СТО, кондиционеры, кузов, китайские авто`,
+      description: `Полный автосервис в ${cityPrep}: кондиционеры, кузов, китайские авто, охлаждение, диагностика подвески.`,
       url: `https://nexton.vip/${city}`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -123,7 +108,9 @@ export default async function CityPage({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AutoRepair",
-            name: `Nexton в ${cityData.name}`,
+            name: `Автосервис Nexton в ${cityData.name}`,
+            alternateName: "СТО Nexton",
+            description: cityData.description,
             url: `https://nexton.vip/${city}`,
             telephone: "+375297115091",
             address: {
@@ -186,18 +173,18 @@ export default async function CityPage({
         <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a5f]/5 via-transparent to-transparent dark:from-[#7a9bcb]/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white animate-fade-in">
-              Услуги по ремонту систем охлаждения в{" "}
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white animate-fade-in">
+              Услуги автосервиса в{" "}
               <span className="bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] dark:from-[#7a9bcb] dark:to-[#5a7bb0] bg-clip-text text-transparent">
                 {cityPrep}
               </span>
-            </h1>
+            </h2>
             <p
               className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto animate-fade-in mb-6"
               style={{ animationDelay: "0.2s" }}
             >
-              Профессиональный ремонт и обслуживание систем охлаждения,
-              кондиционеров и автономных отопителей
+              Ремонт и обслуживание систем охлаждения, кондиционеров и
+              автономных отопителей, кузов, ходовая, китайские автомобили
             </p>
             <p
               className="text-sm text-gray-500 dark:text-gray-500 max-w-3xl mx-auto animate-fade-in"
@@ -315,12 +302,13 @@ export default async function CityPage({
                 О компании
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white leading-tight">
-                Nexton в{" "}
+                Автосервис Nexton в{" "}
                 <span className="gradient-text">Полоцке и Новополоцке</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                Мы специализируемся на ремонте систем охлаждения и
-                автокондиционеров с 2010 года. За это время помогли тысячам
+                СТО Nexton работает с 2010 года. Мы специализируемся на ремонте
+                систем охлаждения и автокондиционеров, выполняем кузовной ремонт
+                и обслуживаем китайские автомобили. За это время помогли тысячам
                 автовладельцев в Полоцке, Новополоцке и области.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -341,6 +329,10 @@ export default async function CityPage({
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
                   Кондиционеры, отопители, радиаторы, пневмосистемы
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
+                  Кузовной ремонт и китайские автомобили
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />

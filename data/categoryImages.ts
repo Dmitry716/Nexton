@@ -17,6 +17,7 @@ export const categoryImages: Record<string, string> = {
   pnevmosistemy_legkovyh: unsplash("photo-1617531653332-bd46c24f2068", 800, 500),
   plastik: unsplash("photo-1552519507-da3b142c6e3d", 800, 500),
   kuzovnye: unsplash("photo-1607860108855-64acf2078ed9", 800, 500),
+  kitayskie_avto: unsplash("photo-1492144534655-ae79c964c9d7", 800, 500),
   diagnostika_podveski: unsplash("photo-1487754180451-c456f719a1fc", 800, 500),
 };
 
@@ -29,6 +30,7 @@ export const categoryImageThumbs: Record<string, string> = {
   pnevmosistemy_legkovyh: unsplash("photo-1617531653332-bd46c24f2068", 600, 400),
   plastik: unsplash("photo-1552519507-da3b142c6e3d", 600, 400),
   kuzovnye: unsplash("photo-1607860108855-64acf2078ed9", 600, 400),
+  kitayskie_avto: unsplash("photo-1492144534655-ae79c964c9d7", 600, 400),
   diagnostika_podveski: unsplash("photo-1487754180451-c456f719a1fc", 600, 400),
 };
 

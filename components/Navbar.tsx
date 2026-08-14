@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: "Услуги", href: "/#services" },
     { name: "Блог", href: "/blog" }, // 👈 ДОБАВИТЬ
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
+    { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "О нас", href: "/#about" },
     { name: "Контакты", href: "/#contacts" },
   ];
@@ -46,7 +47,7 @@ export default function Navbar() {
           <Link
             href="/"
             className="relative group outline-none focus:outline-none"
-            aria-label="Nexton - главная страница"
+            aria-label="Автосервис Nexton — главная страница"
           >
             <div className="absolute -inset-2 bg-gradient-to-r from-gray-300 to-gray-100 dark:from-gray-400 dark:to-gray-600 rounded-lg blur-xl opacity-0 group-hover:opacity-40 transition-all duration-700"></div>
             <span className="relative text-2xl md:text-3xl font-bold text-black dark:text-white transition-all duration-500 transform group-hover:scale-110 inline-block">

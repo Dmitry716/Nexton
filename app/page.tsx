@@ -56,14 +56,14 @@ function formatDate(dateString: string) {
 // Метаданные для главной страницы
 export const metadata: Metadata = {
   title:
-    "Заправка и ремонт кондиционеров, ремонт вебасто и систем охлаждения авто в Полоцке и Новополоцке | Nexton",
+    "Автосервис Nexton в Полоцке и Новополоцке: СТО, кондиционеры, кузов, китайские авто, диагностика подвески",
   description:
-    "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке и Новополоцке. Заправка кондиционеров, ремонт Webasto, аргонная сварка. Гарантия 6 месяцев. Звоните: +375297115091",
+    "СТО Nexton в Полоцке и Новополоцке. Кондиционеры и системы охлаждения, вебасто, радиаторы, кузовной ремонт, бензиновые китайские авто, пневмосистемы, диагностика подвески, сварка, автопластик. Гарантия до 6 месяцев. Звоните: +375297115091",
   openGraph: {
     title:
-      "Заправка и ремонт кондиционеров, ремонт вебасто и систем охлаждения авто в Полоцке и Новополоцке",
+      "Автосервис Nexton в Полоцке и Новополоцке: СТО, кондиционеры, кузов, китайские авто, диагностика подвески",
     description:
-      "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке и Новополоцке. Заправка кондиционеров, ремонт Webasto, аргонная сварка.",
+      "СТО Nexton. Кондиционеры и охлаждение, кузов, китайские авто, вебасто, радиаторы, диагностика подвески, сварка.",
     url: "https://nexton.vip",
     siteName: "Nexton Полоцк — Новополоцк",
     images: [
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Nexton - ремонт систем охлаждения в Полоцке и Новополоцке",
+        alt: "Автосервис Nexton в Полоцке и Новополоцке",
       },
     ],
     locale: "ru_RU",
@@ -130,6 +130,13 @@ const categories = [
     name: "Кузовной ремонт",
     icon: Wrench,
     description: "Восстановление геометрии кузова, рихтовка на стапеле",
+  },
+  {
+    id: "kitayskie_avto",
+    name: "Ремонт китайских автомобилей",
+    icon: Car,
+    description:
+      "Geely, Chery, Haval, Changan — бензиновые, без электромобилей",
   },
   {
     id: "diagnostika_podveski",
@@ -231,20 +238,20 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             {/* Добавил анимацию появления для заголовка */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white animate-fade-in">
-              Услуги по ремонту систем охлаждения в{" "}
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black dark:text-white animate-fade-in">
+              Услуги автосервиса в{" "}
               <span className="bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] dark:from-[#7a9bcb] dark:to-[#5a7bb0] bg-clip-text text-transparent">
                 Полоцке и Новополоцке
               </span>
-            </h1>
+            </h2>
 
             {/* Добавил анимацию с задержкой для описания */}
             <p
               className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto animate-fade-in mb-6"
               style={{ animationDelay: "0.2s" }}
             >
-              Профессиональный ремонт и обслуживание систем охлаждения,
-              кондиционеров и автономных отопителей
+              Ремонт и обслуживание систем охлаждения, кондиционеров и
+              автономных отопителей, кузов, ходовая, китайские автомобили
             </p>
             <p
               className="text-sm text-gray-500 dark:text-gray-500 max-w-3xl mx-auto animate-fade-in"
@@ -376,12 +383,13 @@ export default function Home() {
                 О компании
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white leading-tight">
-                Nexton в{" "}
+                Автосервис Nexton в{" "}
                 <span className="gradient-text">Полоцке и Новополоцке</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                Мы специализируемся на ремонте систем охлаждения и
-                автокондиционеров с 2010 года. За это время помогли тысячам
+                СТО Nexton работает с 2010 года. Мы специализируемся на ремонте
+                систем охлаждения и автокондиционеров, выполняем кузовной ремонт
+                и обслуживаем китайские автомобили. За это время помогли тысячам
                 автовладельцев в Полоцке, Новополоцке и области.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -402,6 +410,10 @@ export default function Home() {
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
                   Кондиционеры, отопители, радиаторы, пневмосистемы
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
+                  Кузовной ремонт и китайские автомобили
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />

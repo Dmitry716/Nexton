@@ -21,6 +21,7 @@ export default function Footer() {
     { name: "О нас", href: "/#about" },
     { name: "Блог", href: "/blog" }, // 👈 ДОБАВИТЬ
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
+    { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "Контакты", href: "/#contacts" },
     { name: "Оплата", href: "/payment" },
     { name: "Политика конфиденциальности", href: "/privacy" },
@@ -40,6 +41,7 @@ export default function Footer() {
     },
     { name: "Ремонт автопластика", href: "/#plastik" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
+    { name: "Ремонт китайских авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "Диагностика подвески", href: "/#diagnostika_podveski" },
   ];
 
@@ -69,9 +71,9 @@ export default function Footer() {
             </Link>
 
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
-              Профессиональный ремонт систем охлаждения и автокондиционеров в
-              Полоцке и Новополоцке. Работаем с 2010 года, гарантия до 6
-              месяцев.
+              Автосервис и СТО Nexton в Полоцке и Новополоцке: кондиционеры,
+              кузов, китайские авто, охлаждение, диагностика подвески, сварка. С
+              2010 года, гарантия до 6 месяцев.
             </p>
 
             <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 border border-gray-200 dark:border-gray-800 space-y-2">

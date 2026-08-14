@@ -6,6 +6,7 @@ export const categoryVideos: Record<string, string> = {
   otopiteli: "/videos/blog/repair-webasto.mp4",
   radiatory: "/videos/blog/repair-radiator.mp4",
   kuzovnye: "/videos/blog/body-repair.mp4",
+  kitayskie_avto: "/videos/blog/car-maintenance.mp4",
   diagnostika_podveski: "/videos/blog/car-maintenance.mp4",
 };
 
