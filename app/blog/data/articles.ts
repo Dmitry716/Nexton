@@ -820,14 +820,14 @@ export const articles: Article[] = [
     <h2>Виды кузовного ремонта</h2>
     <ul>
       <li>Восстановление геометрии кузова на стапеле</li>
-      <li>Рихтовка кузова (PDR и классическая)</li>
-      <li>Покраска кузова</li>
+      <li>Удаление вмятин споттером под покраску</li>
+      <li><a href="/polotsk/usluga/pokraska-kuzova" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Покраска кузова</a></li>
       <li>Сварка кузова</li>
     </ul>
     <div class="bg-blue-50 dark:bg-gray-800 p-4 rounded-lg my-4 border-l-4 border-[#1e3a5f] dark:border-[#7a9bcb]">
       <p class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb]">🔧 Кузовной ремонт</p>
       <p class="text-gray-700 dark:text-gray-300">
-        <a href="/polotsk/usluga/kuzovnye-raboty" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Кузовной ремонт в Полоцке</a> — качественно и с гарантией.
+        <a href="/polotsk/kuzovnye-remont" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Кузовной ремонт в Полоцке</a> — качественно и с гарантией.
       </p>
     </div>
   `,
@@ -835,36 +835,42 @@ export const articles: Article[] = [
   {
     id: 12,
     slug: "rihtovka-kuzova-polotsk",
-    title: "Рихтовка кузова в Полоцке: удаление вмятин без покраски",
+    title: "Удаление вмятин споттером в Полоцке: рихтовка под покраску",
     description:
-      "Профессиональная рихтовка кузова в Полоцке. Удаление вмятин без покраски (PDR). Быстро, качественно, с гарантией.",
+      "Вытяжка вмятин споттером и обратным молотком в Полоцке. Рихтовка под покраску: крылья, двери, капот. Гарантия на работы.",
     category: "Кузовные работы",
     categorySlug: "kuzovnye-raboty",
     date: "2026-08-06",
     author: "Nexton",
     image: "/images/blog/rihtovka.jpg",
     readingTime: 5,
-    keywords: ["рихтовка кузова", "удаление вмятин", "PDR", "Полоцк"],
+    keywords: [
+      "удаление вмятин споттером",
+      "рихтовка под покраску",
+      "вытяжка вмятин",
+      "Полоцк",
+    ],
     faq: [
       {
-        question: "Что такое рихтовка без покраски?",
+        question: "Что такое удаление вмятин споттером?",
         answer:
-          "Это технология удаления вмятин без повреждения ЛКП. Вмятины выравниваются специальными инструментами.",
+          "Споттер приваривает шайбы точечно и вытягивает вмятину. После вытяжки деталь шпаклюют, грунтуют и красят.",
       },
     ],
     content: `
-    <h1>Рихтовка кузова в Полоцке</h1>
-    <p>Профессиональная рихтовка кузова в <a href="/polotsk" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Nexton в Полоцке</a>.</p>
-    <h2>Методы рихтовки</h2>
+    <h1>Удаление вмятин споттером в Полоцке</h1>
+    <p>Вытягиваем вмятины споттером и готовим кузов <strong>под покраску</strong> в сервисе <a href="/polotsk" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Nexton в Полоцке</a>.</p>
+    <h2>Как работаем</h2>
     <ul>
-      <li>Бесконтактная рихтовка (PDR)</li>
-      <li>Контактная рихтовка</li>
-      <li>Рихтовка на стапеле</li>
+      <li>Вытяжка споттером</li>
+      <li>Обратный молоток</li>
+      <li>Классическая рихтовка молотком и поддержкой</li>
+      <li>Подготовка детали под ЛКП</li>
     </ul>
     <div class="bg-green-50 dark:bg-gray-800 p-4 rounded-lg my-4 border-l-4 border-[#1e3a5f] dark:border-[#7a9bcb]">
-      <p class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb]">💡 PDR рихтовка</p>
+      <p class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb]">🔧 Споттер + покраска</p>
       <p class="text-gray-700 dark:text-gray-300">
-        <a href="/polotsk/usluga/rihtovka-kuzova" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Рихтовка кузова в Полоцке</a> — без покраски, за 1-3 часа.
+        <a href="/polotsk/usluga/rihtovka-kuzova" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Удаление вмятин споттером в Полоцке</a> — вытяжка металла и подготовка под покраску.
       </p>
     </div>
   `,

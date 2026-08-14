@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
 import Link from "next/link";
-import { Wrench, Car, Hammer } from "lucide-react";
+import { Wrench, Car, Hammer, Paintbrush } from "lucide-react";
 import type { Metadata } from "next";
 import ReviewsSection from "@/components/ReviewsSection";
 
@@ -25,7 +25,7 @@ export async function generateMetadata({
 
   return {
     title: `Кузовной ремонт в ${cityPrep}: рихтовка, восстановление геометрии, покраска | Nexton`,
-    description: `Профессиональный кузовной ремонт в ${cityPrep}. Восстановление геометрии на стапеле, рихтовка без покраски (PDR), покраска кузова. Гарантия 12 месяцев. Звоните: +375297115091`,
+    description: `Профессиональный кузовной ремонт в ${cityPrep}. Восстановление геометрии на стапеле, удаление вмятин споттером под покраску, покраска кузова. Гарантия 12 месяцев. Звоните: +375297115091`,
     keywords: [
       "кузовной ремонт",
       `кузовной ремонт ${cityData.name}`,
@@ -35,7 +35,7 @@ export async function generateMetadata({
       "покраска кузова",
       `ремонт кузова ${cityData.name}`,
       "стапель",
-      "PDR рихтовка",
+      "удаление вмятин споттером",
     ],
     openGraph: {
       title: `Кузовной ремонт в ${cityPrep} | Nexton`,
@@ -60,7 +60,8 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
 
   const serviceIcons: Record<string, React.ElementType> = {
     "Восстановление геометрии кузова на стапеле": Hammer,
-    "Рихтовка повреждённых поверхностей кузова": Car,
+    "Удаление вмятин споттером под покраску": Car,
+    "Покраска кузова автомобиля": Paintbrush,
   };
 
   return (
@@ -172,16 +173,37 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
           <h3>Виды кузовного ремонта в {cityPrep}</h3>
           <ul>
             <li>
-              <strong>Восстановление геометрии кузова на стапеле</strong> —
-              правка лонжеронов, устранение перекосов после ДТП
+              <strong>
+                <Link
+                  href={`/${city}/usluga/vosstanovlenie-geometrii-kuzova`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Восстановление геометрии кузова на стапеле
+                </Link>
+              </strong>{" "}
+              — правка лонжеронов, устранение перекосов после ДТП
             </li>
             <li>
-              <strong>Рихтовка кузова (PDR)</strong> — удаление вмятин без
-              покраски
+              <strong>
+                <Link
+                  href={`/${city}/usluga/rihtovka-kuzova`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Удаление вмятин споттером
+                </Link>
+              </strong>{" "}
+              — вытяжка вмятин под покраску
             </li>
             <li>
-              <strong>Покраска кузова</strong> — полная и локальная, подбор
-              цвета по VIN
+              <strong>
+                <Link
+                  href={`/${city}/usluga/pokraska-kuzova`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Покраска кузова
+                </Link>
+              </strong>{" "}
+              — полная и локальная, подбор цвета по VIN
             </li>
             <li>
               <strong>Сварка кузова</strong> — аргонная и полуавтоматическая
@@ -283,8 +305,8 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
                 text: "Восстанавливаем геометрию кузова с точностью до миллиметра",
               },
               {
-                title: "PDR рихтовка",
-                text: "Удаляем вмятины без повреждения ЛКП. Экономия до 70%",
+                title: "Вытяжка вмятин споттером",
+                text: "Споттер, обратный молоток и рихтовка — готовим деталь под покраску",
               },
               {
                 title: "Точный подбор цвета",
@@ -332,8 +354,8 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
               необходимости)
             </li>
             <li>
-              <strong>Рихтовка кузова</strong> — удаление вмятин (PDR или
-              классическая)
+              <strong>Рихтовка кузова</strong> — удаление вмятин споттером
+              и подготовка под покраску
             </li>
             <li>
               <strong>Подготовка к покраске</strong> — шпаклёвка, грунтовка,
