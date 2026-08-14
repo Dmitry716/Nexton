@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { articles } from "./data/articles";
 import { Calendar, Clock, FolderOpen, ArrowRight, Tag } from "lucide-react";
-import type { Metadata } from "next";
+import { getBlogListVideo } from "@/data/categoryMedia";
 
 export const metadata: Metadata = {
   title: "Блог | Статьи по ремонту кондиционеров и систем охлаждения",
@@ -42,14 +42,7 @@ function formatDate(dateString: string): string {
 
 // ✅ ФУНКЦИЯ ДЛЯ ВИДЕО ПО КАТЕГОРИИ
 function getVideoForCategory(category: string): string {
-  const videoMap: Record<string, string> = {
-    "Ремонт кондиционеров": "/videos/blog/repair-ac.mp4",
-    "Ремонт Webasto": "/videos/blog/repair-webasto.mp4",
-    "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
-    "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",
-    "Кузовные работы": "/videos/blog/body-repair.mp4", // 👈 ДОБАВИТЬ ЭТУ СТРОКУ
-  };
-  return videoMap[category] || "/videos/blog/hero.mp4";
+  return getBlogListVideo(category);
 }
 
 // ✅ ФУНКЦИЯ ДЛЯ ЗАГЛУШКИ (ПОСТЕРА)

@@ -1,63 +1,48 @@
 import { existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 
+const unsplash = (id: string, w: number, h: number) =>
+  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop`;
+
 /**
- * Тематические изображения для категорий услуг.
+ * Удалённые фото на случай, если локального файла нет.
+ * У каждой категории свой кадр — без повторов.
  */
 export const categoryImages: Record<string, string> = {
-  avtokondicionery:
-    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=800&h=500&fit=crop",
-  otopiteli:
-    "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=800&h=500&fit=crop",
-  radiatory:
-    "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=800&h=500&fit=crop",
-  svarka:
-    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=800&h=500&fit=crop",
+  avtokondicionery: unsplash("photo-1601362840469-51e4d8d58785", 800, 500),
+  otopiteli: unsplash("photo-1541888946425-d81bb19240f5", 800, 500),
+  radiatory: unsplash("photo-1486262715619-67b85e0b08d3", 800, 500),
+  svarka: unsplash("photo-1504328345606-18bbc8c9d7d1", 800, 500),
   gruzovye: "/images/gruzovye.png",
-  pnevmosistemy_legkovyh:
-    "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=800&h=500&fit=crop",
-  plastik:
-    "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=800&h=500&fit=crop",
-  kuzovnye:
-    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=800&h=500&fit=crop",
-  // 👇 НОВАЯ КАТЕГОРИЯ
-
-  diagnostika_podveski: "/images/categories/diagnostika_podveski.webp",
+  pnevmosistemy_legkovyh: unsplash("photo-1617531653332-bd46c24f2068", 800, 500),
+  plastik: unsplash("photo-1552519507-da3b142c6e3d", 800, 500),
+  kuzovnye: unsplash("photo-1607860108855-64acf2078ed9", 800, 500),
+  diagnostika_podveski: unsplash("photo-1487754180451-c456f719a1fc", 800, 500),
 };
 
-/** Уменьшенные версии для карточек (быстрая загрузка) */
 export const categoryImageThumbs: Record<string, string> = {
-  avtokondicionery:
-    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=600&h=400&fit=crop",
-  otopiteli:
-    "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=600&h=400&fit=crop",
-  radiatory:
-    "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=600&h=400&fit=crop",
-  svarka:
-    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=600&h=400&fit=crop",
+  avtokondicionery: unsplash("photo-1601362840469-51e4d8d58785", 600, 400),
+  otopiteli: unsplash("photo-1541888946425-d81bb19240f5", 600, 400),
+  radiatory: unsplash("photo-1486262715619-67b85e0b08d3", 600, 400),
+  svarka: unsplash("photo-1504328345606-18bbc8c9d7d1", 600, 400),
   gruzovye: "/images/gruzovye.png",
-  pnevmosistemy_legkovyh:
-    "https://images.unsplash.com/photo-1626280473666-6e223e17058f?w=600&h=400&fit=crop",
-  plastik:
-    "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=600&h=400&fit=crop",
-  kuzovnye:
-    "https://images.unsplash.com/photo-1742800074526-cc655bf036a4?w=600&h=400&fit=crop",
-  // 👇 НОВАЯ КАТЕГОРИЯ
-  diagnostika_podveski: "/images/categories/diagnostika_podveski.webp",
+  pnevmosistemy_legkovyh: unsplash("photo-1617531653332-bd46c24f2068", 600, 400),
+  plastik: unsplash("photo-1552519507-da3b142c6e3d", 600, 400),
+  kuzovnye: unsplash("photo-1607860108855-64acf2078ed9", 600, 400),
+  diagnostika_podveski: unsplash("photo-1487754180451-c456f719a1fc", 600, 400),
 };
 
 function getLocalCategoryImagePath(categoryId: string, thumb = false) {
-  const filename = thumb ? `${categoryId}-thumb.webp` : `${categoryId}.webp`;
-  const absolutePath = join(
-    process.cwd(),
-    "public",
-    "images",
-    "categories",
-    filename,
-  );
-  if (!existsSync(absolutePath)) return null;
-  if (statSync(absolutePath).size < 1024) return null;
-  return `/images/categories/${filename}`;
+  const base = thumb ? `${categoryId}-thumb` : categoryId;
+  const dir = join(process.cwd(), "public", "images", "categories");
+  for (const ext of ["webp", "jpg", "jpeg", "png"] as const) {
+    const filename = `${base}.${ext}`;
+    const absolutePath = join(dir, filename);
+    if (!existsSync(absolutePath)) continue;
+    if (statSync(absolutePath).size < 1024) continue;
+    return `/images/categories/${filename}`;
+  }
+  return null;
 }
 
 /**
@@ -81,6 +66,7 @@ export function getCategoryImage(categoryId: string) {
 export function getCategoryImageThumb(categoryId: string) {
   return (
     getLocalCategoryImagePath(categoryId, true) ||
+    getLocalCategoryImagePath(categoryId, false) ||
     categoryImageThumbs[categoryId] ||
     null
   );

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { articles } from "../data/articles";
 import { Calendar, Clock, FolderOpen, ArrowLeft } from "lucide-react";
 import { ShareButton } from "./ShareButton";
-import type { Metadata } from "next";
+import { getBlogArticleVideo } from "@/data/categoryMedia";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -65,14 +65,7 @@ function formatDate(dateString: string): string {
 }
 
 function getVideoForArticle(category: string): string | null {
-  const videoMap: Record<string, string> = {
-    "Ремонт кондиционеров": "/videos/blog/repair-ac.mp4",
-    "Ремонт Webasto": "/videos/blog/repair-webasto.mp4",
-    "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
-    "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",
-    "Кузовные работы": "/videos/blog/body-repair-1.mp4", // 👈 ВТОРОЕ ВИДЕО
-  };
-  return videoMap[category] || null;
+  return getBlogArticleVideo(category);
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
