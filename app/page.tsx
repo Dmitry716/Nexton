@@ -3,6 +3,10 @@ import HeroSection from "@/components/HeroSection";
 import ServiceCard from "@/components/ServiceCard";
 import ReviewsSection from "@/components/ReviewsSection"; // ← ЭТО ДОБАВИТЬ
 import { services } from "@/data/services";
+import {
+  getCategoryPageHref,
+  hasCategoryLandingPage,
+} from "@/data/categories";
 import { getCategoryImageThumb } from "@/data/categoryImages";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
@@ -123,7 +127,7 @@ const categories = [
   // ↓↓↓ СЮДА ВСТАВИТЬ НОВУЮ КАТЕГОРИЮ ↓↓↓
   {
     id: "kuzovnye",
-    name: "Кузовные работы",
+    name: "Кузовной ремонт",
     icon: Wrench,
     description: "Восстановление геометрии кузова, рихтовка на стапеле",
   },
@@ -258,9 +262,9 @@ export default function Home() {
               const Icon = category.icon;
               const img = getCategoryImageThumb(category.id);
               return (
-                <a
+                <Link
                   key={category.id}
-                  href={`#${category.id}`}
+                  href={getCategoryPageHref(category.id)}
                   className="group block rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl transition-all duration-300 animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -291,8 +295,14 @@ export default function Home() {
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       {category.description}
                     </p>
+                    {hasCategoryLandingPage(category.id) && (
+                      <p className="mt-3 text-sm font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] inline-flex items-center gap-1">
+                        Открыть раздел
+                        <ArrowRight className="w-4 h-4" />
+                      </p>
+                    )}
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>
@@ -313,14 +323,32 @@ export default function Home() {
                 className="mb-20 scroll-mt-24"
               >
                 <div className="flex items-center gap-3 mb-8 border-b border-gray-200 dark:border-gray-800 pb-4">
-                  <Icon className="w-6 h-6 text-black dark:text-white" />
-                  <h2 className="text-2xl font-bold text-black dark:text-white">
-                    {category.name} в{" "}
-                    <span className="bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] dark:from-[#7a9bcb] dark:to-[#5a7bb0] bg-clip-text text-transparent">
-                      Полоцке и Новополоцке
-                    </span>
-                  </h2>
-                  <span className="text-sm text-gray-500 dark:text-gray-500 ml-auto">
+                  <Icon className="w-6 h-6 text-black dark:text-white shrink-0" />
+                  {hasCategoryLandingPage(category.id) ? (
+                    <Link
+                      href={getCategoryPageHref(category.id)}
+                      className="group min-w-0 flex-1 flex items-center gap-3"
+                    >
+                      <h2 className="text-2xl font-bold text-black dark:text-white group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors">
+                        {category.name} в{" "}
+                        <span className="bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] dark:from-[#7a9bcb] dark:to-[#5a7bb0] bg-clip-text text-transparent">
+                          Полоцке и Новополоцке
+                        </span>
+                      </h2>
+                      <span className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] shrink-0">
+                        Подробнее
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </Link>
+                  ) : (
+                    <h2 className="text-2xl font-bold text-black dark:text-white">
+                      {category.name} в{" "}
+                      <span className="bg-gradient-to-r from-[#1e3a5f] to-[#2b4c7c] dark:from-[#7a9bcb] dark:to-[#5a7bb0] bg-clip-text text-transparent">
+                        Полоцке и Новополоцке
+                      </span>
+                    </h2>
+                  )}
+                  <span className="text-sm text-gray-500 dark:text-gray-500 ml-auto shrink-0">
                     {categoryServices.length} услуг
                   </span>
                 </div>
