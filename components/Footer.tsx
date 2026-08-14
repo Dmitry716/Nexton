@@ -20,7 +20,7 @@ export default function Footer() {
     { name: "Услуги", href: "/#services" },
     { name: "О нас", href: "/#about" },
     { name: "Блог", href: "/blog" }, // 👈 ДОБАВИТЬ
-    { name: "Кузовной ремонт", href: "/polotsk/kuzovnye-remont" }, // 👈 ДОБАВИТЬ!
+    { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Контакты", href: "/#contacts" },
     { name: "Оплата", href: "/payment" },
     { name: "Политика конфиденциальности", href: "/privacy" },
@@ -39,7 +39,7 @@ export default function Footer() {
       href: "/usluga/obsluzhivanie-remont-pnevmosistem",
     },
     { name: "Ремонт автопластика", href: "/#plastik" },
-    { name: "Кузовной ремонт", href: "/polotsk/kuzovnye-remont" },
+    { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Диагностика подвески", href: "/#diagnostika_podveski" },
   ];
 

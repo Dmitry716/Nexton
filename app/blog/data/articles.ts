@@ -827,7 +827,7 @@ export const articles: Article[] = [
     <div class="bg-blue-50 dark:bg-gray-800 p-4 rounded-lg my-4 border-l-4 border-[#1e3a5f] dark:border-[#7a9bcb]">
       <p class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb]">🔧 Кузовной ремонт</p>
       <p class="text-gray-700 dark:text-gray-300">
-        <a href="/polotsk/kuzovnye-remont" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Кузовной ремонт в Полоцке</a> — качественно и с гарантией.
+        <a href="/polotsk/kuzovnoy-remont" class="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline">Кузовной ремонт в Полоцке</a> — качественно и с гарантией.
       </p>
     </div>
   `,

@@ -8,9 +8,8 @@ import {
   getCategoryPageHref,
   hasCategoryLandingPage,
 } from "@/data/categories";
-import { getCategoryImageThumb } from "@/data/categoryImages";
+import CategoryCover from "@/components/CategoryCover";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Wind,
@@ -213,7 +212,6 @@ export default async function CityPage({
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {categoriesWithServices.map((category, index) => {
               const Icon = category.icon;
-              const img = getCategoryImageThumb(category.id);
               return (
                 <Link
                   key={category.id}
@@ -221,27 +219,18 @@ export default async function CityPage({
                   className="group block rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl transition-all duration-300 animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {img && (
-                    <div className="relative h-36 w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
-                      <Image
-                        src={img}
-                        alt=""
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      <div className="absolute bottom-3 left-4">
-                        <Icon className="w-8 h-8 text-white drop-shadow-lg" />
-                      </div>
+                  <div className="relative h-36 w-full">
+                    <CategoryCover
+                      categoryId={category.id}
+                      alt={category.name}
+                      className="absolute inset-0 overflow-hidden bg-gray-100 dark:bg-gray-900"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute bottom-3 left-4 z-10">
+                      <Icon className="w-8 h-8 text-white drop-shadow-lg" />
                     </div>
-                  )}
+                  </div>
                   <div className="p-5">
-                    {!img && (
-                      <div className="mb-4">
-                        <Icon className="w-8 h-8 text-black dark:text-white" />
-                      </div>
-                    )}
                     <h3 className="text-xl font-bold mb-2 text-black dark:text-white group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors">
                       {category.name}
                     </h3>
@@ -304,7 +293,6 @@ export default async function CityPage({
                     <ServiceCard
                       key={service.id}
                       service={service}
-                      imageUrl={getCategoryImageThumb(category.id) ?? undefined}
                       city={city}
                     />
                   ))}

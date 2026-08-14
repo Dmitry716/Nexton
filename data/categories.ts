@@ -14,7 +14,7 @@ export const categories = [
 
 /** Отдельные посадочные страницы категорий (остальные — якоря на странице услуг). */
 const CATEGORY_LANDING_PATHS: Record<string, string> = {
-  kuzovnye: "kuzovnye-remont",
+  kuzovnye: "kuzovnoy-remont",
 };
 
 export function hasCategoryLandingPage(categoryId: string): boolean {

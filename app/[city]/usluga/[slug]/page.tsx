@@ -4,8 +4,9 @@ import { cities } from "@/data/cities";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
-import { getCategoryImage, getCategoryImageThumb } from "@/data/categoryImages";
+import { getCategoryImage } from "@/data/categoryImages";
+import { getCategoryVideo } from "@/data/categoryMedia";
+import CategoryCover from "@/components/CategoryCover";
 import ServiceCard from "@/components/ServiceCard";
 import PaymentInfo from "@/components/PaymentInfo"; // 👈 ДОБАВИТЬ ИМПОРТ
 
@@ -323,18 +324,18 @@ export default async function CityServicePage({
       )}
 
       <div className="min-h-screen bg-white dark:bg-black pt-20">
-        {categoryImage && (
+        {(getCategoryVideo(service.category) || categoryImage) && (
           <div className="relative w-full h-56 sm:h-72 md:h-80 bg-gray-100 dark:bg-gray-900">
-            <Image
-              src={categoryImage}
-              alt=""
-              fill
-              className="object-cover"
+            <CategoryCover
+              categoryId={service.category}
+              alt={`${service.name} в ${cityPrep}`}
+              className="absolute inset-0 overflow-hidden"
               sizes="100vw"
               priority
+              variant="full"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 z-10">
               <p className="text-white/90 text-sm mb-1">
                 {categoryNames[service.category]}
               </p>
@@ -487,9 +488,6 @@ export default async function CityServicePage({
                     <ServiceCard
                       key={relatedService.id}
                       service={relatedService}
-                      imageUrl={
-                        getCategoryImageThumb(service.category) ?? undefined
-                      }
                       city={city}
                     />
                   ))}
