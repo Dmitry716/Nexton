@@ -5,11 +5,11 @@ import { getBlogListVideo } from "@/data/categoryMedia";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Блог автосервиса Nexton | Кондиционеры, кузов, советы автовладельцам",
+  title: "Блог автосервиса Nexton | Автокондиционеры, кузов, советы автовладельцам",
   description:
     "Статьи автосервиса Nexton: ремонт автокондиционеров, вебасто, радиаторов и систем охлаждения, кузов, китайские авто. Советы автовладельцам в Полоцке и Новополоцке.",
   keywords:
-    "блог, статьи, автосервис Полоцк, ремонт кондиционеров, вебасто, радиаторы, кузовной ремонт, Полоцк, Новополоцк",
+    "блог, статьи, автосервис Полоцк, ремонт автокондиционеров, вебасто, радиаторы, кузовной ремонт, Полоцк, Новополоцк",
   openGraph: {
     title: "Блог автосервиса Nexton | Полезные статьи для автовладельцев",
     description:
@@ -49,7 +49,7 @@ function getVideoForCategory(category: string): string {
 // ✅ ФУНКЦИЯ ДЛЯ ЗАГЛУШКИ (ПОСТЕРА)
 function getPosterForCategory(category: string): string {
   const posterMap: Record<string, string> = {
-    "Ремонт кондиционеров": "/images/blog/posters/ac-poster.jpg",
+    "Ремонт автокондиционеров": "/images/blog/posters/ac-poster.jpg",
     "Ремонт Webasto": "/images/blog/posters/webasto-poster.jpg",
     "Ремонт радиаторов": "/images/blog/posters/radiator-poster.jpg",
     "Советы автовладельцам": "/images/blog/posters/maintenance-poster.jpg",
@@ -60,7 +60,7 @@ function getPosterForCategory(category: string): string {
 // ✅ ФУНКЦИЯ ДЛЯ ИКОНКИ КАТЕГОРИИ (ЗАГЛУШКА)
 function getCategoryIcon(category: string): string {
   const iconMap: Record<string, string> = {
-    "Ремонт кондиционеров": "❄️",
+    "Ремонт автокондиционеров": "❄️",
     "Ремонт Webasto": "🔥",
     "Ремонт радиаторов": "🌡️",
     "Советы автовладельцам": "🔧",
@@ -470,7 +470,7 @@ export default function BlogPage() {
           aria-label="О блоге"
         >
           <h2 className="text-2xl font-bold text-black dark:text-white mb-3">
-            Автосервис Nexton: ремонт кондиционеров и систем охлаждения в
+            Автосервис Nexton: ремонт автокондиционеров и систем охлаждения в
             Полоцке и Новополоцке
           </h2>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed">

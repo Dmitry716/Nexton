@@ -52,10 +52,10 @@ export default function HeroSection({
             className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4 max-w-3xl mx-auto font-medium animate-slide-right leading-relaxed"
             style={{ animationDelay: "0.4s" }}
           >
-            Ремонтируем кондиционеры и системы охлаждения, восстанавливаем
+            Ремонтируем автокондиционеры и системы охлаждения, восстанавливаем
             кузов, обслуживаем бензиновые китайские авто. Делаем диагностику
-            подвески на вибростенде, вебасто, радиаторы, пневмосистемы, сварку
-            и автопластик.
+            подвески на вибростенде, вебасто, радиаторы, пневмосистемы, аргонная
+            сварка и ремонт автопластика.
           </p>
           <p
             className="text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto animate-slide-right"

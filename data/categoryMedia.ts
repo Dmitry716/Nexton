@@ -16,7 +16,7 @@ export function getCategoryVideo(categoryId: string): string | null {
 
 /** Видео в карточках блога на главной и на /blog. */
 export const blogListVideos: Record<string, string> = {
-  "Ремонт кондиционеров": "/videos/blog/repair-ac.mp4",
+  "Ремонт автокондиционеров": "/videos/blog/repair-ac.mp4",
   "Ремонт Webasto": "/videos/blog/repair-webasto.mp4",
   "Ремонт радиаторов": "/videos/blog/repair-radiator.mp4",
   "Советы автовладельцам": "/videos/blog/car-maintenance.mp4",

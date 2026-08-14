@@ -180,7 +180,7 @@ export default async function CityServicePage({
   const cityPrep = cityData.namePrepositional || cityName;
 
   const categoryNames: Record<string, string> = {
-    avtokondicionery: "Заправка и ремонт кондиционеров",
+    avtokondicionery: "Заправка и ремонт автокондиционеров",
     otopiteli: "Ремонт автономных отопителей",
     radiatory: "Ремонт радиаторов",
     svarka: "Сварка и пайка",

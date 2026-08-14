@@ -31,7 +31,7 @@ const DEMO_VIDEOS: Video[] = [
   },
   {
     id: "demo2",
-    title: "Заправка кондиционера — как мы работаем",
+    title: "Заправка автокондиционера — как мы работаем",
     thumbnail: "https://img.youtube.com/vi/placeholder/mqdefault.jpg",
     publishedAt: "2026-06-15",
   },
