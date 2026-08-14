@@ -4,7 +4,7 @@ import PaymentInfo from "@/components/PaymentInfo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Способы оплаты | Nexton Полоцк",
+  title: "Способы оплаты | Nexton",
   description:
     "Способы оплаты в автосервисе Nexton: карты, безналичный расчёт, работа с юридическими лицами. Все документы предоставляются.",
   keywords:

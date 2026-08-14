@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: {
     default:
       "Автосервис Nexton в Полоцке и Новополоцке: СТО, кондиционеры, кузов, китайские авто, диагностика подвески",
-    template: "%s | Nexton Полоцк — Новополоцк",
+    template: "%s | Nexton",
   },
   description:
     "СТО Nexton в Полоцке и Новополоцке. Кондиционеры и системы охлаждения, вебасто, радиаторы, кузовной ремонт, бензиновые китайские авто, пневмосистемы, диагностика подвески, сварка, автопластик. С 2010 года. Звоните: +375297115091",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     description:
       "СТО Nexton. Кондиционеры и охлаждение, кузов, китайские авто, вебасто, радиаторы, диагностика подвески, сварка.",
     url: "https://nexton.vip",
-    siteName: "Nexton Полоцк — Новополоцк",
+    siteName: "Nexton",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     locale: "ru_RU",
     type: "website",

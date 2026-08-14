@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     description:
       "СТО Nexton. Кондиционеры и охлаждение, кузов, китайские авто, вебасто, радиаторы, диагностика подвески, сварка.",
     url: "https://nexton.vip",
-    siteName: "Nexton Полоцк — Новополоцк",
+    siteName: "Nexton",
     images: [
       {
         url: "/og-image.jpg",
