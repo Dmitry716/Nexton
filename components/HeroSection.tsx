@@ -38,7 +38,7 @@ export default function HeroSection({
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-black dark:text-white tracking-tight animate-slide-left">
-            Автосервис и СТО в {cityText}
+            Автосервис в {cityText}
           </h1>
 
           <p

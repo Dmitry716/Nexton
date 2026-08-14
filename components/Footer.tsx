@@ -71,7 +71,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
-              Автосервис и СТО Nexton в Полоцке и Новополоцке. Климат, кузов и
+              Автосервис Nexton в Полоцке и Новополоцке. Климат, кузов и
               ходовая в одном сервисе. С 2010 года, гарантия до 6 месяцев.
             </p>
 

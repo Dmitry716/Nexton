@@ -73,7 +73,7 @@ export async function generateMetadata({
 
   return {
     title: `Автосервис Nexton в ${cityPrep} — климат, кузов и ходовая`,
-    description: `Автосервис и СТО Nexton в ${cityPrep} (${cityData.region}). Ремонтируем автокондиционеры и системы охлаждения, восстанавливаем кузов, обслуживаем бензиновые китайские авто. Диагностика подвески, вебасто, радиаторы, сварка. Гарантия до 6 месяцев. Звоните: +375297115091`,
+    description: `Автосервис Nexton в ${cityPrep} (${cityData.region}). Ремонтируем автокондиционеры и системы охлаждения, восстанавливаем кузов, обслуживаем бензиновые китайские авто. Диагностика подвески, вебасто, радиаторы, сварка. Гарантия до 6 месяцев. Звоните: +375297115091`,
     openGraph: {
       title: `Автосервис Nexton в ${cityPrep} — климат, кузов и ходовая`,
       description: `Климат, кузов и ходовая в одном сервисе. Автокондиционеры, кузовной ремонт, бензиновые китайские авто, диагностика подвески.`,
@@ -109,7 +109,7 @@ export default async function CityPage({
             "@context": "https://schema.org",
             "@type": "AutoRepair",
             name: `Автосервис Nexton в ${cityData.name}`,
-            alternateName: "СТО Nexton",
+            alternateName: "Автосервис Nexton",
             description: cityData.description,
             url: `https://nexton.vip/${city}`,
             telephone: "+375297115091",
@@ -306,7 +306,7 @@ export default async function CityPage({
                 <span className="gradient-text">Полоцке и Новополоцке</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                СТО Nexton работает с 2010 года. Мы специализируемся на ремонте
+                Автосервис Nexton работает с 2010 года. Мы специализируемся на ремонте
                 систем охлаждения и автокондиционеров, выполняем кузовной ремонт
                 и обслуживаем китайские автомобили. За это время помогли тысячам
                 автовладельцев в Полоцке, Новополоцке и области.
