@@ -12,7 +12,8 @@ const inter = Inter({ subsets: ["cyrillic"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Ремонт систем охлаждения и автокондиционеров в Полоцке и Новополоцке | Nexton",
+    default:
+      "Ремонт систем охлаждения и автокондиционеров в Полоцке и Новополоцке | Nexton",
     template: "%s | Nexton Полоцк — Новополоцк",
   },
   description:
@@ -32,7 +33,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Ремонт систем охлаждения и автокондиционеров в Полоцке и Новополоцке",
+    title:
+      "Ремонт систем охлаждения и автокондиционеров в Полоцке и Новополоцке",
     description:
       "Профессиональный ремонт систем охлаждения, автокондиционеров, радиаторов в Полоцке и Новополоцке.",
     url: "https://nexton.vip",
@@ -122,6 +124,31 @@ export default function RootLayout({
                 streetAddress: "ул. Строительная 21в/3, блок 9, бокс 3",
                 addressLocality: "Полоцк, Новополоцк",
                 addressCountry: "BY",
+              },
+            }),
+          }}
+        />
+        {/* 14 августа  */}
+        {/* Schema 2: WebSite (НОВЫЙ - добавляем СЮДА) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://nexton.vip/#website",
+              url: "https://nexton.vip",
+              name: "Nexton",
+              description:
+                "Кузовной ремонт, ремонт кондиционеров, автоэлектрика, диагностика в Полоцке и Новополоцке",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate:
+                    "https://nexton.vip/search?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
               },
             }),
           }}
