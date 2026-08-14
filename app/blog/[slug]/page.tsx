@@ -4,6 +4,7 @@ import { articles } from "../data/articles";
 import { Calendar, Clock, FolderOpen, ArrowLeft } from "lucide-react";
 import { ShareButton } from "./ShareButton";
 import { getBlogArticleVideo } from "@/data/categoryMedia";
+import type { Metadata } from "next";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
