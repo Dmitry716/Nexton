@@ -78,24 +78,45 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
           itemScope
           itemType="https://schema.org/BreadcrumbList"
         >
-          <Link
-            href="/"
-            className="hover:text-black dark:hover:text-white transition-colors"
-            itemProp="item"
+          <span
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
           >
-            <span itemProp="name">Главная</span>
-          </Link>
+            <Link
+              href="/"
+              className="hover:text-black dark:hover:text-white transition-colors"
+              itemProp="item"
+            >
+              <span itemProp="name">Главная</span>
+            </Link>
+            <meta itemProp="position" content="1" />
+          </span>
           <span aria-hidden="true">/</span>
-          <Link
-            href={`/${city}`}
-            className="hover:text-black dark:hover:text-white transition-colors"
-            itemProp="item"
+          <span
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
           >
-            <span itemProp="name">{cityData.name}</span>
-          </Link>
+            <Link
+              href={`/${city}`}
+              className="hover:text-black dark:hover:text-white transition-colors"
+              itemProp="item"
+            >
+              <span itemProp="name">{cityData.name}</span>
+            </Link>
+            <meta itemProp="position" content="2" />
+          </span>
           <span aria-hidden="true">/</span>
-          <span className="text-black dark:text-white" itemProp="name">
-            Ремонт китайских автомобилей
+          <span
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+          >
+            <span className="text-black dark:text-white" itemProp="name">
+              Ремонт китайских автомобилей
+            </span>
+            <meta itemProp="position" content="3" />
           </span>
         </nav>
 
