@@ -3,7 +3,10 @@ import ServiceCard from "@/components/ServiceCard";
 import ReviewsSection from "@/components/ReviewsSection"; // ← ЭТО ДОБАВИТЬ
 import CategoryCover from "@/components/CategoryCover";
 import { services } from "@/data/services";
-import { getCategoryPageHref, hasCategoryLandingPage } from "@/data/categories";
+import {
+  getCategoryPageHref,
+  hasCategoryLandingPage,
+} from "@/data/categories";
 import { getBlogListVideo } from "@/data/categoryMedia";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
@@ -52,7 +55,8 @@ function formatDate(dateString: string) {
 
 // Метаданные для главной страницы
 export const metadata: Metadata = {
-  title: "Автосервис Nexton в Полоцке и Новополоцке — климат, кузов и ходовая",
+  title:
+    "Автосервис Nexton в Полоцке и Новополоцке — климат, кузов и ходовая",
   description:
     "Автосервис Nexton в Полоцке и Новополоцке. Ремонтируем автокондиционеры и системы охлаждения, восстанавливаем кузов, обслуживаем бензиновые китайские авто. Диагностика подвески на вибростенде, вебасто, радиаторы, сварка. Гарантия до 6 месяцев. Звоните: +375297115091",
   openGraph: {
@@ -107,13 +111,13 @@ const categories = [
     icon: Truck,
     description: "Радиаторы и топливные баки для грузовиков",
   },
-  // {
-  //   id: "pnevmosistemy_legkovyh",
-  //   name: "Пневмосистемы легковых авто",
-  //   // Пневмоподвеска/пневмоприводы по смыслу ближе к работам по узлам и ремонту
-  //   icon: Wrench,
-  //   description: "Диагностика и ремонт пневмоподвески легковых автомобилей",
-  // },
+  {
+    id: "pnevmosistemy_legkovyh",
+    name: "Пневмосистемы легковых авто",
+    // Пневмоподвеска/пневмоприводы по смыслу ближе к работам по узлам и ремонту
+    icon: Wrench,
+    description: "Диагностика и ремонт пневмоподвески легковых автомобилей",
+  },
   {
     id: "plastik",
     name: "Ремонт автопластика",
@@ -353,7 +357,9 @@ export default function Home() {
                       className="animate-fade-in"
                       style={{ animationDelay: `${idx * 0.1}s` }}
                     >
-                      <ServiceCard service={service} />
+                      <ServiceCard
+                        service={service}
+                      />
                     </div>
                   ))}
                 </div>
@@ -381,10 +387,10 @@ export default function Home() {
                 <span className="gradient-text">Полоцке и Новополоцке</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                Автосервис Nexton работает с 2010 года. Мы специализируемся на
-                ремонте систем охлаждения и автокондиционеров, выполняем
-                кузовной ремонт и обслуживаем китайские автомобили. За это время
-                помогли тысячам автовладельцев в Полоцке, Новополоцке и области.
+                Автосервис Nexton работает с 2010 года. Мы специализируемся на ремонте
+                систем охлаждения и автокондиционеров, выполняем кузовной ремонт
+                и обслуживаем китайские автомобили. За это время помогли тысячам
+                автовладельцев в Полоцке, Новополоцке и области.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Наши мастера проходят регулярное обучение и используют
@@ -396,7 +402,7 @@ export default function Home() {
                 при необходимости. Цены фиксируем после осмотра — без скрытых
                 доплат.
               </p>
-              {/* <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
                   Легковые и грузовые автомобили
@@ -413,23 +419,8 @@ export default function Home() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
                   Ремонт автопластика и аргонная сварка
                 </li>
-              </ul> */}
-              {/* // Стало: */}
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
-                  Легковые и грузовые автомобили
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
-                  Кондиционеры, отопители, радиаторы, кузовные работы // 👈
-                  ЗАМЕНИЛИ
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
-                  Ремонт автопластика и аргонная сварка
-                </li>
               </ul>
+
               {/* Статистика - с темно-красным акцентом и анимацией */}
               <div className="grid grid-cols-3 gap-4 pt-6">
                 <div className="text-center group">
