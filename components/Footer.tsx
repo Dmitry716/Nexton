@@ -1,6 +1,5 @@
 "use client";
 
-import { cities } from "@/data/cities";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Send, ArrowUp, ExternalLink } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
