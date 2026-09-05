@@ -1,5 +1,6 @@
 "use client";
 
+import { cities } from "@/data/cities";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Send, ArrowUp, ExternalLink } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
@@ -136,6 +137,8 @@ export default function Footer() {
               ))}
             </nav>
           </div>
+          {/* 
+
 
           {/* Колонка 3: Услуги */}
           <div className="lg:col-span-3 space-y-4">

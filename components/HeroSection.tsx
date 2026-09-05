@@ -81,6 +81,14 @@ export default function HeroSection({
             >
               Связаться с нами
             </Link>
+            {/* 👇 НОВАЯ КНОПКА - ССЫЛКА НА АВТОСЕРВИС */}
+            <Link
+              href="/polotsk/avtoservis"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-[#1e3a5f] dark:border-[#7a9bcb] text-[#1e3a5f] dark:text-[#7a9bcb] hover:bg-[#1e3a5f] hover:text-white dark:hover:bg-[#7a9bcb] dark:hover:text-black shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+            >
+              Автосервис в Полоцке
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </div>
