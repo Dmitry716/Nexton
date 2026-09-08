@@ -135,6 +135,19 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
           </p>
         </header>
 
+        {/* ОГРАНИЧЕНИЕ ПО ВОЗРАСТУ АВТО */}
+        <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 sm:p-6 mb-8">
+          <p className="text-amber-800 dark:text-amber-200 font-semibold text-base sm:text-lg flex items-center gap-2">
+            <span className="text-2xl text-red-500">⚠️</span>
+            На кузовной ремонт принимаются автомобили{" "}
+            <strong>не старше 15 лет</strong> (с 2010 г. выпуска)
+          </p>
+          <p className="text-amber-700 dark:text-amber-300/80 text-sm mt-1">
+            Это связано с особенностями восстановления геометрии и доступностью
+            запчастей.
+          </p>
+        </div>
+
         {/* ВИДЕО */}
         <div
           className="relative w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-gray-200 dark:border-gray-800 bg-gray-900"
@@ -186,7 +199,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
               className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
             >
               Nexton в {cityPrep}
-            </a>
+            </a>{" "}
             выполняем полный спектр кузовных работ: от мелкой рихтовки до
             восстановления геометрии на стапеле.
           </p>
@@ -375,8 +388,8 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
               необходимости)
             </li>
             <li>
-              <strong>Рихтовка кузова</strong> — удаление вмятин споттером
-              и подготовка под покраску
+              <strong>Рихтовка кузова</strong> — удаление вмятин споттером и
+              подготовка под покраску
             </li>
             <li>
               <strong>Подготовка к покраске</strong> — шпаклёвка, грунтовка,
