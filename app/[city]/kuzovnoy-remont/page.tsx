@@ -24,8 +24,8 @@ export async function generateMetadata({
   const cityPrep = cityData.namePrepositional || cityData.name;
 
   return {
-    title: `Кузовной ремонт в ${cityPrep}: рихтовка, восстановление геометрии, покраска | Nexton`,
-    description: `Профессиональный кузовной ремонт в ${cityPrep}. Восстановление геометрии на стапеле, удаление вмятин споттером под покраску, покраска кузова. Гарантия 12 месяцев. Звоните: +375297115091`,
+    title: `Кузовной ремонт в ${cityPrep}: рихтовка, алюминий, покраска | Nexton`,
+    description: `Кузовной ремонт в ${cityPrep}: стапель, споттер, ремонт алюминиевых панелей (капоты, двери, крылья — вмятины, разрывы, трещины), покраска. Гарантия 12 месяцев. Звоните: +375297115091`,
     keywords: [
       "кузовной ремонт",
       `кузовной ремонт ${cityData.name}`,
@@ -36,10 +36,12 @@ export async function generateMetadata({
       `ремонт кузова ${cityData.name}`,
       "стапель",
       "удаление вмятин споттером",
+      "ремонт алюминиевых панелей",
+      "вмятины алюминиевый капот",
     ],
     openGraph: {
       title: `Кузовной ремонт в ${cityPrep} | Nexton`,
-      description: `Профессиональный кузовной ремонт в ${cityPrep}: восстановление геометрии, рихтовка, покраска. Гарантия 12 месяцев.`,
+      description: `Кузовной ремонт в ${cityPrep}: геометрия, споттер, алюминиевые панели, покраска. Гарантия 12 месяцев.`,
       url: `https://nexton.vip/${city}/kuzovnoy-remont`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -61,6 +63,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
   const serviceIcons: Record<string, React.ElementType> = {
     "Восстановление геометрии кузова на стапеле": Hammer,
     "Удаление вмятин споттером под покраску": Car,
+    "Ремонт алюминиевых кузовных панелей": Wrench,
     "Покраска кузова автомобиля": Paintbrush,
   };
 
@@ -226,7 +229,18 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
                   Удаление вмятин споттером
                 </Link>
               </strong>{" "}
-              — вытяжка вмятин под покраску
+              — вытяжка вмятин на стальных панелях под покраску
+            </li>
+            <li>
+              <strong>
+                <Link
+                  href={`/${city}/usluga/remont-alyuminievyh-paneley`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Ремонт алюминиевых кузовных панелей
+                </Link>
+              </strong>{" "}
+              — вмятины, разрывы и трещины на капотах, дверях, крыльях
             </li>
             <li>
               <strong>
@@ -238,9 +252,6 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
                 </Link>
               </strong>{" "}
               — полная и локальная, подбор цвета по VIN
-            </li>
-            <li>
-              <strong>Сварка кузова</strong> — аргонная и полуавтоматическая
             </li>
             <li>
               <strong>Замена элементов кузова</strong> — крылья, двери, капот,
@@ -340,7 +351,11 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
               },
               {
                 title: "Вытяжка вмятин споттером",
-                text: "Споттер, обратный молоток и рихтовка — готовим деталь под покраску",
+                text: "Споттер, обратный молоток и рихтовка — готовим стальную деталь под покраску",
+              },
+              {
+                title: "Алюминиевые панели",
+                text: "Вмятины, разрывы и трещины на капотах, дверях и крыльях — правка и аргон",
               },
               {
                 title: "Точный подбор цвета",
@@ -388,8 +403,8 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
               необходимости)
             </li>
             <li>
-              <strong>Рихтовка кузова</strong> — удаление вмятин споттером и
-              подготовка под покраску
+              <strong>Рихтовка кузова</strong> — удаление вмятин споттером на
+              стали или ремонт алюминиевых панелей (вмятины, разрывы, трещины)
             </li>
             <li>
               <strong>Подготовка к покраске</strong> — шпаклёвка, грунтовка,
