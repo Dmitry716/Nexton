@@ -9,8 +9,6 @@ import InstagramIcon from "@/components/icons/InstagramIcon";
 import YoutubeIcon from "@/components/icons/YoutubeIcon";
 import WorkTimeStatus from "@/components/WorkTimeStatus";
 
-type MenuItem = { name: string; href: string; shortName?: string };
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -23,75 +21,60 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Полные названия — в мобильном меню; shortName — в десктопной строке (без переносов)
-  const menuItems: MenuItem[] = [
-    { name: "Главная", href: "/", shortName: "Главная" },
-    { name: "Услуги", href: "/#services" },
+  // Десктоп: только нужные пункты (без Главная / Услуги / О нас — они в логотипе, футере и на главной)
+  const desktopItems = [
     { name: "Блог", href: "/blog" },
-    {
-      name: "Кузовной ремонт",
-      href: "/polotsk/kuzovnoy-remont",
-      shortName: "Кузов",
-    },
-    {
-      name: "Ремонт вебасто",
-      href: "/polotsk/remont-vebasto",
-      shortName: "Вебасто",
-    },
-    {
-      name: "Китайские авто",
-      href: "/polotsk/remont-kitayskih-avto",
-      shortName: "Китайские",
-    },
-    { name: "О нас", href: "/#about" },
+    { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
+    { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
+    { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "Контакты", href: "/#contacts" },
   ];
 
-  // На десктопе «Главная» не нужна — есть логотип
-  const desktopItems = menuItems.filter((item) => item.href !== "/");
-
-  const linkClass =
-    "shrink-0 whitespace-nowrap text-sm xl:text-base text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 font-medium relative group";
+  // Мобильное: полный список
+  const mobileItems = [
+    { name: "Главная", href: "/" },
+    { name: "Услуги", href: "/#services" },
+    ...desktopItems,
+    { name: "О нас", href: "/#about" },
+  ];
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
         scrolled
           ? "bg-white/95 dark:bg-black/95 backdrop-blur-md border-gray-200 dark:border-gray-800 py-3"
-          : "bg-white dark:bg-black border-gray-200 dark:border-gray-800 py-4"
+          : "bg-white dark:bg-black border-gray-200 dark:border-gray-800 py-5"
       }`}
       role="navigation"
       aria-label="Главное меню"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex justify-between items-center gap-6">
           <Link
             href="/"
             className="relative group outline-none focus:outline-none shrink-0"
             aria-label="Автосервис Nexton — главная страница"
           >
             <div className="absolute -inset-2 bg-gradient-to-r from-gray-300 to-gray-100 dark:from-gray-400 dark:to-gray-600 rounded-lg blur-xl opacity-0 group-hover:opacity-40 transition-all duration-700" />
-            <span className="relative text-2xl lg:text-3xl font-bold text-black dark:text-white transition-all duration-500 transform group-hover:scale-105 inline-block">
+            <span className="relative text-2xl md:text-3xl font-bold text-black dark:text-white transition-all duration-500 transform group-hover:scale-110 inline-block">
               NEXTON
             </span>
             <span className="sr-only">Автосервис в Полоцке и Новополоцке</span>
           </Link>
 
-          {/* Десктоп с xl: иначе длинное меню ломает строку */}
-          <div className="hidden xl:flex items-center gap-5 min-w-0">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {desktopItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={linkClass}
-                title={item.name}
+                className="whitespace-nowrap text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-300 font-medium relative group"
               >
-                {item.shortName ?? item.name}
+                {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
 
-            <div className="flex items-center gap-1 ml-2 pl-4 border-l border-gray-200 dark:border-gray-700 shrink-0">
+            <div className="flex items-center space-x-3 ml-2 pl-4 border-l border-gray-200 dark:border-gray-700">
               <a
                 href="https://t.me/+375297115091"
                 target="_blank"
@@ -133,8 +116,7 @@ export default function Navbar() {
             <ThemeSwitcher />
           </div>
 
-          {/* До xl — бургер (раньше был md, места не хватало) */}
-          <div className="xl:hidden flex items-center space-x-2 shrink-0">
+          <div className="lg:hidden flex items-center space-x-2">
             <a
               href="https://vk.com/club164841898"
               target="_blank"
@@ -148,10 +130,19 @@ export default function Navbar() {
               href="https://www.instagram.com/nextonservice/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full hidden sm:inline-flex"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
               aria-label="Instagram"
             >
               <InstagramIcon className="w-5 h-5 text-black dark:text-white" />
+            </a>
+            <a
+              href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+              aria-label="Наш YouTube канал"
+            >
+              <YoutubeIcon className="w-5 h-5 text-black dark:text-white" />
             </a>
             <ThemeSwitcher />
             <button
@@ -166,8 +157,8 @@ export default function Navbar() {
         </div>
 
         {isOpen && (
-          <div className="xl:hidden py-4 border-t border-gray-200 dark:border-gray-800 mt-4">
-            {menuItems.map((item) => (
+          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-800 mt-4">
+            {mobileItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
