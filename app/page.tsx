@@ -87,7 +87,7 @@ const categories = [
     id: "otopiteli",
     name: "Автономные отопители",
     icon: Flame,
-    description: "Webasto, Eberspacher, Планар, Бинар",
+    description: "Ремонт вебасто: Webasto, Eberspacher, Планар, Бинар",
   },
   {
     id: "radiatory",

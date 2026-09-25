@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: "Услуги", href: "/#services" },
     { name: "Блог", href: "/blog" }, // 👈 ДОБАВИТЬ
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
+    { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "О нас", href: "/#about" },
     { name: "Контакты", href: "/#contacts" },

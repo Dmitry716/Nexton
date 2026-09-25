@@ -19,6 +19,7 @@ export const categories = [
 const CATEGORY_LANDING_PATHS: Record<string, string> = {
   kuzovnye: "kuzovnoy-remont",
   kitayskie_avto: "remont-kitayskih-avto",
+  otopiteli: "remont-vebasto",
 };
 
 export function hasCategoryLandingPage(categoryId: string): boolean {

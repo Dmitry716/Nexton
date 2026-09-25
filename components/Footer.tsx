@@ -21,6 +21,7 @@ export default function Footer() {
     { name: "О нас", href: "/#about" },
     { name: "Блог", href: "/blog" }, // 👈 ДОБАВИТЬ
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
+    { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "Контакты", href: "/#contacts" },
     { name: "Оплата", href: "/payment" },
@@ -29,7 +30,7 @@ export default function Footer() {
 
   const services = [
     { name: "Автокондиционеры", href: "/#avtokondicionery" },
-    { name: "Автономные отопители", href: "/#otopiteli" },
+    { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Ремонт радиаторов", href: "/#radiatory" },
     {
       name: "Ремонт радиаторов и топливных баков для грузовиков",

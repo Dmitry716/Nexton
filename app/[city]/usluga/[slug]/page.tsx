@@ -51,7 +51,7 @@ export async function generateMetadata({
 
   const categoryNames: Record<string, string> = {
     avtokondicionery: "автокондиционеров",
-    otopiteli: "автономных отопителей",
+    otopiteli: "вебасто и автономных отопителей",
     radiatory: "радиаторов",
     svarka: "аргонной сварки",
     gruzovye: "грузовых автомобилей",
@@ -181,7 +181,7 @@ export default async function CityServicePage({
 
   const categoryNames: Record<string, string> = {
     avtokondicionery: "Заправка и ремонт автокондиционеров",
-    otopiteli: "Ремонт автономных отопителей",
+    otopiteli: "Ремонт вебасто и автономных отопителей",
     radiatory: "Ремонт радиаторов",
     svarka: "Сварка и пайка",
     gruzovye: "Ремонт систем охлаждения и топливных баков грузовых авто",

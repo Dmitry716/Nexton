@@ -60,6 +60,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const vebastoPages: MetadataRoute.Sitemap = cities.map((city) => ({
+    url: `${BASE_URL}/${city.slug}/remont-vebasto`,
+    lastModified,
+    changeFrequency: "weekly",
+    priority: 0.9,
+  }));
+
   // Страницы услуг для каждого города
   const cityServicePages: MetadataRoute.Sitemap = [];
   for (const city of cities) {
@@ -86,7 +93,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cityPages,
     ...kuzovnyePages,
     ...kitayskiePages,
+    ...vebastoPages,
     ...cityServicePages,
-    ...avtoservisPages, // 👈 ДОБАВЬ ЭТУ СТРОКУ
+    ...avtoservisPages,
   ];
 }
