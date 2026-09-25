@@ -21,21 +21,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Десктоп: только нужные пункты (без Главная / Услуги / О нас — они в логотипе, футере и на главной)
+  // Десктоп: без Главная / О нас. «Вебасто» коротко, чтобы строка влезала.
   const desktopItems = [
+    { name: "Услуги", href: "/#services" },
     { name: "Блог", href: "/blog" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
-    { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
+    { name: "Вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "Контакты", href: "/#contacts" },
   ];
 
-  // Мобильное: полный список
   const mobileItems = [
     { name: "Главная", href: "/" },
     { name: "Услуги", href: "/#services" },
-    ...desktopItems,
+    { name: "Блог", href: "/blog" },
+    { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
+    { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
+    { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "О нас", href: "/#about" },
+    { name: "Контакты", href: "/#contacts" },
   ];
 
   return (
