@@ -19,10 +19,10 @@ export default function Footer() {
     { name: "Главная", href: "/" },
     { name: "Услуги", href: "/#services" },
     { name: "О нас", href: "/#about" },
-    { name: "Блог", href: "/blog" }, // 👈 ДОБАВИТЬ
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
+    { name: "Блог", href: "/blog" },
     { name: "Контакты", href: "/#contacts" },
     { name: "Оплата", href: "/payment" },
     { name: "Политика конфиденциальности", href: "/privacy" },

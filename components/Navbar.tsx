@@ -24,20 +24,20 @@ export default function Navbar() {
   // Десктоп: без Главная / О нас. «Вебасто» коротко, чтобы строка влезала.
   const desktopItems = [
     { name: "Услуги", href: "/#services" },
-    { name: "Блог", href: "/blog" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
+    { name: "Блог", href: "/blog" },
     { name: "Контакты", href: "/#contacts" },
   ];
 
   const mobileItems = [
     { name: "Главная", href: "/" },
     { name: "Услуги", href: "/#services" },
-    { name: "Блог", href: "/blog" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
+    { name: "Блог", href: "/blog" },
     { name: "О нас", href: "/#about" },
     { name: "Контакты", href: "/#contacts" },
   ];
