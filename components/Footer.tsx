@@ -37,10 +37,10 @@ export default function Footer() {
       href: "/#gruzovye",
     },
     // 👇 ЗАКОММЕНТИРОВАТЬ ЭТИ 2 СТРОКИ
-    // {
-    //   name: "Обслуживание и ремонт пневмосистем",
-    //   href: "/usluga/obsluzhivanie-remont-pnevmosistem",
-    // },
+    {
+      name: "Обслуживание и ремонт пневмосистем",
+      href: "/usluga/obsluzhivanie-remont-pnevmosistem",
+    },
     { name: "Ремонт автопластика", href: "/#plastik" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Ремонт китайских авто", href: "/polotsk/remont-kitayskih-avto" },

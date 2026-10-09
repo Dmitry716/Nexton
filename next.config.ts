@@ -19,47 +19,47 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // ===== РЕДИРЕКТЫ ДЛЯ ПНЕВМОСИСТЕМ (НА ГЛАВНУЮ) =====
-      {
-        source: "/:city/usluga/obsluzhivanie-remont-pnevmosistem",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/:city/usluga/remont-pnevmoballonov",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/:city/usluga/remont-pnevmostoek",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/:city/usluga/remont-pnevmo-podushek",
-        destination: "/",
-        permanent: true,
-      },
-      // Без города
-      {
-        source: "/usluga/obsluzhivanie-remont-pnevmosistem",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/usluga/remont-pnevmoballonov",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/usluga/remont-pnevmostoek",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/usluga/remont-pnevmo-podushek",
-        destination: "/",
-        permanent: true,
-      },
+      // {
+      //   source: "/:city/usluga/obsluzhivanie-remont-pnevmosistem",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/:city/usluga/remont-pnevmoballonov",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/:city/usluga/remont-pnevmostoek",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/:city/usluga/remont-pnevmo-podushek",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // // Без города
+      // {
+      //   source: "/usluga/obsluzhivanie-remont-pnevmosistem",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/usluga/remont-pnevmoballonov",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/usluga/remont-pnevmostoek",
+      //   destination: "/",
+      //   permanent: true,
+      // },
+      // {
+      //   source: "/usluga/remont-pnevmo-podushek",
+      //   destination: "/",
+      //   permanent: true,
+      // },
       // ===== РЕДИРЕКТ ДЛЯ КУЗОВНЫХ РАБОТ =====
       {
         source: "/:city/kuzovnye-remont",
