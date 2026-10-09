@@ -7,6 +7,7 @@ const SEO_CACHE =
 const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: "https",
