@@ -6,6 +6,8 @@ import CookieConsent from "@/components/CookieConsent";
 import PWAPrompt from "@/components/PWAPrompt";
 import Footer from "@/components/Footer";
 import MobileStickyCta from "@/components/MobileStickyCta";
+import PartnershipBanner from "@/components/PartnershipBanner";
+import PartnershipModal from "@/components/PartnershipModal";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["cyrillic"] });
@@ -178,14 +180,19 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Бегущая строка над шапкой */}
+          <PartnershipBanner />
           <Navbar />
-          <main className="min-h-screen bg-white dark:bg-black pt-20">
+          {/* <main className="min-h-screen bg-white dark:bg-black pt-20"> */}
+          <main className="min-h-screen bg-white dark:bg-black pt-[124px]">
             {children}
           </main>
           <Footer />
           <MobileStickyCta />
           <CookieConsent />
           <PWAPrompt />
+          {/* Модалка при входе */}
+          <PartnershipModal />
         </ThemeProvider>
       </body>
     </html>

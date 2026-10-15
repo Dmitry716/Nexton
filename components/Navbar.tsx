@@ -44,7 +44,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+      // className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+      //   scrolled
+      //     ? "bg-white/95 dark:bg-black/95 backdrop-blur-md border-gray-200 dark:border-gray-800 py-3"
+      //     : "bg-white dark:bg-black border-gray-200 dark:border-gray-800 py-5"
+      // }`}
+      className={`fixed top-[36px] w-full z-50 transition-all duration-500 border-b ${
         scrolled
           ? "bg-white/95 dark:bg-black/95 backdrop-blur-md border-gray-200 dark:border-gray-800 py-3"
           : "bg-white dark:bg-black border-gray-200 dark:border-gray-800 py-5"
