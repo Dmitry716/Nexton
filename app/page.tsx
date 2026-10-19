@@ -8,6 +8,7 @@ import { getBlogListVideo } from "@/data/categoryMedia";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import YoutubeGallery from "@/components/YoutubeGallery";
+import TikTokIcon from "@/components/icons/TikTokIcon";
 import PaymentInfo from "@/components/PaymentInfo";
 import {
   Thermometer,
@@ -880,6 +881,21 @@ export default function Home() {
                 >
                   <span>Instagram</span>
                   <InstagramIcon
+                    width={16}
+                    height={16}
+                    className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </a>
+                <a
+                  href="https://tiktok.com/@nextonservice"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center gap-2 group/btn"
+                  aria-label="Перейти в TikTok"
+                >
+                  <span>TikTok</span>
+                  <TikTokIcon
                     width={16}
                     height={16}
                     className="transition-transform duration-300 group-hover/btn:translate-x-1"

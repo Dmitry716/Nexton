@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Send, ArrowUp, ExternalLink } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
 import YoutubeIcon from "@/components/icons/YoutubeIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
+import TikTokIcon from "@/components/icons/TikTokIcon";
 import WorkTimeStatus from "@/components/WorkTimeStatus";
 import PaymentMethods from "@/components/PaymentMethods"; // 👈 ИМПОРТ
 
@@ -289,7 +290,29 @@ export default function Footer() {
                   aria-hidden="true"
                 />
               </a>
-
+              <a
+                href="https://tiktok.com/@nextonservice"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-all duration-500 group focus:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:rounded-lg"
+                role="listitem"
+                aria-label="TikTok (откроется в новом окне)"
+              >
+                <span className="p-2 bg-gray-100 dark:bg-gray-900 rounded-xl group-hover:bg-black dark:group-hover:bg-white transition-all duration-500">
+                  <TikTokIcon
+                    width={16}
+                    height={16}
+                    className="text-black dark:text-white group-hover:text-white dark:group-hover:text-black transition-colors duration-500"
+                    aria-hidden="true"
+                  />
+                </span>
+                <span>TikTok</span>
+                <ExternalLink
+                  size={12}
+                  className="text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
+                />
+              </a>
               <div
                 className="flex items-start gap-3 text-gray-600 dark:text-gray-400"
                 role="listitem"

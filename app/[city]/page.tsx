@@ -4,10 +4,7 @@ import ServiceCard from "@/components/ServiceCard";
 import ReviewsSection from "@/components/ReviewsSection";
 import { services } from "@/data/services";
 import { cities } from "@/data/cities";
-import {
-  getCategoryPageHref,
-  hasCategoryLandingPage,
-} from "@/data/categories";
+import { getCategoryPageHref, hasCategoryLandingPage } from "@/data/categories";
 import CategoryCover from "@/components/CategoryCover";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -23,6 +20,7 @@ import {
 } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
+import TikTokIcon from "@/components/icons/TikTokIcon";
 
 const categories = [
   { id: "avtokondicionery", name: "Автокондиционеры", icon: Wind },
@@ -306,10 +304,10 @@ export default async function CityPage({
                 <span className="gradient-text">Полоцке и Новополоцке</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                Автосервис Nexton работает с 2010 года. Мы специализируемся на ремонте
-                систем охлаждения и автокондиционеров, выполняем кузовной ремонт
-                и обслуживаем китайские автомобили. За это время помогли тысячам
-                автовладельцев в Полоцке, Новополоцке и области.
+                Автосервис Nexton работает с 2010 года. Мы специализируемся на
+                ремонте систем охлаждения и автокондиционеров, выполняем
+                кузовной ремонт и обслуживаем китайские автомобили. За это время
+                помогли тысячам автовладельцев в Полоцке, Новополоцке и области.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Наши мастера проходят регулярное обучение и используют
@@ -545,6 +543,21 @@ export default async function CityPage({
                 >
                   Instagram{" "}
                   <InstagramIcon width={16} height={16} aria-hidden="true" />
+                </a>
+                <a
+                  href="https://tiktok.com/@nextonservice"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center gap-2 group/btn"
+                  aria-label="Перейти в TikTok"
+                >
+                  <span>TikTok</span>
+                  <TikTokIcon
+                    width={16}
+                    height={16}
+                    className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </a>
                 <a
                   href="tel:+375297115091"
