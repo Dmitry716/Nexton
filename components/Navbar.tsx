@@ -163,7 +163,7 @@ export default function Navbar() {
             >
               <TikTokIcon className="w-5 h-5 text-black dark:text-white" />
             </a>
-            <a
+            {/* <a
               href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
               target="_blank"
               rel="noopener noreferrer"
@@ -171,7 +171,7 @@ export default function Navbar() {
               aria-label="Наш YouTube канал"
             >
               <YoutubeIcon className="w-5 h-5 text-black dark:text-white" />
-            </a>
+            </a> */}
             <ThemeSwitcher />
             <button
               onClick={() => setIsOpen(!isOpen)}
