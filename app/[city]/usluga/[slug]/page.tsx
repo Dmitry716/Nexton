@@ -59,6 +59,7 @@ export async function generateMetadata({
     plastik: "автопластика",
     // kuzovnye: "кузовных работ",
     kuzovnye: "кузовному ремонту", // 👈 ДОБАВИТЬ
+    antikor: "антикоррозийной обработке",
     diagnostika_podveski: "диагностике подвески",
     kitayskie_avto: "китайских автомобилей",
   };
@@ -188,6 +189,7 @@ export default async function CityServicePage({
     pnevmosistemy_legkovyh: "Ремонт и обслуживание пневмосистем легковых авто",
     plastik: "Ремонт автопластика",
     kuzovnye: "Кузовные работы",
+    antikor: "Антикоррозийная обработка",
     diagnostika_podveski: "Диагностика подвески",
     kitayskie_avto: "Ремонт китайских автомобилей",
   };

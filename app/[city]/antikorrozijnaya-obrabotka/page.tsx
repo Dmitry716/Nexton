@@ -1,0 +1,448 @@
+import { notFound } from "next/navigation";
+import { cities } from "@/data/cities";
+import { services } from "@/data/services";
+import Link from "next/link";
+import { Shield, Droplets, Layers, Wrench } from "lucide-react";
+import type { Metadata } from "next";
+import ReviewsSection from "@/components/ReviewsSection";
+import Image from "next/image";
+
+interface PageProps {
+  params: Promise<{ city: string }>;
+}
+
+export async function generateStaticParams() {
+  return cities.map((city) => ({ city: city.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { city } = await params;
+  const cityData = cities.find((c) => c.slug === city);
+  if (!cityData) return { title: "Страница не найдена" };
+
+  const cityPrep = cityData.namePrepositional || cityData.name;
+
+  return {
+    title: `Антикоррозийная обработка в ${cityPrep}: Dinitrol, Noxudol | Nexton`,
+    description: `Антикоррозийная обработка в ${cityPrep}. Комплекс: днище, арки, скрытые полости. Материалы Dinitrol, Noxudol, Body. От 249 Br. Гарантия до 3 лет. Звоните: +375297115091`,
+    keywords: [
+      "антикоррозийная обработка",
+      `антикоррозийная обработка ${cityData.name}`,
+      `антикор ${cityData.name}`,
+      "антикоррозийная обработка Полоцк",
+      "антикор Новополоцк",
+      "антикор днища",
+      "Dinitrol",
+      "Noxudol",
+    ],
+    openGraph: {
+      title: `Антикоррозийная обработка в ${cityPrep} | Nexton`,
+      description: `Антикор кузова в ${cityPrep}: днище, арки, полости. Dinitrol, Noxudol. От 249 Br, гарантия до 3 лет.`,
+      url: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
+      images: [
+        {
+          url: "/images/categories/antikor.jpg",
+          width: 1200,
+          height: 675,
+        },
+      ],
+    },
+    alternates: {
+      canonical: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
+    },
+  };
+}
+
+export default async function AntikorrozijnayaObrabotkaPage({
+  params,
+}: PageProps) {
+  const { city } = await params;
+  const cityData = cities.find((c) => c.slug === city);
+  if (!cityData) notFound();
+
+  const cityPrep = cityData.namePrepositional || cityData.name;
+  const cityName = cityData.name;
+
+  const antikorServices = services.filter((s) => s.category === "antikor");
+
+  const serviceIcons: Record<string, React.ElementType> = {
+    "Комплексная антикоррозийная обработка": Shield,
+    "Антикоррозийная обработка днища и арок": Droplets,
+    "Обработка скрытых полостей антикором": Layers,
+  };
+
+  const faqItems = [
+    {
+      question: "Сколько стоит антикоррозийная обработка?",
+      answer:
+        "Комплекс для легкового авто — от 249 Br, кроссовер от 299 Br, внедорожник от 349 Br. Точную смету называем после осмотра.",
+    },
+    {
+      question: "Какие материалы используете?",
+      answer:
+        "Премиум-составы Dinitrol, Noxudol, Body и Tectyl — для днища, арок и скрытых полостей.",
+    },
+    {
+      question: "Какая гарантия на антикор?",
+      answer:
+        "До 3 лет при соблюдении рекомендаций и ежегодном осмотре покрытия.",
+    },
+  ];
+
+  return (
+    <main
+      className="min-h-screen bg-white dark:bg-black pt-16"
+      role="main"
+      aria-label="Страница антикоррозийной обработки"
+    >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AutoRepair",
+            name: `Антикоррозийная обработка Nexton в ${cityName}`,
+            description: `Антикоррозийная обработка кузова в ${cityPrep}. Dinitrol, Noxudol, Body. Гарантия до 3 лет.`,
+            url: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
+            telephone: "+375297115091",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "ул. Строительная 21в/3, блок 9, бокс 3",
+              addressLocality: "Полоцк",
+              addressRegion: cityData.region,
+              addressCountry: "BY",
+            },
+            areaServed: { "@type": "City", name: cityName },
+            openingHours: "Mo-Fr 10:00-18:00",
+            priceRange: "$$",
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          }),
+        }}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <nav
+          className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6"
+          aria-label="Хлебные крошки"
+          itemScope
+          itemType="https://schema.org/BreadcrumbList"
+        >
+          <span
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+          >
+            <Link
+              href="/"
+              className="hover:text-black dark:hover:text-white transition-colors"
+              itemProp="item"
+            >
+              <span itemProp="name">Главная</span>
+            </Link>
+            <meta itemProp="position" content="1" />
+          </span>
+          <span aria-hidden="true">/</span>
+          <span
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+          >
+            <Link
+              href={`/${city}`}
+              className="hover:text-black dark:hover:text-white transition-colors"
+              itemProp="item"
+            >
+              <span itemProp="name">{cityData.name}</span>
+            </Link>
+            <meta itemProp="position" content="2" />
+          </span>
+          <span aria-hidden="true">/</span>
+          <span
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+          >
+            <span className="text-black dark:text-white" itemProp="name">
+              Антикоррозийная обработка
+            </span>
+            <meta itemProp="position" content="3" />
+          </span>
+        </nav>
+
+        <header className="mb-8" aria-labelledby="main-title">
+          <h1
+            id="main-title"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white mb-3"
+          >
+            Антикоррозийная обработка в {cityPrep}
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+            Комплексная защита кузова: днище, арки, скрытые полости. Материалы
+            Dinitrol, Noxudol, Body. От 249 Br. Гарантия до 3 лет.
+          </p>
+        </header>
+
+        <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-8 border border-gray-200 dark:border-gray-800 bg-gray-900">
+          <Image
+            src="/images/categories/antikor.jpg"
+            alt={`Антикоррозийная обработка автомобиля в ${cityPrep}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 896px) 100vw, 896px"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center text-white px-4">
+              <p className="text-xl sm:text-2xl font-bold">
+                Антикор в {cityPrep}
+              </p>
+              <p className="text-sm sm:text-lg text-white/85">
+                Премиум-материалы · прозрачные цены в BYN
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <article className="prose prose-lg max-w-none dark:prose-invert mb-10">
+          <h2>Антикоррозийная обработка в {cityPrep}: защита на годы</h2>
+          <p>
+            Зимой соль и реагенты ускоряют коррозию днища и арок. В{" "}
+            <Link
+              href={`/${city}`}
+              className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+            >
+              Nexton в {cityPrep}
+            </Link>{" "}
+            делаем антикор составами премиум-класса и озвучиваем смету до
+            начала работ. Адрес сервиса: Полоцк, ул. Строительная 21в/3 —
+            обслуживаем Полоцк и Новополоцк.
+          </p>
+
+          <h3>Виды антикора в {cityPrep}</h3>
+          <ul>
+            <li>
+              <strong>
+                <Link
+                  href={`/${city}/usluga/antikorrozijnaya-obrabotka-kompleks`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Комплексная антикоррозийная обработка
+                </Link>
+              </strong>{" "}
+              — днище, арки и скрытые полости
+            </li>
+            <li>
+              <strong>
+                <Link
+                  href={`/${city}/usluga/antikor-dnishcha-arok`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Антикор днища и арок
+                </Link>
+              </strong>{" "}
+              — защита от соли и камней
+            </li>
+            <li>
+              <strong>
+                <Link
+                  href={`/${city}/usluga/obrabotka-skrytyh-polostej`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Обработка скрытых полостей
+                </Link>
+              </strong>{" "}
+              — пороги, лонжероны, внутренние зоны
+            </li>
+          </ul>
+
+          <h3>Почему антикор в Nexton</h3>
+          <ul>
+            <li>
+              ✅ <strong>Материалы премиум-класса</strong> — Dinitrol, Noxudol,
+              Body, Tectyl
+            </li>
+            <li>
+              ✅ <strong>Цены от 249 Br</strong> — комплекс для легкового, без
+              скрытых доплат
+            </li>
+            <li>
+              ✅ <strong>Гарантия до 3 лет</strong> — при ежегодном осмотре
+              покрытия
+            </li>
+            <li>
+              ✅ <strong>Смета до старта</strong> — всё согласовываем заранее
+            </li>
+          </ul>
+        </article>
+
+        <section aria-labelledby="services-title">
+          <h2
+            id="services-title"
+            className="text-2xl font-bold text-black dark:text-white mb-6"
+          >
+            Услуги антикоррозийной обработки в {cityPrep}
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-6 mb-10" role="list">
+            {antikorServices.map((service) => {
+              const Icon = serviceIcons[service.name] || Wrench;
+              return (
+                <Link
+                  key={service.id}
+                  href={`/${city}/usluga/${service.slug}`}
+                  className="group block rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6 hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  role="listitem"
+                >
+                  <div className="flex items-start gap-4">
+                    <div
+                      className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 group-hover:bg-[#1e3a5f]/10 dark:group-hover:bg-[#7a9bcb]/10 transition-colors"
+                      aria-hidden="true"
+                    >
+                      <Icon className="w-6 h-6 text-[#1e3a5f] dark:text-[#7a9bcb]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-black dark:text-white group-hover:text-[#1e3a5f] dark:group-hover:text-[#7a9bcb] transition-colors mb-1">
+                        {service.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {service.description}
+                      </p>
+                      <span className="inline-block mt-3 text-sm text-[#1e3a5f] dark:text-[#7a9bcb] font-medium">
+                        Подробнее →
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
+        <section
+          className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 sm:p-8 mb-10 border border-gray-200 dark:border-gray-800"
+          aria-labelledby="materials-title"
+        >
+          <h2
+            id="materials-title"
+            className="text-2xl font-bold text-black dark:text-white mb-4"
+          >
+            Материалы премиум-класса
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {["Dinitrol", "Noxudol", "Body", "Tectyl"].map((brand) => (
+              <span
+                key={brand}
+                className="px-3 py-2 rounded-full bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 text-sm font-semibold text-gray-800 dark:text-gray-200"
+              >
+                {brand}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-10" aria-labelledby="faq-title">
+          <h2
+            id="faq-title"
+            className="text-2xl font-bold text-black dark:text-white mb-6"
+          >
+            Частые вопросы об антикоре
+          </h2>
+          <div className="space-y-4">
+            {faqItems.map((item) => (
+              <div
+                key={item.question}
+                className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-5"
+              >
+                <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <article className="prose prose-lg max-w-none dark:prose-invert mb-10">
+          <h2>Как проходит антикоррозийная обработка в {cityPrep}</h2>
+          <ol>
+            <li>
+              <strong>Осмотр и смета</strong> — оцениваем состояние днища и
+              объём работ
+            </li>
+            <li>
+              <strong>Мойка и сушка</strong> — подготовка поверхности
+            </li>
+            <li>
+              <strong>Обработка</strong> — днище, арки, скрытые полости
+            </li>
+            <li>
+              <strong>Контроль и рекомендации</strong> — гарантия и уход
+            </li>
+          </ol>
+          <h3>Сколько стоит антикор в {cityPrep}</h3>
+          <p>
+            Комплекс от 249 Br для легкового, от 299 Br для кроссовера, от 349
+            Br для внедорожника. Днище отдельно — от 180 Br, скрытые полости —
+            от 120 Br.
+          </p>
+        </article>
+
+        <section
+          className="bg-[#1e3a5f] dark:bg-[#1a2a3a] rounded-2xl p-6 sm:p-8 text-white"
+          aria-labelledby="contact-title"
+        >
+          <h2 id="contact-title" className="text-2xl font-bold mb-4">
+            Запишитесь на антикоррозийную обработку в {cityPrep}
+          </h2>
+          <p className="text-white/80 mb-6">
+            Оценим состояние кузова и подберём материалы. Цены в BYN, без
+            скрытых доплат.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="tel:+375297115091"
+              className="px-6 py-3 bg-white text-[#1e3a5f] font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+            >
+              Позвонить
+            </a>
+            <a
+              href="https://t.me/+375297115091"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-white/20 text-white font-semibold rounded-xl hover:bg-white/30 transition-colors"
+            >
+              Telegram
+            </a>
+          </div>
+          <address className="text-white/60 text-sm mt-4 not-italic">
+            Адрес: г. Полоцк, ул. Строительная 21в/3, блок 9, бокс 3
+          </address>
+        </section>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <ReviewsSection />
+      </div>
+    </main>
+  );
+}

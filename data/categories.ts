@@ -11,6 +11,7 @@ export const categories = [
   // 👇 ЗАКОММЕНТИРОВАТЬ ЭТУ СТРОКУ
   { id: "pnevmosistemy_legkovyh", name: "Пневмосистемы легковых авто" },
   { id: "kuzovnye", name: "Кузовной ремонт" },
+  { id: "antikor", name: "Антикоррозийная обработка" },
   { id: "kitayskie_avto", name: "Ремонт китайских автомобилей" },
   { id: "diagnostika_podveski", name: "Диагностика подвески" },
 ];
@@ -20,6 +21,7 @@ const CATEGORY_LANDING_PATHS: Record<string, string> = {
   kuzovnye: "kuzovnoy-remont",
   kitayskie_avto: "remont-kitayskih-avto",
   otopiteli: "remont-vebasto",
+  antikor: "antikorrozijnaya-obrabotka",
 };
 
 export function hasCategoryLandingPage(categoryId: string): boolean {

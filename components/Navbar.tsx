@@ -28,6 +28,7 @@ export default function Navbar() {
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
+    { name: "Антикор", href: "/polotsk/antikorrozijnaya-obrabotka" },
     { name: "Блог", href: "/blog" },
     { name: "Контакты", href: "/#contacts" },
   ];
@@ -38,6 +39,7 @@ export default function Navbar() {
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
     { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
+    { name: "Антикоррозийная обработка", href: "/polotsk/antikorrozijnaya-obrabotka" },
     { name: "Блог", href: "/blog" },
     { name: "О нас", href: "/#about" },
     { name: "Контакты", href: "/#contacts" },

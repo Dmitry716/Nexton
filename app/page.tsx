@@ -129,6 +129,12 @@ const categories = [
     description: "Восстановление геометрии кузова, рихтовка на стапеле",
   },
   {
+    id: "antikor",
+    name: "Антикоррозийная обработка",
+    icon: Wrench,
+    description: "Dinitrol, Noxudol — днище, арки, скрытые полости от 249 Br",
+  },
+  {
     id: "kitayskie_avto",
     name: "Ремонт китайских автомобилей",
     icon: Car,

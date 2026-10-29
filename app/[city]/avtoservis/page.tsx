@@ -14,6 +14,7 @@ import {
   Truck,
   Hammer,
   ScanSearch,
+  Shield,
 } from "lucide-react";
 
 interface PageProps {
@@ -70,6 +71,13 @@ export default async function AvtoservisPage({ params }: PageProps) {
       icon: Hammer,
       href: `${city}/kuzovnoy-remont`,
       aria: `Кузовной ремонт в ${cityPrep}`,
+    },
+    {
+      id: "antikor",
+      name: "Антикоррозийная обработка",
+      icon: Shield,
+      href: `${city}/antikorrozijnaya-obrabotka`,
+      aria: `Антикоррозийная обработка в ${cityPrep}`,
     },
     { id: "avtokondicionery", name: "Автокондиционеры", icon: Wind },
     {

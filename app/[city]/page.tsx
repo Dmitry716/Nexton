@@ -17,6 +17,7 @@ import {
   Wrench,
   Car,
   ArrowRight,
+  Shield,
 } from "lucide-react";
 import VkIcon from "@/components/icons/VkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
@@ -34,6 +35,7 @@ const categories = [
   },
   { id: "plastik", name: "Ремонт автопластика", icon: Wrench },
   { id: "kuzovnye", name: "Кузовной ремонт", icon: Wrench },
+  { id: "antikor", name: "Антикоррозийная обработка", icon: Shield },
   {
     id: "pnevmosistemy_legkovyh",
     name: "Пневмосистемы легковых авто",

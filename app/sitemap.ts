@@ -67,6 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  const antikorPages: MetadataRoute.Sitemap = cities.map((city) => ({
+    url: `${BASE_URL}/${city.slug}/antikorrozijnaya-obrabotka`,
+    lastModified,
+    changeFrequency: "weekly",
+    priority: 0.9,
+  }));
+
   // Страницы услуг для каждого города
   const cityServicePages: MetadataRoute.Sitemap = [];
   for (const city of cities) {
@@ -94,6 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...kuzovnyePages,
     ...kitayskiePages,
     ...vebastoPages,
+    ...antikorPages,
     ...cityServicePages,
     ...avtoservisPages,
   ];
