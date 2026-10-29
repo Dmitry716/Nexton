@@ -26,7 +26,7 @@ export async function generateMetadata({
 
   return {
     title: `Антикоррозийная обработка в ${cityPrep}: Dinitrol, Noxudol | Nexton`,
-    description: `Антикоррозийная обработка в ${cityPrep}. Пакеты Базовый, Стандарт, Полный. Dinitrol, Noxudol. От 420 Br. Гарантия до 3 лет. Звоните: +375297115091`,
+    description: `Антикоррозийная обработка в ${cityPrep}. 3 варианта: скрытые полости 700 Br, + днище 1500 Br, с грунтованием 2500 Br. Dinitrol, Noxudol. Звоните: +375297115091`,
     keywords: [
       "антикоррозийная обработка",
       `антикоррозийная обработка ${cityData.name}`,
@@ -39,7 +39,7 @@ export async function generateMetadata({
     ],
     openGraph: {
       title: `Антикоррозийная обработка в ${cityPrep} | Nexton`,
-      description: `Антикор кузова в ${cityPrep}: пакеты Базовый / Стандарт / Полный. Dinitrol, Noxudol. От 420 Br, гарантия до 3 лет.`,
+      description: `Антикор в ${cityPrep}: скрытые полости 700 Br, + днище 1500 Br, с грунтованием 2500 Br. Dinitrol, Noxudol.`,
       url: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
       images: [
         {
@@ -68,26 +68,26 @@ export default async function AntikorrozijnayaObrabotkaPage({
   const antikorServices = services.filter((s) => s.category === "antikor");
 
   const serviceIcons: Record<string, React.ElementType> = {
-    "Комплексная антикоррозийная обработка": Shield,
-    "Антикоррозийная обработка днища и арок": Droplets,
     "Обработка скрытых полостей антикором": Layers,
+    "Антикор днища и скрытых полостей": Droplets,
+    "Комплексная антикоррозийная обработка": Shield,
   };
 
   const faqItems = [
     {
       question: "Сколько стоит антикоррозийная обработка?",
       answer:
-        "Базовый (днище и арки) — от 420 Br, Стандарт — от 490 Br, Полный — от 560 Br для легкового. Кроссовер и внедорожник дороже. Точную смету называем после осмотра.",
+        "Три фиксированных варианта: 1 — только скрытые полости — 700 Br; 2 — скрытые полости + антикор по днищу — 1500 Br; 3 — грунтование + скрытые полости + антикор по днищу — 2500 Br.",
     },
     {
-      question: "Чем отличаются пакеты Стандарт и Полный?",
+      question: "Чем отличаются варианты?",
       answer:
-        "Стандарт: днище, арки, пороги и лонжероны. Полный: то же плюс двери, капот, крышка багажника и другие полости верхней части кузова — по доступу.",
+        "Вариант 1 — только пролив скрытых полостей. Вариант 2 — полости плюс антикор по днищу. Вариант 3 — то же с грунтованием металла перед антикором.",
     },
     {
       question: "Какие материалы используете?",
       answer:
-        "Премиум-составы Dinitrol, Noxudol, Body и Tectyl — для днища, арок и скрытых полостей (ML).",
+        "Премиум-составы Dinitrol, Noxudol, Body и Tectyl — для днища и скрытых полостей.",
     },
     {
       question: "Какая гарантия на антикор?",
@@ -200,8 +200,8 @@ export default async function AntikorrozijnayaObrabotkaPage({
             Антикоррозийная обработка в {cityPrep}
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-            Пакеты как в Минске: Базовый, Стандарт, Полный. Материалы Dinitrol,
-            Noxudol, Body. От 420 Br. Гарантия до 3 лет.
+            Три варианта: скрытые полости 700 Br, + днище 1500 Br, с
+            грунтованием 2500 Br. Материалы Dinitrol, Noxudol, Body.
           </p>
         </header>
 
@@ -242,18 +242,18 @@ export default async function AntikorrozijnayaObrabotkaPage({
             обслуживаем Полоцк и Новополоцк.
           </p>
 
-          <h3>Виды антикора в {cityPrep}</h3>
+          <h3>Варианты антикора в {cityPrep}</h3>
           <ul>
             <li>
               <strong>
                 <Link
-                  href={`/${city}/usluga/antikorrozijnaya-obrabotka-kompleks`}
+                  href={`/${city}/usluga/obrabotka-skrytyh-polostej`}
                   className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
                 >
-                  Комплексная антикоррозийная обработка
+                  Вариант 1 — скрытые полости
                 </Link>
               </strong>{" "}
-              — пакеты Стандарт и Полный
+              — 700 Br
             </li>
             <li>
               <strong>
@@ -261,21 +261,21 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   href={`/${city}/usluga/antikor-dnishcha-arok`}
                   className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
                 >
-                  Антикор днища и арок
+                  Вариант 2 — скрытые + антикор по днищу
                 </Link>
               </strong>{" "}
-              — пакет Базовый
+              — 1500 Br
             </li>
             <li>
               <strong>
                 <Link
-                  href={`/${city}/usluga/obrabotka-skrytyh-polostej`}
+                  href={`/${city}/usluga/antikorrozijnaya-obrabotka-kompleks`}
                   className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
                 >
-                  Обработка скрытых полостей
+                  Вариант 3 — грунтование + полости + днище
                 </Link>
               </strong>{" "}
-              — пороги, лонжероны, внутренние зоны
+              — 2500 Br
             </li>
           </ul>
 
@@ -286,8 +286,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
               Body, Tectyl
             </li>
             <li>
-              ✅ <strong>Тарифы по рынку Минска</strong> — пакеты Базовый /
-              Стандарт / Полный, без скрытых доплат
+              ✅ <strong>Понятные цены</strong> — три фиксированных варианта
             </li>
             <li>
               ✅ <strong>Гарантия до 3 лет</strong> — при ежегодном осмотре
@@ -310,74 +309,58 @@ export default async function AntikorrozijnayaObrabotkaPage({
             Тарифы антикоррозийной обработки
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            Ориентир — прайсы антикор-центров Минска (Dinitrol / Noxudol). Цены
-            в BYN, окончательная смета после осмотра.
+            Фиксированные варианты. Цены в BYN.
           </p>
-          <table className="w-full min-w-[520px] text-sm border-collapse border border-gray-200 dark:border-gray-800">
+          <table className="w-full min-w-[420px] text-sm border-collapse border border-gray-200 dark:border-gray-800">
             <thead>
               <tr className="bg-gray-50 dark:bg-gray-900 text-left">
                 <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
-                  Пакет
+                  Вариант
                 </th>
                 <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
-                  Легковой
+                  Что входит
                 </th>
                 <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
-                  Кроссовер
-                </th>
-                <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
-                  Внедорожник
+                  Цена
                 </th>
               </tr>
             </thead>
             <tbody className="text-gray-800 dark:text-gray-200">
               <tr>
                 <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  Базовый — днище и арки
+                  1
                 </td>
                 <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 420 Br
+                  Только скрытые полости
                 </td>
-                <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 480 Br
-                </td>
-                <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 550 Br
+                <td className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
+                  700 Br
                 </td>
               </tr>
               <tr className="bg-gray-50/60 dark:bg-gray-900/40">
                 <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  Стандарт — + пороги и лонжероны
+                  2
                 </td>
                 <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 490 Br
+                  Скрытые полости + антикор по днищу
                 </td>
-                <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 560 Br
-                </td>
-                <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 650 Br
+                <td className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
+                  1500 Br
                 </td>
               </tr>
               <tr>
                 <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  Полный — + двери, капот, багажник
+                  3
                 </td>
                 <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 560 Br
+                  Грунтование + скрытые полости + антикор по днищу
                 </td>
-                <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 640 Br
-                </td>
-                <td className="border border-gray-200 dark:border-gray-800 p-3">
-                  от 740 Br
+                <td className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
+                  2500 Br
                 </td>
               </tr>
             </tbody>
           </table>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
-            Опция: напыляемая шумоизоляция арок — от 80 Br за арку.
-          </p>
         </section>
 
         <section aria-labelledby="services-title">
@@ -487,9 +470,9 @@ export default async function AntikorrozijnayaObrabotkaPage({
           </ol>
           <h3>Сколько стоит антикор в {cityPrep}</h3>
           <p>
-            Базовый от 420 Br, Стандарт от 490 Br, Полный от 560 Br для
-            легкового. Кроссовер и внедорожник — по таблице тарифов выше.
-            Скрытые полости отдельно — от 180 Br.
+            Вариант 1 — 700 Br (только скрытые полости). Вариант 2 — 1500 Br
+            (скрытые + антикор по днищу). Вариант 3 — 2500 Br (грунтование +
+            скрытые + антикор по днищу).
           </p>
         </article>
 

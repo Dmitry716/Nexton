@@ -132,7 +132,7 @@ const categories = [
     id: "antikor",
     name: "Антикоррозийная обработка",
     icon: Wrench,
-    description: "Dinitrol, Noxudol — пакеты Базовый / Стандарт / Полный от 420 Br",
+    description: "Скрытые полости 700 Br · + днище 1500 Br · с грунтом 2500 Br",
   },
   {
     id: "kitayskie_avto",
