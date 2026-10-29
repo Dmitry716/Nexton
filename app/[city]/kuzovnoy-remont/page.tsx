@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
 import Link from "next/link";
-import { Wrench, Car, Hammer, Paintbrush } from "lucide-react";
+import { Wrench, Car, Hammer, Paintbrush, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 import ReviewsSection from "@/components/ReviewsSection";
 
@@ -25,12 +25,14 @@ export async function generateMetadata({
 
   return {
     title: `Кузовной ремонт в ${cityPrep}: рихтовка, алюминий, покраска | Nexton`,
-    description: `Кузовной ремонт в ${cityPrep}: стапель, споттер, ремонт алюминиевых панелей (капоты, двери, крылья — вмятины, разрывы, трещины), покраска. Гарантия 12 месяцев. Звоните: +375297115091`,
+    description: `Кузовной ремонт в ${cityPrep}: стапель, беспокрасочное удаление вмятин (PDR), споттер, алюминиевые панели, покраска. Гарантия 12 месяцев. Звоните: +375297115091`,
     keywords: [
       "кузовной ремонт",
       `кузовной ремонт ${cityData.name}`,
       `кузовной ремонт ${cityData.region}`,
       "рихтовка кузова",
+      "беспокрасочное удаление вмятин",
+      "PDR",
       "восстановление геометрии кузова",
       "покраска кузова",
       `ремонт кузова ${cityData.name}`,
@@ -62,6 +64,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
 
   const serviceIcons: Record<string, React.ElementType> = {
     "Восстановление геометрии кузова на стапеле": Hammer,
+    "Беспокрасочное удаление вмятин": Sparkles,
     "Удаление вмятин споттером под покраску": Car,
     "Ремонт алюминиевых кузовных панелей": Wrench,
     "Покраска кузова автомобиля": Paintbrush,
@@ -223,6 +226,17 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
             <li>
               <strong>
                 <Link
+                  href={`/${city}/usluga/bespokrasochnoe-udalenie-vmyatin`}
+                  className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                >
+                  Беспокрасочное удаление вмятин (PDR)
+                </Link>
+              </strong>{" "}
+              — градины и мелкие вмятины с сохранением заводской краски
+            </li>
+            <li>
+              <strong>
+                <Link
                   href={`/${city}/usluga/rihtovka-kuzova`}
                   className="text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
                 >
@@ -354,6 +368,10 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
                 text: "Споттер, обратный молоток и рихтовка — готовим стальную деталь под покраску",
               },
               {
+                title: "Беспокрасочное удаление вмятин (PDR)",
+                text: "Мелкие вмятины и градины без потери заводской краски",
+              },
+              {
                 title: "Алюминиевые панели",
                 text: "Споттер по алюминию, аргонная сварка и инструменты для рихтовки",
               },
@@ -403,8 +421,8 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
               необходимости)
             </li>
             <li>
-              <strong>Рихтовка кузова</strong> — удаление вмятин споттером на
-              стали или ремонт алюминиевых панелей (вмятины, разрывы, трещины)
+              <strong>Рихтовка кузова</strong> — беспокрасочное удаление вмятин
+              (PDR), споттер на стали или ремонт алюминиевых панелей
             </li>
             <li>
               <strong>Подготовка к покраске</strong> — шпаклёвка, грунтовка,
