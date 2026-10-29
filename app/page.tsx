@@ -132,7 +132,7 @@ const categories = [
     id: "antikor",
     name: "Антикоррозийная обработка",
     icon: Wrench,
-    description: "Dinitrol, Noxudol — днище, арки, скрытые полости от 249 Br",
+    description: "Dinitrol, Noxudol — пакеты Базовый / Стандарт / Полный от 420 Br",
   },
   {
     id: "kitayskie_avto",

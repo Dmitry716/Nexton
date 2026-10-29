@@ -26,7 +26,7 @@ export async function generateMetadata({
 
   return {
     title: `Антикоррозийная обработка в ${cityPrep}: Dinitrol, Noxudol | Nexton`,
-    description: `Антикоррозийная обработка в ${cityPrep}. Комплекс: днище, арки, скрытые полости. Материалы Dinitrol, Noxudol, Body. От 249 Br. Гарантия до 3 лет. Звоните: +375297115091`,
+    description: `Антикоррозийная обработка в ${cityPrep}. Пакеты Базовый, Стандарт, Полный. Dinitrol, Noxudol. От 420 Br. Гарантия до 3 лет. Звоните: +375297115091`,
     keywords: [
       "антикоррозийная обработка",
       `антикоррозийная обработка ${cityData.name}`,
@@ -39,7 +39,7 @@ export async function generateMetadata({
     ],
     openGraph: {
       title: `Антикоррозийная обработка в ${cityPrep} | Nexton`,
-      description: `Антикор кузова в ${cityPrep}: днище, арки, полости. Dinitrol, Noxudol. От 249 Br, гарантия до 3 лет.`,
+      description: `Антикор кузова в ${cityPrep}: пакеты Базовый / Стандарт / Полный. Dinitrol, Noxudol. От 420 Br, гарантия до 3 лет.`,
       url: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
       images: [
         {
@@ -77,12 +77,17 @@ export default async function AntikorrozijnayaObrabotkaPage({
     {
       question: "Сколько стоит антикоррозийная обработка?",
       answer:
-        "Комплекс для легкового авто — от 249 Br, кроссовер от 299 Br, внедорожник от 349 Br. Точную смету называем после осмотра.",
+        "Базовый (днище и арки) — от 420 Br, Стандарт — от 490 Br, Полный — от 560 Br для легкового. Кроссовер и внедорожник дороже. Точную смету называем после осмотра.",
+    },
+    {
+      question: "Чем отличаются пакеты Стандарт и Полный?",
+      answer:
+        "Стандарт: днище, арки, пороги и лонжероны. Полный: то же плюс двери, капот, крышка багажника и другие полости верхней части кузова — по доступу.",
     },
     {
       question: "Какие материалы используете?",
       answer:
-        "Премиум-составы Dinitrol, Noxudol, Body и Tectyl — для днища, арок и скрытых полостей.",
+        "Премиум-составы Dinitrol, Noxudol, Body и Tectyl — для днища, арок и скрытых полостей (ML).",
     },
     {
       question: "Какая гарантия на антикор?",
@@ -195,8 +200,8 @@ export default async function AntikorrozijnayaObrabotkaPage({
             Антикоррозийная обработка в {cityPrep}
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-            Комплексная защита кузова: днище, арки, скрытые полости. Материалы
-            Dinitrol, Noxudol, Body. От 249 Br. Гарантия до 3 лет.
+            Пакеты как в Минске: Базовый, Стандарт, Полный. Материалы Dinitrol,
+            Noxudol, Body. От 420 Br. Гарантия до 3 лет.
           </p>
         </header>
 
@@ -248,7 +253,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Комплексная антикоррозийная обработка
                 </Link>
               </strong>{" "}
-              — днище, арки и скрытые полости
+              — пакеты Стандарт и Полный
             </li>
             <li>
               <strong>
@@ -259,7 +264,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Антикор днища и арок
                 </Link>
               </strong>{" "}
-              — защита от соли и камней
+              — пакет Базовый
             </li>
             <li>
               <strong>
@@ -281,8 +286,8 @@ export default async function AntikorrozijnayaObrabotkaPage({
               Body, Tectyl
             </li>
             <li>
-              ✅ <strong>Цены от 249 Br</strong> — комплекс для легкового, без
-              скрытых доплат
+              ✅ <strong>Тарифы по рынку Минска</strong> — пакеты Базовый /
+              Стандарт / Полный, без скрытых доплат
             </li>
             <li>
               ✅ <strong>Гарантия до 3 лет</strong> — при ежегодном осмотре
@@ -293,6 +298,87 @@ export default async function AntikorrozijnayaObrabotkaPage({
             </li>
           </ul>
         </article>
+
+        <section
+          className="mb-10 overflow-x-auto"
+          aria-labelledby="prices-title"
+        >
+          <h2
+            id="prices-title"
+            className="text-2xl font-bold text-black dark:text-white mb-4"
+          >
+            Тарифы антикоррозийной обработки
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            Ориентир — прайсы антикор-центров Минска (Dinitrol / Noxudol). Цены
+            в BYN, окончательная смета после осмотра.
+          </p>
+          <table className="w-full min-w-[520px] text-sm border-collapse border border-gray-200 dark:border-gray-800">
+            <thead>
+              <tr className="bg-gray-50 dark:bg-gray-900 text-left">
+                <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
+                  Пакет
+                </th>
+                <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
+                  Легковой
+                </th>
+                <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
+                  Кроссовер
+                </th>
+                <th className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
+                  Внедорожник
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-800 dark:text-gray-200">
+              <tr>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  Базовый — днище и арки
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 420 Br
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 480 Br
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 550 Br
+                </td>
+              </tr>
+              <tr className="bg-gray-50/60 dark:bg-gray-900/40">
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  Стандарт — + пороги и лонжероны
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 490 Br
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 560 Br
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 650 Br
+                </td>
+              </tr>
+              <tr>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  Полный — + двери, капот, багажник
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 560 Br
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 640 Br
+                </td>
+                <td className="border border-gray-200 dark:border-gray-800 p-3">
+                  от 740 Br
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
+            Опция: напыляемая шумоизоляция арок — от 80 Br за арку.
+          </p>
+        </section>
 
         <section aria-labelledby="services-title">
           <h2
@@ -401,9 +487,9 @@ export default async function AntikorrozijnayaObrabotkaPage({
           </ol>
           <h3>Сколько стоит антикор в {cityPrep}</h3>
           <p>
-            Комплекс от 249 Br для легкового, от 299 Br для кроссовера, от 349
-            Br для внедорожника. Днище отдельно — от 180 Br, скрытые полости —
-            от 120 Br.
+            Базовый от 420 Br, Стандарт от 490 Br, Полный от 560 Br для
+            легкового. Кроссовер и внедорожник — по таблице тарифов выше.
+            Скрытые полости отдельно — от 180 Br.
           </p>
         </article>
 
