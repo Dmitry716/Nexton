@@ -215,9 +215,60 @@ export default async function AntikorrozijnayaObrabotkaPage({
           >
             Антикоррозийная обработка в {cityPrep}
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-            Три варианта: скрытые полости {p1}, + днище {p2}, с грунтованием{" "}
-            {p3}. Материалы Dinitrol, Noxudol, Body.
+          <div className="overflow-x-auto mb-3">
+            <table className="w-full min-w-[320px] text-sm sm:text-base border-collapse border border-gray-200 dark:border-gray-800">
+              <thead>
+                <tr className="bg-gray-50 dark:bg-gray-900 text-left">
+                  <th className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold w-14">
+                    №
+                  </th>
+                  <th className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold">
+                    Вариант
+                  </th>
+                  <th className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold">
+                    Цена
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-800 dark:text-gray-200">
+                <tr>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold">
+                    1
+                  </td>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3">
+                    Скрытые полости
+                  </td>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold whitespace-nowrap">
+                    {p1}
+                  </td>
+                </tr>
+                <tr className="bg-gray-50/60 dark:bg-gray-900/40">
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold">
+                    2
+                  </td>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3">
+                    Скрытые полости + антикор по днищу
+                  </td>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold whitespace-nowrap">
+                    {p2}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold">
+                    3
+                  </td>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3">
+                    Грунтование + скрытые полости + антикор по днищу
+                  </td>
+                  <td className="border border-gray-200 dark:border-gray-800 p-2.5 sm:p-3 font-semibold whitespace-nowrap">
+                    {p3}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
+            Материалы Dinitrol, Noxudol, Body.
           </p>
         </header>
 
