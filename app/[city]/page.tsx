@@ -94,6 +94,13 @@ export default async function CityPage({
   if (!cityData) notFound();
 
   const cityPrep = cityData.namePrepositional || `${cityData.name}`;
+  const isForeign = cityData.country !== "BY";
+  const priceCurrencyLabel =
+    cityData.currency === "RUB"
+      ? "рублях РФ (эквивалент по курсу НБРБ)"
+      : cityData.currency === "EUR"
+        ? "евро (эквивалент по курсу НБРБ)"
+        : "BYN";
 
   const categoriesWithServices = categories.map((cat) => ({
     ...cat,
@@ -116,15 +123,29 @@ export default async function CityPage({
             address: {
               "@type": "PostalAddress",
               streetAddress: "ул. Строительная 21в/3, блок 9, бокс 3",
-              addressLocality: "Полоцк, Новополоцк",
-              addressRegion: cityData.region,
+              addressLocality: "Полоцк",
+              addressRegion: "Витебская область",
               addressCountry: "BY",
+            },
+            areaServed: {
+              "@type": "City",
+              name: cityData.name,
             },
           }),
         }}
       />
 
       <HeroSection city={cityPrep} />
+
+      {isForeign && (
+        <div className="bg-[#1e3a5f]/5 dark:bg-[#7a9bcb]/10 border-b border-gray-200 dark:border-gray-800">
+          <p className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-sm text-gray-700 dark:text-gray-300 text-center">
+            Работы выполняются в автосервисе Nexton в Полоцке (Беларусь).
+            Обслуживаем клиентов из {cityPrep}. Цены на сайте — в{" "}
+            {priceCurrencyLabel}.
+          </p>
+        </div>
+      )}
 
       <section className="py-16 bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -139,7 +160,9 @@ export default async function CityPage({
               },
               {
                 title: "Опыт с 2010 года",
-                text: "Тысячи довольных клиентов в Полоцке, Новополоцке и области. Знаем каждую систему.",
+                text: isForeign
+                  ? `Тысячи довольных клиентов. Принимаем авто из ${cityPrep}. Знаем каждую систему.`
+                  : "Тысячи довольных клиентов в Полоцке, Новополоцке и области. Знаем каждую систему.",
               },
               {
                 title: "Профессиональное оборудование",
@@ -147,7 +170,7 @@ export default async function CityPage({
               },
               {
                 title: "Прозрачные цены",
-                text: "Озвучиваем стоимость после осмотра. Никаких скрытых доплат. Цены в BYN.",
+                text: `Озвучиваем стоимость после осмотра. Никаких скрытых доплат. Цены в ${priceCurrencyLabel}.`,
               },
             ].map((item, i) => (
               <div

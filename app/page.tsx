@@ -132,7 +132,7 @@ const categories = [
     id: "antikor",
     name: "Антикоррозийная обработка",
     icon: Wrench,
-    description: "Скрытые полости 700 Br · + днище 1500 Br · с грунтом 2500 Br",
+    description: "Скрытые полости · + днище · с грунтом — 3 фиксированных варианта",
   },
   {
     id: "kitayskie_avto",

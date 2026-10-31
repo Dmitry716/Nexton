@@ -9,6 +9,11 @@ import { getCategoryVideo } from "@/data/categoryMedia";
 import CategoryCover from "@/components/CategoryCover";
 import ServiceCard from "@/components/ServiceCard";
 import PaymentInfo from "@/components/PaymentInfo"; // 👈 ДОБАВИТЬ ИМПОРТ
+import {
+  getExchangeRates,
+  localizePricesInHtml,
+  ratesDisclaimer,
+} from "@/lib/nbrb-rates";
 
 interface CityServicePageProps {
   params: Promise<{ city: string; slug: string }>;
@@ -232,17 +237,23 @@ export default async function CityServicePage({
 
   const categoryImage = getCategoryImage(service.category);
 
-  const descriptionWithCity = replaceCityInText(
-    service.description,
-    cityName,
-    cityPrep,
+  const rates = await getExchangeRates();
+  const currency = cityData.currency;
+
+  const descriptionWithCity = localizePricesInHtml(
+    replaceCityInText(service.description, cityName, cityPrep),
+    currency,
+    rates,
   );
 
-  const detailedDescriptionWithCity = replaceCityInText(
-    service.detailedDescription,
-    cityName,
-    cityPrep,
+  const detailedDescriptionWithCity = localizePricesInHtml(
+    replaceCityInText(service.detailedDescription, cityName, cityPrep),
+    currency,
+    rates,
   );
+
+  const priceNote =
+    currency === "BYN" ? null : ratesDisclaimer(rates, currency);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -457,6 +468,19 @@ export default async function CityServicePage({
                   }}
                 />
               </div>
+
+              {priceNote && (
+                <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800 pt-4">
+                  {priceNote}
+                </p>
+              )}
+
+              {cityData.country !== "BY" && (
+                <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+                  Работы выполняются в автосервисе Nexton в Полоцке (Беларусь).
+                  Обслуживаем клиентов из {cityPrep}.
+                </p>
+              )}
 
               {service.category === "pnevmosistemy_legkovyh" && (
                 <div className="mt-10 rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-6">

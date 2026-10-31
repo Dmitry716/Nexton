@@ -1,17 +1,30 @@
 import Link from "next/link";
 import { Service } from "@/data/services";
+import { cities } from "@/data/cities";
 import { ArrowRight } from "lucide-react";
 import CategoryCover from "@/components/CategoryCover";
+import {
+  getExchangeRates,
+  localizePricesInHtml,
+} from "@/lib/nbrb-rates";
 
 interface ServiceCardProps {
   service: Service;
   city?: string;
 }
 
-export default function ServiceCard({ service, city }: ServiceCardProps) {
+export default async function ServiceCard({ service, city }: ServiceCardProps) {
   const href = city
     ? `/${city}/usluga/${service.slug}`
     : `/usluga/${service.slug}`;
+
+  const cityData = city ? cities.find((c) => c.slug === city) : undefined;
+  const rates = await getExchangeRates();
+  const description = localizePricesInHtml(
+    service.description,
+    cityData?.currency ?? "BYN",
+    rates,
+  );
 
   return (
     <article
@@ -34,7 +47,7 @@ export default function ServiceCard({ service, city }: ServiceCardProps) {
         </h3>
 
         <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-1 mb-5">
-          {service.description}
+          {description}
         </p>
 
         <Link
@@ -48,7 +61,7 @@ export default function ServiceCard({ service, city }: ServiceCardProps) {
       </div>
 
       <span className="sr-only">
-        {service.name} — {service.description}. Перейти на страницу услуги.
+        {service.name} — {description}. Перейти на страницу услуги.
       </span>
     </article>
   );

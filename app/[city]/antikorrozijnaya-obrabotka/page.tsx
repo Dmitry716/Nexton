@@ -6,6 +6,12 @@ import { Shield, Droplets, Layers, Wrench } from "lucide-react";
 import type { Metadata } from "next";
 import ReviewsSection from "@/components/ReviewsSection";
 import Image from "next/image";
+import {
+  formatPriceAmount,
+  getExchangeRates,
+  localizePricesInHtml,
+  ratesDisclaimer,
+} from "@/lib/nbrb-rates";
 
 interface PageProps {
   params: Promise<{ city: string }>;
@@ -23,10 +29,14 @@ export async function generateMetadata({
   if (!cityData) return { title: "Страница не найдена" };
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const rates = await getExchangeRates();
+  const p1 = formatPriceAmount(700, cityData.currency, rates);
+  const p2 = formatPriceAmount(1500, cityData.currency, rates);
+  const p3 = formatPriceAmount(2500, cityData.currency, rates);
 
   return {
     title: `Антикоррозийная обработка в ${cityPrep}: Dinitrol, Noxudol | Nexton`,
-    description: `Антикоррозийная обработка в ${cityPrep}. 3 варианта: скрытые полости 700 Br, + днище 1500 Br, с грунтованием 2500 Br. Dinitrol, Noxudol. Звоните: +375297115091`,
+    description: `Антикоррозийная обработка в ${cityPrep}. 3 варианта: скрытые полости ${p1}, + днище ${p2}, с грунтованием ${p3}. Dinitrol, Noxudol. Звоните: +375297115091`,
     keywords: [
       "антикоррозийная обработка",
       `антикоррозийная обработка ${cityData.name}`,
@@ -39,7 +49,7 @@ export async function generateMetadata({
     ],
     openGraph: {
       title: `Антикоррозийная обработка в ${cityPrep} | Nexton`,
-      description: `Антикор в ${cityPrep}: скрытые полости 700 Br, + днище 1500 Br, с грунтованием 2500 Br. Dinitrol, Noxudol.`,
+      description: `Антикор в ${cityPrep}: скрытые полости ${p1}, + днище ${p2}, с грунтованием ${p3}. Dinitrol, Noxudol.`,
       url: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
       images: [
         {
@@ -64,6 +74,13 @@ export default async function AntikorrozijnayaObrabotkaPage({
 
   const cityPrep = cityData.namePrepositional || cityData.name;
   const cityName = cityData.name;
+  const currency = cityData.currency;
+  const rates = await getExchangeRates();
+  const p1 = formatPriceAmount(700, currency, rates);
+  const p2 = formatPriceAmount(1500, currency, rates);
+  const p3 = formatPriceAmount(2500, currency, rates);
+  const priceNote =
+    currency === "BYN" ? null : ratesDisclaimer(rates, currency);
 
   const antikorServices = services.filter((s) => s.category === "antikor");
 
@@ -76,8 +93,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
   const faqItems = [
     {
       question: "Сколько стоит антикоррозийная обработка?",
-      answer:
-        "Три фиксированных варианта: 1 — только скрытые полости — 700 Br; 2 — скрытые полости + антикор по днищу — 1500 Br; 3 — грунтование + скрытые полости + антикор по днищу — 2500 Br.",
+      answer: `Три фиксированных варианта: 1 — только скрытые полости — ${p1}; 2 — скрытые полости + антикор по днищу — ${p2}; 3 — грунтование + скрытые полости + антикор по днищу — ${p3}.`,
     },
     {
       question: "Чем отличаются варианты?",
@@ -116,7 +132,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
               "@type": "PostalAddress",
               streetAddress: "ул. Строительная 21в/3, блок 9, бокс 3",
               addressLocality: "Полоцк",
-              addressRegion: cityData.region,
+              addressRegion: "Витебская область",
               addressCountry: "BY",
             },
             areaServed: { "@type": "City", name: cityName },
@@ -200,8 +216,8 @@ export default async function AntikorrozijnayaObrabotkaPage({
             Антикоррозийная обработка в {cityPrep}
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-            Три варианта: скрытые полости 700 Br, + днище 1500 Br, с
-            грунтованием 2500 Br. Материалы Dinitrol, Noxudol, Body.
+            Три варианта: скрытые полости {p1}, + днище {p2}, с грунтованием{" "}
+            {p3}. Материалы Dinitrol, Noxudol, Body.
           </p>
         </header>
 
@@ -238,8 +254,10 @@ export default async function AntikorrozijnayaObrabotkaPage({
               Nexton в {cityPrep}
             </Link>{" "}
             делаем антикор составами премиум-класса и озвучиваем смету до
-            начала работ. Адрес сервиса: Полоцк, ул. Строительная 21в/3 —
-            обслуживаем Полоцк и Новополоцк.
+            начала работ. Адрес сервиса: Полоцк, ул. Строительная 21в/3.
+            {cityData.country === "BY"
+              ? " Обслуживаем Полоцк и Новополоцк."
+              : ` Обслуживаем клиентов из ${cityPrep}.`}
           </p>
 
           <h3>Варианты антикора в {cityPrep}</h3>
@@ -253,7 +271,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Вариант 1 — скрытые полости
                 </Link>
               </strong>{" "}
-              — 700 Br
+              — {p1}
             </li>
             <li>
               <strong>
@@ -264,7 +282,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Вариант 2 — скрытые + антикор по днищу
                 </Link>
               </strong>{" "}
-              — 1500 Br
+              — {p2}
             </li>
             <li>
               <strong>
@@ -275,7 +293,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Вариант 3 — грунтование + полости + днище
                 </Link>
               </strong>{" "}
-              — 2500 Br
+              — {p3}
             </li>
           </ul>
 
@@ -309,7 +327,10 @@ export default async function AntikorrozijnayaObrabotkaPage({
             Тарифы антикоррозийной обработки
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
-            Фиксированные варианты. Цены в BYN.
+            Фиксированные варианты.
+            {currency === "BYN"
+              ? " Цены в BYN."
+              : ` ${priceNote}`}
           </p>
           <table className="w-full min-w-[420px] text-sm border-collapse border border-gray-200 dark:border-gray-800">
             <thead>
@@ -334,7 +355,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Только скрытые полости
                 </td>
                 <td className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
-                  700 Br
+                  {p1}
                 </td>
               </tr>
               <tr className="bg-gray-50/60 dark:bg-gray-900/40">
@@ -345,7 +366,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Скрытые полости + антикор по днищу
                 </td>
                 <td className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
-                  1500 Br
+                  {p2}
                 </td>
               </tr>
               <tr>
@@ -356,7 +377,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
                   Грунтование + скрытые полости + антикор по днищу
                 </td>
                 <td className="border border-gray-200 dark:border-gray-800 p-3 font-semibold">
-                  2500 Br
+                  {p3}
                 </td>
               </tr>
             </tbody>
@@ -392,7 +413,11 @@ export default async function AntikorrozijnayaObrabotkaPage({
                         {service.name}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {service.description}
+                        {localizePricesInHtml(
+                          service.description,
+                          currency,
+                          rates,
+                        )}
                       </p>
                       <span className="inline-block mt-3 text-sm text-[#1e3a5f] dark:text-[#7a9bcb] font-medium">
                         Подробнее →
@@ -470,9 +495,10 @@ export default async function AntikorrozijnayaObrabotkaPage({
           </ol>
           <h3>Сколько стоит антикор в {cityPrep}</h3>
           <p>
-            Вариант 1 — 700 Br (только скрытые полости). Вариант 2 — 1500 Br
-            (скрытые + антикор по днищу). Вариант 3 — 2500 Br (грунтование +
-            скрытые + антикор по днищу).
+            Вариант 1 — {p1} (только скрытые полости). Вариант 2 — {p2} (скрытые
+            + антикор по днищу). Вариант 3 — {p3} (грунтование + скрытые +
+            антикор по днищу).
+            {priceNote ? ` ${priceNote}` : ""}
           </p>
         </article>
 

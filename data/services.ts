@@ -1733,7 +1733,7 @@ export const services: Service[] = [
     slug: "obrabotka-skrytyh-polostej",
     category: "antikor",
     description:
-      "Вариант 1: только скрытые полости. Пролив порогов, лонжеронов и внутренних зон. 700 Br.",
+      "Вариант 1: только скрытые полости. Пролив порогов, лонжеронов и внутренних зон. {{price:700}}.",
     keywords: [
       "обработка скрытых полостей",
       "антикор порогов",
@@ -1754,7 +1754,7 @@ export const services: Service[] = [
 
       <h3 class="text-xl font-semibold mt-6 mb-3">Стоимость:</h3>
       <ul class="list-disc pl-6 space-y-2 mb-4">
-        <li><strong>Вариант 1 — 700 Br</strong></li>
+        <li><strong>Вариант 1 — {{price:700}}</strong></li>
       </ul>
 
       <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Цены в BYN. Для защиты днища смотрите варианты 2 и 3. Звоните: +375 (29) 711-50-91.</p>
@@ -1766,7 +1766,7 @@ export const services: Service[] = [
     slug: "antikor-dnishcha-arok",
     category: "antikor",
     description:
-      "Вариант 2: скрытые полости + антикор по днищу. 1500 Br.",
+      "Вариант 2: скрытые полости + антикор по днищу. {{price:1500}}.",
     keywords: [
       "антикор днища Полоцк",
       "обработка днища автомобиля",
@@ -1787,7 +1787,7 @@ export const services: Service[] = [
 
       <h3 class="text-xl font-semibold mt-6 mb-3">Стоимость:</h3>
       <ul class="list-disc pl-6 space-y-2 mb-4">
-        <li><strong>Вариант 2 — 1500 Br</strong></li>
+        <li><strong>Вариант 2 — {{price:1500}}</strong></li>
       </ul>
 
       <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">Цены в BYN. Нужна подготовка металла с грунтованием — смотрите вариант 3. Звоните: +375 (29) 711-50-91.</p>
@@ -1799,7 +1799,7 @@ export const services: Service[] = [
     slug: "antikorrozijnaya-obrabotka-kompleks",
     category: "antikor",
     description:
-      "Вариант 3: грунтование + скрытые полости + антикор по днищу. 2500 Br. Гарантия до 3 лет.",
+      "Вариант 3: грунтование + скрытые полости + антикор по днищу. {{price:2500}}. Гарантия до 3 лет.",
     keywords: [
       "антикоррозийная обработка Полоцк",
       "антикор Полоцк",
@@ -1824,7 +1824,7 @@ export const services: Service[] = [
 
       <h3 class="text-xl font-semibold mt-6 mb-3">Стоимость:</h3>
       <ul class="list-disc pl-6 space-y-2 mb-4">
-        <li><strong>Вариант 3 — 2500 Br</strong></li>
+        <li><strong>Вариант 3 — {{price:2500}}</strong></li>
       </ul>
 
       <h3 class="text-xl font-semibold mt-6 mb-3">Материалы:</h3>

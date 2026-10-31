@@ -97,7 +97,8 @@ export default function Footer() {
                 <span className="font-medium text-black dark:text-white">
                   Ориентир:
                 </span>{" "}
-                Северный рынок, г. Полоцк. Обслуживаем Полоцк и Новополоцк.
+                Северный рынок, г. Полоцк. Обслуживаем Полоцк, Новополоцк и
+                регионы (РБ, Псков / Смоленск, Латвия, Литва).
                 <br />
                 <span className="font-medium text-black dark:text-white">
                   Режим работы:
