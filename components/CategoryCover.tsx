@@ -12,6 +12,8 @@ interface CategoryCoverProps {
   sizes?: string;
   priority?: boolean;
   variant?: "thumb" | "full";
+  /** Видео только для одиночных hero (страница услуги). На списках карточек — OOM в браузере. */
+  allowVideo?: boolean;
 }
 
 export default function CategoryCover({
@@ -21,8 +23,9 @@ export default function CategoryCover({
   sizes = "(max-width: 768px) 100vw, 33vw",
   priority = false,
   variant = "thumb",
+  allowVideo = false,
 }: CategoryCoverProps) {
-  const video = getCategoryVideo(categoryId);
+  const video = allowVideo ? getCategoryVideo(categoryId) : null;
   const img =
     variant === "full"
       ? getCategoryImage(categoryId)
