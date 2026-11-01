@@ -12,6 +12,7 @@ import {
   localizePricesInHtml,
   ratesDisclaimer,
 } from "@/lib/nbrb-rates";
+import { geoPhrase, landingKeywords } from "@/lib/seo-geo";
 
 interface PageProps {
   params: Promise<{ city: string }>;
@@ -29,27 +30,26 @@ export async function generateMetadata({
   if (!cityData) return { title: "Страница не найдена" };
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
   const rates = await getExchangeRates();
   const p1 = formatPriceAmount(700, cityData.currency, rates);
   const p2 = formatPriceAmount(1500, cityData.currency, rates);
   const p3 = formatPriceAmount(2500, cityData.currency, rates);
 
   return {
-    title: `Антикоррозийная обработка в ${cityPrep}: Dinitrol, Noxudol | Nexton`,
-    description: `Антикоррозийная обработка в ${cityPrep}. 3 варианта: скрытые полости ${p1}, + днище ${p2}, с грунтованием ${p3}. Dinitrol, Noxudol. Звоните: +375297115091`,
-    keywords: [
+    title: {
+      absolute: `Антикоррозийная обработка в ${geo} — Dinitrol, Noxudol | Nexton`,
+    },
+    description: `Антикоррозийная обработка в ${geo}. 3 варианта: скрытые полости ${p1}, + днище ${p2}, с грунтованием ${p3}. Dinitrol, Noxudol. Nexton. +375297115091`,
+    keywords: landingKeywords(city, [
       "антикоррозийная обработка",
-      `антикоррозийная обработка ${cityData.name}`,
-      `антикор ${cityData.name}`,
-      "антикоррозийная обработка Полоцк",
-      "антикор Новополоцк",
+      "антикор",
       "антикор днища",
-      "Dinitrol",
-      "Noxudol",
-    ],
+      "антикоррозийная обработка автомобиля",
+    ]).concat(["Dinitrol", "Noxudol"]),
     openGraph: {
-      title: `Антикоррозийная обработка в ${cityPrep} | Nexton`,
-      description: `Антикор в ${cityPrep}: скрытые полости ${p1}, + днище ${p2}, с грунтованием ${p3}. Dinitrol, Noxudol.`,
+      title: `Антикоррозийная обработка в ${geo} | Nexton`,
+      description: `Антикор в ${geo}: скрытые полости ${p1}, + днище ${p2}, с грунтованием ${p3}.`,
       url: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
       images: [
         {
@@ -74,6 +74,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
 
   const cityPrep = cityData.namePrepositional || cityData.name;
   const cityName = cityData.name;
+  const geo = geoPhrase(city, cityPrep);
   const currency = cityData.currency;
   const rates = await getExchangeRates();
   const p1 = formatPriceAmount(700, currency, rates);
@@ -125,7 +126,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
             "@context": "https://schema.org",
             "@type": "AutoRepair",
             name: `Антикоррозийная обработка Nexton в ${cityName}`,
-            description: `Антикоррозийная обработка кузова в ${cityPrep}. Dinitrol, Noxudol, Body. Гарантия до 3 лет.`,
+            description: `Антикоррозийная обработка кузова в ${geo}. Dinitrol, Noxudol, Body. Гарантия до 3 лет.`,
             url: `https://nexton.vip/${city}/antikorrozijnaya-obrabotka`,
             telephone: "+375297115091",
             address: {
@@ -213,7 +214,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
             id="main-title"
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white mb-3"
           >
-            Антикоррозийная обработка в {cityPrep}
+            Антикоррозийная обработка в {geo}
           </h1>
           <div className="overflow-x-auto mb-3">
             <table className="w-full min-w-[320px] text-sm sm:text-base border-collapse border border-gray-200 dark:border-gray-800">
@@ -285,7 +286,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white px-4">
               <p className="text-xl sm:text-2xl font-bold">
-                Антикор в {cityPrep}
+                Антикор в {geo}
               </p>
               <p className="text-sm sm:text-lg text-white/85">
                 Премиум-материалы · прозрачные цены в BYN
@@ -295,14 +296,14 @@ export default async function AntikorrozijnayaObrabotkaPage({
         </div>
 
         <article className="prose prose-lg max-w-none dark:prose-invert mb-10">
-          <h2>Антикоррозийная обработка в {cityPrep}: защита на годы</h2>
+          <h2>Антикоррозийная обработка в {geo}: защита на годы</h2>
           <p>
             Зимой соль и реагенты ускоряют коррозию днища и арок. В{" "}
             <Link
               href={`/${city}`}
               className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
             >
-              Nexton в {cityPrep}
+              Nexton в {geo}
             </Link>{" "}
             делаем антикор составами премиум-класса и озвучиваем смету до
             начала работ. Адрес сервиса: Полоцк, ул. Строительная 21в/3.
@@ -311,7 +312,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
               : ` Обслуживаем клиентов из ${cityPrep}.`}
           </p>
 
-          <h3>Варианты антикора в {cityPrep}</h3>
+          <h3>Варианты антикора в {geo}</h3>
           <ul>
             <li>
               <strong>
@@ -440,7 +441,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
             id="services-title"
             className="text-2xl font-bold text-black dark:text-white mb-6"
           >
-            Услуги антикоррозийной обработки в {cityPrep}
+            Услуги антикоррозийной обработки в {geo}
           </h2>
           <div className="grid sm:grid-cols-2 gap-6 mb-10" role="list">
             {antikorServices.map((service) => {
@@ -528,7 +529,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
         </section>
 
         <article className="prose prose-lg max-w-none dark:prose-invert mb-10">
-          <h2>Как проходит антикоррозийная обработка в {cityPrep}</h2>
+          <h2>Как проходит антикоррозийная обработка в {geo}</h2>
           <ol>
             <li>
               <strong>Осмотр и смета</strong> — оцениваем состояние днища и
@@ -544,7 +545,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
               <strong>Контроль и рекомендации</strong> — гарантия и уход
             </li>
           </ol>
-          <h3>Сколько стоит антикор в {cityPrep}</h3>
+          <h3>Сколько стоит антикор в {geo}</h3>
           <p>
             Вариант 1 — {p1} (только скрытые полости). Вариант 2 — {p2} (скрытые
             + антикор по днищу). Вариант 3 — {p3} (грунтование + скрытые +
@@ -558,7 +559,7 @@ export default async function AntikorrozijnayaObrabotkaPage({
           aria-labelledby="contact-title"
         >
           <h2 id="contact-title" className="text-2xl font-bold mb-4">
-            Запишитесь на антикоррозийную обработку в {cityPrep}
+            Запишитесь на антикоррозийную обработку в {geo}
           </h2>
           <p className="text-white/80 mb-6">
             Оценим состояние кузова и подберём материалы. Цены в BYN, без

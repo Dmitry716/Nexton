@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Car, Wrench, ScanSearch, Hammer } from "lucide-react";
 import type { Metadata } from "next";
 import ReviewsSection from "@/components/ReviewsSection";
+import { geoPhrase, landingKeywords } from "@/lib/seo-geo";
 
 interface PageProps {
   params: Promise<{ city: string }>;
@@ -22,22 +23,24 @@ export async function generateMetadata({
   if (!cityData) return { title: "Страница не найдена" };
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   return {
-    title: `Ремонт китайских автомобилей в ${cityPrep}: Geely, Chery, Haval, Changan | Nexton`,
-    description: `Ремонт бензиновых китайских авто в ${cityPrep}. Диагностика, двигатель, ходовая, кузов после ДТП. Электромобили не принимаем. Geely, Chery, Haval, Changan, Exeed, Omoda, Tank. Звоните: +375297115091`,
-    keywords: [
+    title: {
+      absolute: `Ремонт китайских автомобилей в ${geo} — Geely, Chery, Haval | Nexton`,
+    },
+    description: `Ремонт бензиновых китайских авто в ${geo}: диагностика, двигатель, ходовая, кузов после ДТП. Электромобили не принимаем. Geely, Chery, Haval, Changan. Nexton. +375297115091`,
+    keywords: landingKeywords(city, [
       "ремонт китайских автомобилей",
-      `ремонт китайских авто ${cityData.name}`,
-      `ремонт geely ${cityData.name}`,
-      `ремонт haval ${cityData.name}`,
-      `ремонт chery ${cityData.name}`,
+      "ремонт китайских авто",
+      "ремонт geely",
+      "ремонт haval",
+      "ремонт chery",
       "ремонт changan",
-      "восстановление китайского авто после дтп",
-    ],
+    ]),
     openGraph: {
-      title: `Ремонт китайских автомобилей в ${cityPrep} | Nexton`,
-      description: `Диагностика и ремонт бензиновых Geely, Chery, Haval в ${cityPrep}. Электромобили не принимаем.`,
+      title: `Ремонт китайских автомобилей в ${geo} | Nexton`,
+      description: `Диагностика и ремонт бензиновых Geely, Chery, Haval в ${geo}.`,
       url: `https://nexton.vip/${city}/remont-kitayskih-avto`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -53,6 +56,7 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
   if (!cityData) notFound();
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   const kitayskieServices = services.filter(
     (s) => s.category === "kitayskie_avto",
@@ -65,12 +69,52 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
     "Ремонт двигателя и ходовой китайских авто": Wrench,
   };
 
+  const faqItems = [
+    {
+      question: "Какие китайские марки обслуживаете?",
+      answer:
+        "Geely, Chery, Haval, Changan, Great Wall, Belgee и другие бензиновые китайские авто. Электромобили не принимаем.",
+    },
+    {
+      question: "Делаете ли диагностику китайских авто?",
+      answer:
+        "Да: компьютерная диагностика, осмотр ходовой, при необходимости вибростенд. Смету согласовываем до ремонта.",
+    },
+    {
+      question: "Ремонтируете кузов после ДТП на китайских авто?",
+      answer:
+        "Да — восстановление геометрии, рихтовка, покраска. Возраст авто для кузовных работ — не старше 15 лет.",
+    },
+    {
+      question: "Сколько стоит ремонт китайского автомобиля?",
+      answer:
+        "Диагностика от 40 Br, ходовая от 70 Br; двигатель и кузов — после осмотра. Точную сумму называем до начала работ.",
+    },
+  ];
+
   return (
     <main
       className="min-h-screen bg-white dark:bg-black pt-16"
       role="main"
       aria-label="Страница ремонта китайских автомобилей"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          }),
+        }}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <nav
           className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6"
@@ -126,7 +170,7 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white mb-3"
             itemProp="headline"
           >
-            Ремонт китайских автомобилей в {cityPrep}
+            Ремонт китайских автомобилей в {geo}
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
             Диагностика, ремонт двигателя и ходовой, восстановление после ДТП.
@@ -189,7 +233,7 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
           itemType="https://schema.org/Article"
         >
           <h2>
-            Ремонт китайских автомобилей в {cityPrep}: сервис без «угадайки»
+            Ремонт китайских автомобилей в {geo}: сервис без «угадайки»
           </h2>
           <p>
             Китайские марки чувствительны к качеству топлива, датчикам и блокам
@@ -198,13 +242,13 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
               href={`/${city}`}
               className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
             >
-              Nexton в {cityPrep}
+              Nexton в {geo}
             </a>{" "}
             сначала сканер и осмотр, затем ремонт: двигатель, ходовая, электрика
             12 В или кузов после ДТП. Электромобили не принимаем.
           </p>
 
-          <h3>Какие работы выполняем в {cityPrep}</h3>
+          <h3>Какие работы выполняем в {geo}</h3>
           <ul>
             <li>
               <strong>
@@ -252,7 +296,7 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
             </li>
           </ul>
 
-          <h3>Почему китайские авто везут в Nexton в {cityPrep}</h3>
+          <h3>Почему китайские авто везут в Nexton в {geo}</h3>
           <ul>
             <li>
               ✅ <strong>Диагностика до ремонта</strong> — не меняем запчасти
@@ -278,7 +322,7 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
             id="services-title"
             className="text-2xl font-bold text-black dark:text-white mb-6"
           >
-            Услуги по китайским автомобилям в {cityPrep}
+            Услуги по китайским автомобилям в {geo}
           </h2>
           <div
             className="grid sm:grid-cols-2 gap-6 mb-10"
@@ -358,12 +402,36 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
           </div>
         </section>
 
+        <section className="mb-10" aria-labelledby="faq-title">
+          <h2
+            id="faq-title"
+            className="text-2xl font-bold text-black dark:text-white mb-6"
+          >
+            Частые вопросы о ремонте китайских авто
+          </h2>
+          <div className="space-y-4">
+            {faqItems.map((item) => (
+              <div
+                key={item.question}
+                className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-5"
+              >
+                <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <article
           className="prose prose-lg max-w-none dark:prose-invert mb-10"
           itemScope
           itemType="https://schema.org/Article"
         >
-          <h2>Как проходит ремонт китайского авто в {cityPrep}</h2>
+          <h2>Как проходит ремонт китайского авто в {geo}</h2>
           <ol>
             <li>
               <strong>Запись и осмотр</strong> — описываете симптомы или
@@ -386,7 +454,7 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
             </li>
           </ol>
 
-          <h3>Сколько стоит ремонт китайского авто в {cityPrep}</h3>
+          <h3>Сколько стоит ремонт китайского авто в {geo}</h3>
           <p>
             Ориентир: компьютерная диагностика от 40 Br, диагностика ходовой от
             70 Br, кузов и двигатель — после осмотра. Точную сумму называем до
@@ -399,7 +467,7 @@ export default async function RemontKitayskihAvtoPage({ params }: PageProps) {
           aria-labelledby="contact-title"
         >
           <h2 id="contact-title" className="text-2xl font-bold mb-4">
-            Запишитесь на ремонт китайского авто в {cityPrep}
+            Запишитесь на ремонт китайского авто в {geo}
           </h2>
           <p className="text-white/80 mb-6">
             Привезите бензиновый Geely, Haval, Chery или другую китайскую марку

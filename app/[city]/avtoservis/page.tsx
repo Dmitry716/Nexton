@@ -16,6 +16,7 @@ import {
   ScanSearch,
   Shield,
 } from "lucide-react";
+import { geoPhrase, landingKeywords } from "@/lib/seo-geo";
 
 interface PageProps {
   params: Promise<{ city: string }>;
@@ -33,25 +34,31 @@ export async function generateMetadata({
   if (!cityData) return { title: "Страница не найдена" };
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
+
+  // City hub owns «автосервис {city}»; this page is a services catalog.
+  const isPrimaryMarket = city === "polotsk" || city === "novopolotsk";
 
   return {
-    title: `Автосервис в ${cityPrep} — Nexton: ремонт и обслуживание автомобилей`,
-    description: `Автосервис Nexton в ${cityPrep} (${cityData.region}). Полный спектр услуг: кузовной ремонт, автокондиционеры, китайские авто, диагностика подвески, ремонт отопителей, аргонная сварка. Работаем с 2010 года. Гарантия до 12 месяцев. Звоните: +375297115091`,
-    keywords: [
-      `автосервис ${cityData.name}`,
-      `автосервис ${cityPrep}`,
-      `СТО ${cityData.name}`,
-      `ремонт авто ${cityData.name}`,
-      `автосервис ${cityData.region}`,
-    ],
+    title: {
+      absolute: `Услуги автосервиса Nexton в ${geo}`,
+    },
+    description: `Каталог услуг автосервиса Nexton в ${geo}: климат, кузов, ходовая, антикор, вебасто. С 2010 года. +375297115091`,
+    keywords: landingKeywords(city, [
+      "услуги автосервиса",
+      "СТО услуги",
+      "ремонт авто каталог",
+    ]),
     openGraph: {
-      title: `Автосервис в ${cityPrep} — Nexton`,
-      description: `Полный спектр услуг в ${cityPrep}. Работаем с 2010 года.`,
+      title: `Услуги автосервиса Nexton в ${geo}`,
+      description: `Каталог услуг: климат, кузов и ходовая в ${geo}.`,
       url: `https://nexton.vip/${city}/avtoservis`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
     alternates: {
-      canonical: `https://nexton.vip/${city}/avtoservis`,
+      canonical: isPrimaryMarket
+        ? `https://nexton.vip/${city}`
+        : `https://nexton.vip/${city}/avtoservis`,
     },
   };
 }
@@ -63,6 +70,7 @@ export default async function AvtoservisPage({ params }: PageProps) {
 
   const cityPrep = cityData.namePrepositional || cityData.name;
   const cityName = cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   const categories = [
     {
@@ -224,14 +232,14 @@ export default async function AvtoservisPage({ params }: PageProps) {
           </span>
         </nav>
 
-        {/* H1 */}
+        {/* H1 — каталог услуг; запрос «автосервис» ведёт на /{city} */}
         <header className="mb-10">
           <h1 className="text-4xl sm:text-5xl font-bold text-black dark:text-white mb-4">
-            Автосервис в {cityPrep} — Nexton
+            Услуги автосервиса Nexton в {geo}
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
             Полный спектр услуг по ремонту и обслуживанию автомобилей. Работаем
-            в {cityPrep} с 2010 года. Гарантия до 12 месяцев на все виды работ.
+            в {geo} с 2010 года. Гарантия до 12 месяцев на все виды работ.
           </p>
         </header>
 

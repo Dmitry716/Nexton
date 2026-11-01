@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Flame, Wrench, ScanSearch, Settings } from "lucide-react";
 import type { Metadata } from "next";
 import ReviewsSection from "@/components/ReviewsSection";
+import { geoPhrase, landingKeywords } from "@/lib/seo-geo";
 
 interface PageProps {
   params: Promise<{ city: string }>;
@@ -22,23 +23,23 @@ export async function generateMetadata({
   if (!cityData) return { title: "Страница не найдена" };
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   return {
-    title: `Ремонт вебасто в ${cityPrep}: Webasto, Eberspacher, Планар | Nexton`,
-    description: `Ремонт вебасто в ${cityPrep}. Диагностика, замена свечей, чистка камеры сгорания, ремонт блоков управления Webasto, Eberspacher, Планар, Бинар. Гарантия до 6 месяцев. Звоните: +375297115091`,
-    keywords: [
+    title: {
+      absolute: `Ремонт вебасто в ${geo} — Webasto, Eberspacher, Планар | Nexton`,
+    },
+    description: `Ремонт вебасто в ${geo}: диагностика, свечи, чистка камеры, блоки Webasto, Eberspacher, Планар, Бинар. Гарантия до 6 месяцев. Nexton. +375297115091`,
+    keywords: landingKeywords(city, [
       "ремонт вебасто",
-      `ремонт вебасто ${cityData.name}`,
       "ремонт Webasto",
-      `ремонт Webasto ${cityData.name}`,
-      "ремонт автономных отопителей",
-      `вебасто ${cityData.name}`,
+      "вебасто",
       "диагностика вебасто",
-      "ремонт блока управления webasto",
-    ],
+      "ремонт автономных отопителей",
+    ]),
     openGraph: {
-      title: `Ремонт вебасто в ${cityPrep} | Nexton`,
-      description: `Ремонт Webasto, Eberspacher, Планар в ${cityPrep}. Диагностика, свечи, блоки управления. Гарантия до 6 месяцев.`,
+      title: `Ремонт вебасто в ${geo} | Nexton`,
+      description: `Ремонт Webasto, Eberspacher, Планар в ${geo}. Гарантия до 6 месяцев.`,
       url: `https://nexton.vip/${city}/remont-vebasto`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -55,6 +56,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
 
   const cityPrep = cityData.namePrepositional || cityData.name;
   const cityName = cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   const otopiteliServices = services.filter((s) => s.category === "otopiteli");
 
@@ -98,7 +100,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
             "@context": "https://schema.org",
             "@type": "AutoRepair",
             name: `Ремонт вебасто Nexton в ${cityName}`,
-            description: `Ремонт вебасто и автономных отопителей в ${cityPrep}. Webasto, Eberspacher, Планар, Бинар.`,
+            description: `Ремонт вебасто и автономных отопителей в ${geo}. Webasto, Eberspacher, Планар, Бинар.`,
             url: `https://nexton.vip/${city}/remont-vebasto`,
             telephone: "+375297115091",
             address: {
@@ -189,7 +191,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white mb-3"
             itemProp="headline"
           >
-            Ремонт вебасто в {cityPrep}
+            Ремонт вебасто в {geo}
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
             Диагностика и ремонт Webasto, Eberspacher, Планар, Бинар. Свечи,
@@ -224,7 +226,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
                 🔥
               </span>
               <p className="text-xl sm:text-2xl font-bold">
-                Ремонт вебасто в {cityPrep}
+                Ремонт вебасто в {geo}
               </p>
               <p className="text-sm sm:text-lg text-white/80">
                 Сначала диагностика — потом смета без сюрпризов
@@ -238,21 +240,21 @@ export default async function RemontVebastoPage({ params }: PageProps) {
           itemScope
           itemType="https://schema.org/Article"
         >
-          <h2>Ремонт вебасто в {cityPrep}: диагностика и восстановление</h2>
+          <h2>Ремонт вебасто в {geo}: диагностика и восстановление</h2>
           <p>
             Вебасто не запускается, дымит или глохнет через несколько минут? В{" "}
             <a
               href={`/${city}`}
               className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
             >
-              Nexton в {cityPrep}
+              Nexton в {geo}
             </a>{" "}
             делаем компьютерную диагностику и ремонт автономных отопителей
             Webasto, Eberspacher, Планар, Бинар и Autoterm. Опыт с 2010 года,
             гарантия до 6 месяцев.
           </p>
 
-          <h3>Какие работы по вебасто выполняем в {cityPrep}</h3>
+          <h3>Какие работы по вебасто выполняем в {geo}</h3>
           <ul>
             <li>
               <strong>
@@ -300,7 +302,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
             </li>
           </ul>
 
-          <h3>Почему везут вебасто в Nexton в {cityPrep}</h3>
+          <h3>Почему везут вебасто в Nexton в {geo}</h3>
           <ul>
             <li>
               ✅ <strong>Диагностика до ремонта</strong> — не меняем детали «на
@@ -328,7 +330,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
             id="services-title"
             className="text-2xl font-bold text-black dark:text-white mb-6"
           >
-            Услуги по ремонту вебасто в {cityPrep}
+            Услуги по ремонту вебасто в {geo}
           </h2>
           <div
             className="grid sm:grid-cols-2 gap-6 mb-10"
@@ -435,7 +437,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
           itemScope
           itemType="https://schema.org/Article"
         >
-          <h2>Как проходит ремонт вебасто в {cityPrep}</h2>
+          <h2>Как проходит ремонт вебасто в {geo}</h2>
           <ol>
             <li>
               <strong>Запись</strong> — звонок или Telegram, описываете
@@ -458,7 +460,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
             </li>
           </ol>
 
-          <h3>Сколько стоит ремонт вебасто в {cityPrep}</h3>
+          <h3>Сколько стоит ремонт вебасто в {geo}</h3>
           <p>
             Ориентир: диагностика от 30 Br, замена свечи накаливания от 30 Br,
             чистка камеры сгорания от 50 Br, замена насоса-дозатора от 50 Br,
@@ -472,7 +474,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
           aria-labelledby="contact-title"
         >
           <h2 id="contact-title" className="text-2xl font-bold mb-4">
-            Запишитесь на ремонт вебасто в {cityPrep}
+            Запишитесь на ремонт вебасто в {geo}
           </h2>
           <p className="text-white/80 mb-6">
             Привезите Webasto или другой автономный отопитель — диагностируем и

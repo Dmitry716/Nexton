@@ -53,14 +53,13 @@ function formatDate(dateString: string) {
 
 // Метаданные для главной страницы
 export const metadata: Metadata = {
-  title: "Автосервис Nexton в Полоцке и Новополоцке — климат, кузов и ходовая",
+  title: "Автосервис Nexton в Полоцке и Новополоцке",
   description:
-    "Автосервис Nexton в Полоцке и Новополоцке. Ремонтируем автокондиционеры и системы охлаждения, восстанавливаем кузов, обслуживаем бензиновые китайские авто. Диагностика подвески на вибростенде, вебасто, радиаторы, сварка. Гарантия до 6 месяцев. Звоните: +375297115091",
+    "Автосервис Nexton в Полоцке и Новополоцке: климат, кузов и ходовая. С 2010 года, гарантия до 6 месяцев. Запись: +375 (29) 711-50-91",
   openGraph: {
-    title:
-      "Автосервис Nexton в Полоцке и Новополоцке — климат, кузов и ходовая",
+    title: "Автосервис Nexton в Полоцке и Новополоцке",
     description:
-      "Ремонтируем автокондиционеры и охлаждение, восстанавливаем кузов, обслуживаем бензиновые китайские авто. Диагностика подвески, вебасто, сварка.",
+      "Климат, кузов и ходовая в одном сервисе. С 2010 года. Запись: +375 (29) 711-50-91.",
     url: "https://nexton.vip",
     siteName: "Nexton",
     images: [
@@ -82,7 +81,7 @@ const categories = [
     id: "avtokondicionery",
     name: "Автокондиционеры",
     icon: Wind,
-    description: "Диагностика, заправка и ремонт автокондиционеров",
+    description: "Заправка и ремонт — отдельные страницы услуг с ценами",
   },
   {
     id: "otopiteli",
@@ -188,6 +187,71 @@ export default function Home() {
 
       {/* Hero секция */}
       <HeroSection />
+
+      {/* Быстрые ссылки на ключевые услуги — вне hero, без конкуренции с H1 */}
+      <section
+        className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black"
+        aria-label="Популярные услуги"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col items-center gap-3 text-sm sm:text-base">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link
+              href="/polotsk"
+              className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline-offset-4 hover:underline"
+            >
+              Автосервис Полоцк
+            </Link>
+            <span
+              className="text-gray-300 dark:text-gray-700"
+              aria-hidden="true"
+            >
+              |
+            </span>
+            <Link
+              href="/novopolotsk"
+              className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline-offset-4 hover:underline"
+            >
+              Автосервис Новополоцк
+            </Link>
+            <span
+              className="text-gray-300 dark:text-gray-700"
+              aria-hidden="true"
+            >
+              |
+            </span>
+            <Link
+              href="/polotsk/usluga/zapravka-kondicionera"
+              className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline-offset-4 hover:underline"
+            >
+              Заправка автокондиционера
+            </Link>
+            <span
+              className="text-gray-300 dark:text-gray-700"
+              aria-hidden="true"
+            >
+              |
+            </span>
+            <Link
+              href="/novopolotsk/antikorrozijnaya-obrabotka"
+              className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline-offset-4 hover:underline"
+            >
+              Антикор
+            </Link>
+            <span
+              className="text-gray-300 dark:text-gray-700"
+              aria-hidden="true"
+            >
+              |
+            </span>
+            <Link
+              href="/polotsk/kuzovnoy-remont"
+              className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline-offset-4 hover:underline"
+            >
+              Кузовной ремонт
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Почему мы */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800">
@@ -360,7 +424,7 @@ export default function Home() {
                       className="animate-fade-in"
                       style={{ animationDelay: `${idx * 0.1}s` }}
                     >
-                      <ServiceCard service={service} />
+                      <ServiceCard service={service} city="polotsk" />
                     </div>
                   ))}
                 </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Wrench, Car, Hammer, Paintbrush, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 import ReviewsSection from "@/components/ReviewsSection";
+import { geoPhrase, landingKeywords } from "@/lib/seo-geo";
 
 interface PageProps {
   params: Promise<{ city: string }>;
@@ -22,28 +23,27 @@ export async function generateMetadata({
   if (!cityData) return { title: "Страница не найдена" };
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   return {
-    title: `Кузовной ремонт в ${cityPrep}: рихтовка, алюминий, покраска | Nexton`,
-    description: `Кузовной ремонт в ${cityPrep}: стапель, беспокрасочное удаление вмятин (PDR), споттер, алюминиевые панели, покраска. Гарантия 12 месяцев. Звоните: +375297115091`,
-    keywords: [
+    title: {
+      absolute: `Кузовной ремонт в ${geo} — покраска авто, рихтовка, PDR | Nexton`,
+    },
+    description: `Кузовной ремонт и покраска авто в ${geo}: стапель, PDR, споттер, алюминий. Авто до 15 лет. Гарантия 12 месяцев. Nexton. +375 (29) 711-50-91`,
+    keywords: landingKeywords(city, [
       "кузовной ремонт",
-      `кузовной ремонт ${cityData.name}`,
-      `кузовной ремонт ${cityData.region}`,
+      "покраска авто",
       "рихтовка кузова",
       "беспокрасочное удаление вмятин",
       "PDR",
       "восстановление геометрии кузова",
       "покраска кузова",
-      `ремонт кузова ${cityData.name}`,
+      "ремонт кузова",
       "стапель",
-      "удаление вмятин споттером",
-      "ремонт алюминиевых панелей",
-      "вмятины алюминиевый капот",
-    ],
+    ]),
     openGraph: {
-      title: `Кузовной ремонт в ${cityPrep} | Nexton`,
-      description: `Кузовной ремонт в ${cityPrep}: геометрия, споттер, алюминиевые панели, покраска. Гарантия 12 месяцев.`,
+      title: `Кузовной ремонт в ${geo} | Nexton`,
+      description: `Кузовной ремонт в ${geo}: геометрия, PDR, покраска. Гарантия 12 месяцев.`,
       url: `https://nexton.vip/${city}/kuzovnoy-remont`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -59,6 +59,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
   if (!cityData) notFound();
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   const kuzovnyeServices = services.filter((s) => s.category === "kuzovnye");
 
@@ -70,12 +71,52 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
     "Покраска кузова автомобиля": Paintbrush,
   };
 
+  const faqItems = [
+    {
+      question: "Сколько стоит кузовной ремонт?",
+      answer:
+        "Стоимость зависит от объёма повреждений, необходимости стапеля и покраски. После осмотра составляем смету до начала работ — без скрытых доплат.",
+    },
+    {
+      question: "Какие авто принимаете на кузовной ремонт?",
+      answer:
+        "Принимаем автомобили не старше 15 лет (с 2010 г. выпуска). Это связано с геометрией кузова и доступностью запчастей.",
+    },
+    {
+      question: "Делаете ли PDR — удаление вмятин без покраски?",
+      answer:
+        "Да, беспокрасочное удаление вмятин (PDR), если лакокрасочное покрытие целое. Если краска повреждена — рихтовка споттером и покраска.",
+    },
+    {
+      question: "Есть ли гарантия на кузовные работы?",
+      answer:
+        "Гарантия до 12 месяцев на выполненные работы. Условия уточняем при сдаче автомобиля.",
+    },
+  ];
+
   return (
     <main
       className="min-h-screen bg-white dark:bg-black pt-16"
       role="main"
       aria-label="Страница кузовного ремонта"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          }),
+        }}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Хлебные крошки (Breadcrumbs) - для SEO */}
         <nav
@@ -133,7 +174,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-black dark:text-white mb-3"
             itemProp="headline"
           >
-            Кузовной ремонт в {cityPrep}
+            Кузовной ремонт в {geo}
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
             Профессиональное восстановление кузова любой сложности. Работаем с
@@ -196,7 +237,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
           itemScope
           itemType="https://schema.org/Article"
         >
-          <h2>Кузовной ремонт в {cityPrep}: профессиональное восстановление</h2>
+          <h2>Кузовной ремонт в {geo}: профессиональное восстановление</h2>
           <p>
             Кузовной ремонт — один из самых сложных видов ремонта автомобиля. Мы
             в{" "}
@@ -204,13 +245,13 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
               href={`/${city}`}
               className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
             >
-              Nexton в {cityPrep}
+              Nexton в {geo}
             </a>{" "}
             выполняем полный спектр кузовных работ: от мелкой рихтовки до
             восстановления геометрии на стапеле.
           </p>
 
-          <h3>Виды кузовного ремонта в {cityPrep}</h3>
+          <h3>Виды кузовного ремонта в {geo}</h3>
           <ul>
             <li>
               <strong>
@@ -273,7 +314,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
             </li>
           </ul>
 
-          <h3>Почему выбирают Nexton для кузовного ремонта в {cityPrep}</h3>
+          <h3>Почему выбирают Nexton для кузовного ремонта в {geo}</h3>
           <ul>
             <li>
               ✅ <strong>Профессиональное оборудование</strong> — стапель для
@@ -304,7 +345,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
             id="services-title"
             className="text-2xl font-bold text-black dark:text-white mb-6"
           >
-            Наши услуги по кузовному ремонту в {cityPrep}
+            Наши услуги по кузовному ремонту в {geo}
           </h2>
           <div
             className="grid sm:grid-cols-2 gap-6 mb-10"
@@ -404,13 +445,37 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
           </div>
         </section>
 
+        <section className="mb-10" aria-labelledby="faq-title">
+          <h2
+            id="faq-title"
+            className="text-2xl font-bold text-black dark:text-white mb-6"
+          >
+            Частые вопросы о кузовном ремонте
+          </h2>
+          <div className="space-y-4">
+            {faqItems.map((item) => (
+              <div
+                key={item.question}
+                className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-5"
+              >
+                <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
+                  {item.question}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* ДОПОЛНИТЕЛЬНЫЙ SEO-ТЕКСТ */}
         <article
           className="prose prose-lg max-w-none dark:prose-invert mb-10"
           itemScope
           itemType="https://schema.org/Article"
         >
-          <h2>Как проходит кузовной ремонт в {cityPrep}</h2>
+          <h2>Как проходит кузовной ремонт в {geo}</h2>
           <ol>
             <li>
               <strong>Диагностика и оценка повреждений</strong> — осмотр
@@ -439,7 +504,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
             </li>
           </ol>
 
-          <h3>Сколько стоит кузовной ремонт в {cityPrep}</h3>
+          <h3>Сколько стоит кузовной ремонт в {geo}</h3>
           <p>Стоимость кузовного ремонта зависит от нескольких факторов:</p>
           <ul>
             <li>
@@ -461,7 +526,7 @@ export default async function KuzovnoyRemontPage({ params }: PageProps) {
           aria-labelledby="contact-title"
         >
           <h2 id="contact-title" className="text-2xl font-bold mb-4">
-            Запишитесь на кузовной ремонт в {cityPrep}
+            Запишитесь на кузовной ремонт в {geo}
           </h2>
           <p className="text-white/80 mb-6">
             Приедем, оценим повреждения и составим смету. Бесплатная диагностика

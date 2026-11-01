@@ -18,6 +18,8 @@ export default function Footer() {
 
   const menuItems = [
     { name: "Главная", href: "/" },
+    { name: "Автосервис Полоцк", href: "/polotsk" },
+    { name: "Автосервис Новополоцк", href: "/novopolotsk" },
     { name: "Услуги", href: "/#services" },
     { name: "О нас", href: "/#about" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },

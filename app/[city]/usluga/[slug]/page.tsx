@@ -14,20 +14,18 @@ import {
   localizePricesInHtml,
   ratesDisclaimer,
 } from "@/lib/nbrb-rates";
+import {
+  geoPhrase,
+  replaceCityInText,
+  serviceSeoForSlug,
+} from "@/lib/seo-geo";
+import {
+  getCategoryPageHref,
+  hasCategoryLandingPage,
+} from "@/data/categories";
 
 interface CityServicePageProps {
   params: Promise<{ city: string; slug: string }>;
-}
-
-// Функция для замены города в тексте
-function replaceCityInText(text: string, cityName: string, cityPrep: string) {
-  return text
-    .replace(/Полоцке и Новополоцке/g, cityPrep)
-    .replace(/Полоцк и Новополоцк/g, cityName)
-    .replace(/Полоцке/g, cityPrep)
-    .replace(/Полоцк/g, cityName)
-    .replace(/Новополоцке/g, cityPrep)
-    .replace(/Новополоцк/g, cityName);
 }
 
 export async function generateStaticParams() {
@@ -53,6 +51,8 @@ export async function generateMetadata({
 
   const cityName = cityData.name;
   const cityPrep = cityData.namePrepositional || cityName;
+  const geo = geoPhrase(city, cityPrep);
+  const prioritySeo = serviceSeoForSlug(service.slug, geo, city, cityPrep);
 
   const categoryNames: Record<string, string> = {
     avtokondicionery: "автокондиционеров",
@@ -75,14 +75,17 @@ export async function generateMetadata({
     ? categoryImage
     : `https://nexton.vip${categoryImage}`;
 
-  const ogTitle = `${service.name} в ${cityPrep}`;
+  const ogTitle = prioritySeo?.title ?? `${service.name} в ${geo}`;
 
   const description = replaceCityInText(
     service.description,
     cityName,
     cityPrep,
+    city,
   );
-  const ogDescription = `${description} Гарантия до 6 месяцев. Запись: +375 (29) 711-50-91.`;
+  const ogDescription =
+    prioritySeo?.description ??
+    `${description} Гарантия до 6 месяцев. Запись: +375 (29) 711-50-91.`;
 
   const pnevmoBrandsKeywords = [
     "bmw",
@@ -126,19 +129,25 @@ export async function generateMetadata({
     "avtokondicionery",
   ];
 
+  const pageTitle = prioritySeo?.title ?? `${service.name} в ${geo}`;
+
   return {
-    title: `${service.name} в ${cityPrep}`,
-    description: `Профессиональный ${service.name.toLowerCase()} в ${cityPrep} (${cityData.region}). ${description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`,
+    title: { absolute: `${pageTitle} | Nexton` },
+    description:
+      prioritySeo?.description ??
+      `Профессиональный ${service.name.toLowerCase()} в ${geo} (${cityData.region}). ${description}. Гарантия до 6 месяцев. Звоните: +375 (29) 711-50-91`,
     alternates: {
-      canonical: `/${city}/usluga/${service.slug}`,
+      canonical: `https://nexton.vip/${city}/usluga/${service.slug}`,
     },
     keywords: [
+      ...(prioritySeo?.keywords ?? []),
+      ...service.keywords,
       service.name.toLowerCase(),
       `${service.name.toLowerCase()} ${cityData.name}`,
       `${service.name.toLowerCase()} ${cityData.region}`,
       `ремонт ${categoryText} ${cityData.name}`,
       `ремонт ${categoryText} ${cityData.region}`,
-      ...(coolingKeywordCategories.includes(service.category)
+      ...(coolingKeywordCategories.includes(service.category) && !prioritySeo
         ? ["ремонт систем охлаждения"]
         : []),
       ...(service.category === "pnevmosistemy_legkovyh"
@@ -184,6 +193,9 @@ export default async function CityServicePage({
 
   const cityName = cityData.name;
   const cityPrep = cityData.namePrepositional || cityName;
+  const geo = geoPhrase(city, cityPrep);
+  const prioritySeo = serviceSeoForSlug(service.slug, geo, city, cityPrep);
+  const pageH1 = prioritySeo?.h1 ?? `${service.name} в ${geo}`;
 
   const categoryNames: Record<string, string> = {
     avtokondicionery: "Заправка и ремонт автокондиционеров",
@@ -241,16 +253,83 @@ export default async function CityServicePage({
   const currency = cityData.currency;
 
   const descriptionWithCity = localizePricesInHtml(
-    replaceCityInText(service.description, cityName, cityPrep),
+    replaceCityInText(service.description, cityName, cityPrep, city),
     currency,
     rates,
   );
 
   const detailedDescriptionWithCity = localizePricesInHtml(
-    replaceCityInText(service.detailedDescription, cityName, cityPrep),
+    replaceCityInText(service.detailedDescription, cityName, cityPrep, city),
     currency,
     rates,
   );
+
+  const acFaq =
+    service.slug === "zapravka-kondicionera"
+      ? [
+          {
+            question: `Сколько стоит заправить кондиционер в машине в ${geo}?`,
+            answer:
+              "Легковые — от 50 Br, внедорожники и минивэны — от 100 Br, грузовые — от 150 Br. В стоимость входят проверка, вакуумирование, фреон, масло и УФ-краситель.",
+          },
+          {
+            question: "Какая цена и стоимость заправки кондиционера авто?",
+            answer:
+              "Ориентир: от 50 Br для легкового. Точная сумма зависит от объёма системы и необходимости дозаправки масла. Смету называем до работ.",
+          },
+          {
+            question: "Нужна ли диагностика перед заправкой?",
+            answer:
+              "Да. Если потеря фреона больше 15% в год — ищем утечку. Иначе заправка без ремонта не даст результата.",
+          },
+          {
+            question: `Где заправить кондиционер в ${geo}?`,
+            answer:
+              "В автосервисе Nexton: г. Полоцк, ул. Строительная 21в/3, блок 9, бокс 3. Обслуживаем Полоцк и Новополоцк.",
+          },
+        ]
+      : service.slug === "remont-kondicionera-utechki"
+        ? [
+            {
+              question: `Сколько стоит ремонт автокондиционера в ${geo}?`,
+              answer:
+                "Диагностика — от 20 Br, замена уплотнителей — от 30 Br/шт, пайка трубки — от 30 Br, осушитель — от 50 Br + запчасть. Точная смета после поиска утечки.",
+            },
+            {
+              question: "Как находите утечку фреона?",
+              answer:
+                "Электронным течеискателем, УФ-красителем и опрессовкой азотом — так локализуем даже микротрещины.",
+            },
+            {
+              question: "Чем ремонт отличается от заправки?",
+              answer:
+                "Заправка восполняет хладагент. Ремонт устраняет причину потери фреона. Без ремонта повторная заправка обычно снова «уходит».",
+            },
+          ]
+        : service.slug === "diagnostika-podveski-vibrostend"
+          ? [
+              {
+                question: `Сколько стоит диагностика подвески на вибростенде в ${cityPrep}?`,
+                answer:
+                  "Легковые — 70 Br, кроссоверы и внедорожники — 90 Br, пневмоподвеска — от 90 Br. Результат и отчёт за 15–20 минут.",
+              },
+              {
+                question: `Где пройти вибростенд для диагностики подвески (${cityName})?`,
+                answer:
+                  "В автосервисе Nexton: г. Полоцк, ул. Строительная 21в/3, блок 9, бокс 3. Принимаем клиентов из всех регионов Беларуси.",
+              },
+              {
+                question: "Что показывает вибростенд?",
+                answer:
+                  "Состояние амортизаторов, пружин, сайлентблоков и элементов ходовой — без разборки. Выдаём отчёт с рекомендациями по ремонту.",
+              },
+              {
+                question: "Нужна ли запись на вибростенд?",
+                answer:
+                  "Желательна. Звоните +375 (29) 711-50-91 — подскажем свободное окно.",
+              },
+            ]
+          : null;
 
   const priceNote =
     currency === "BYN" ? null : ratesDisclaimer(rates, currency);
@@ -258,7 +337,7 @@ export default async function CityServicePage({
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: service.name,
+    name: pageH1,
     description: descriptionWithCity,
     provider: {
       "@type": "AutoRepair",
@@ -280,6 +359,20 @@ export default async function CityServicePage({
     },
   };
 
+  const categoryHref = hasCategoryLandingPage(service.category)
+    ? getCategoryPageHref(service.category, city)
+    : `/${city}#services`;
+  const categoryLabel =
+    service.category === "kitayskie_avto"
+      ? "Китайские авто"
+      : service.category === "kuzovnye"
+        ? "Кузовной ремонт"
+        : service.category === "antikor"
+          ? "Антикор"
+          : service.category === "otopiteli"
+            ? "Ремонт вебасто"
+            : "Услуги";
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -299,8 +392,8 @@ export default async function CityServicePage({
       {
         "@type": "ListItem",
         position: 3,
-        name: "Услуги",
-        item: `https://nexton.vip/${city}#services`,
+        name: categoryLabel,
+        item: `https://nexton.vip${categoryHref}`,
       },
       {
         "@type": "ListItem",
@@ -394,7 +487,7 @@ export default async function CityServicePage({
                 {categoryNames[service.category]}
               </p>
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                {service.name} в {cityPrep}
+                {pageH1}
               </h1>
             </div>
           </div>
@@ -417,44 +510,28 @@ export default async function CityServicePage({
             </Link>
             <span>/</span>
             <Link
-              href={
-                service.category === "kitayskie_avto"
-                  ? `/${city}/remont-kitayskih-avto`
-                  : service.category === "kuzovnye"
-                    ? `/${city}/kuzovnoy-remont`
-                    : `/${city}#services`
-              }
+              href={categoryHref}
               className="hover:text-black dark:hover:text-white transition-colors"
             >
-              {service.category === "kitayskie_avto"
-                ? "Китайские авто"
-                : service.category === "kuzovnye"
-                  ? "Кузовной ремонт"
-                  : "Услуги"}
+              {categoryLabel}
             </Link>
             <span>/</span>
             <span className="text-black dark:text-white">{service.name}</span>
           </div>
 
           <Link
-            href={
-              service.category === "kitayskie_avto"
-                ? `/${city}/remont-kitayskih-avto`
-                : service.category === "kuzovnye"
-                  ? `/${city}/kuzovnoy-remont`
-                  : `/${city}#services`
-            }
+            href={categoryHref}
             className="inline-flex items-center text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors mb-8 group"
           >
             <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Назад к услугам в {cityPrep}
+            Назад к {categoryLabel.toLowerCase()} в {geo}
           </Link>
 
           <div className="rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden shadow-lg">
             <div className="p-6 sm:p-8 md:p-10">
               {!categoryImage && (
                 <h1 className="text-3xl md:text-4xl font-bold mb-4 text-black dark:text-white">
-                  {service.name} в {cityPrep}
+                  {pageH1}
                 </h1>
               )}
 
@@ -469,6 +546,72 @@ export default async function CityServicePage({
                   }}
                 />
               </div>
+
+              {acFaq && (
+                <section className="mt-10" aria-labelledby="ac-faq-title">
+                  <h2
+                    id="ac-faq-title"
+                    className="text-2xl font-bold text-black dark:text-white mb-4"
+                  >
+                    Частые вопросы
+                  </h2>
+                  <div className="space-y-4">
+                    {acFaq.map((item) => (
+                      <div
+                        key={item.question}
+                        className="rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-4"
+                      >
+                        <h3 className="font-semibold text-black dark:text-white mb-2">
+                          {item.question}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                      __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: acFaq.map((item) => ({
+                          "@type": "Question",
+                          name: item.question,
+                          acceptedAnswer: {
+                            "@type": "Answer",
+                            text: item.answer,
+                          },
+                        })),
+                      }),
+                    }}
+                  />
+                </section>
+              )}
+
+              {(service.slug === "zapravka-kondicionera" ||
+                service.slug === "remont-kondicionera-utechki") && (
+                <p className="mt-8 text-sm text-gray-600 dark:text-gray-400">
+                  Смотрите также:{" "}
+                  {service.slug === "zapravka-kondicionera" ? (
+                    <Link
+                      href={`/${city}/usluga/remont-kondicionera-utechki`}
+                      className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                    >
+                      ремонт автокондиционера и устранение утечек в {geo}
+                    </Link>
+                  ) : (
+                    <Link
+                      href={`/${city}/usluga/zapravka-kondicionera`}
+                      className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline hover:no-underline"
+                    >
+                      заправка автокондиционера в {geo}
+                    </Link>
+                  )}
+                  .
+                </p>
+              )}
 
               {priceNote && (
                 <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800 pt-4">

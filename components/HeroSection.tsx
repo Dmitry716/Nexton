@@ -1,14 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import VideoBackground from "./VideoBackground";
 
 interface HeroSectionProps {
   city?: string;
 }
 
-// Hero-video: используем локальный файл
 const HERO_VIDEO = "/videos/hero-bg.mp4";
-// Постер для hero
 const HERO_POSTER =
   "https://images.unsplash.com/photo-1743038051885-e33faab41b87?w=1920&h=1080&fit=crop";
 
@@ -16,84 +14,54 @@ export default function HeroSection({
   city = "Полоцке и Новополоцке",
 }: HeroSectionProps) {
   const cityText = city || "Полоцке и Новополоцке";
+  const isHomeTwin = cityText === "Полоцке и Новополоцке";
 
   return (
-    <section className="relative bg-white dark:bg-black min-h-[620px] flex items-center border-b border-gray-200 dark:border-gray-800 overflow-hidden">
+    <section className="relative bg-white dark:bg-black min-h-[560px] sm:min-h-[620px] flex items-center border-b border-gray-200 dark:border-gray-800 overflow-hidden">
       <VideoBackground
         videoSrc={HERO_VIDEO}
         posterSrc={HERO_POSTER}
         opacity={0.35}
       />
-      <div className="absolute inset-0 bg-white/25 dark:bg-black/35 z-5" />
+      <div className="absolute inset-0 bg-white/30 dark:bg-black/40 z-[5]" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 lg:px-10 py-20">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20">
         <div className="text-center">
-          {/* Бейдж */}
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/10 dark:bg-white/10 border border-black/10 dark:border-white/10 text-sm font-medium text-black dark:text-white mb-8 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
-          >
-            <ShieldCheck className="w-4 h-4 text-[#1e3a5f] dark:text-[#7a9bcb]" />
-            <span>Гарантия до 6 месяцев · {cityText}</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-black dark:text-white tracking-tight animate-slide-left">
-            Автосервис в {cityText}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 text-black dark:text-white tracking-tight animate-slide-left leading-[1.1]">
+            Автосервис Nexton в {cityText}
           </h1>
 
           <p
-            className="text-xl sm:text-2xl md:text-3xl text-gray-800 dark:text-gray-200 mb-6 font-semibold animate-slide-left leading-snug"
-            style={{ animationDelay: "0.2s" }}
+            className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-right"
+            style={{ animationDelay: "0.15s" }}
           >
-            Климат, кузов и ходовая — в одном сервисе
-          </p>
-
-          <p
-            className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4 max-w-3xl mx-auto font-medium animate-slide-right leading-relaxed"
-            style={{ animationDelay: "0.4s" }}
-          >
-            Ремонтируем автокондиционеры и системы охлаждения, восстанавливаем
-            кузов, обслуживаем бензиновые китайские авто. Делаем диагностику
-            подвески на вибростенде, вебасто, радиаторы, пневмосистемы, аргонная
-            сварка и ремонт автопластика.
-          </p>
-          <p
-            className="text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto animate-slide-right"
-            style={{ animationDelay: "0.5s" }}
-          >
-            Легковые и грузовые. Цены в BYN, без скрытых доплат.
+            Климат, кузов и ходовая — в одном сервисе. С 2010 года, гарантия до
+            6 месяцев.
           </p>
 
           <div
-            className="flex flex-wrap gap-4 justify-center animate-fade-in"
-            style={{ animationDelay: "0.6s" }}
+            className="flex flex-wrap gap-3 sm:gap-4 justify-center animate-fade-in"
+            style={{ animationDelay: "0.25s" }}
           >
             <Link
-              href="/#services"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 border-2 border-transparent shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+              href={isHomeTwin ? "/#services" : `#services`}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 shadow-lg transition-all duration-300 font-semibold"
             >
-              Наши услуги
+              Смотреть услуги
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link
-              href="/#contacts"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+            <a
+              href="tel:+375297115091"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black shadow-lg transition-all duration-300 font-semibold"
             >
-              Связаться с нами
-            </Link>
-            {/* 👇 НОВАЯ КНОПКА - ССЫЛКА НА АВТОСЕРВИС */}
-            <Link
-              href="/polotsk/avtoservis"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-[#1e3a5f] dark:border-[#7a9bcb] text-[#1e3a5f] dark:text-[#7a9bcb] hover:bg-[#1e3a5f] hover:text-white dark:hover:bg-[#7a9bcb] dark:hover:text-black shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
-            >
-              Автосервис в Полоцке
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+              <Phone className="w-5 h-5" />
+              +375 29 711-50-91
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-transparent to-transparent dark:from-black/35 dark:via-transparent dark:to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-transparent dark:from-black/40 pointer-events-none" />
     </section>
   );
 }

@@ -8,6 +8,7 @@ import { getCategoryPageHref, hasCategoryLandingPage } from "@/data/categories";
 import CategoryCover from "@/components/CategoryCover";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { geoPhrase } from "@/lib/seo-geo";
 import {
   Wind,
   Flame,
@@ -70,13 +71,20 @@ export async function generateMetadata({
   if (!cityData) return { title: "Страница не найдена" };
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const geo = geoPhrase(city, cityPrep);
 
   return {
-    title: `Автосервис Nexton в ${cityPrep} — климат, кузов и ходовая`,
-    description: `Автосервис Nexton в ${cityPrep} (${cityData.region}). Ремонтируем автокондиционеры и системы охлаждения, восстанавливаем кузов, обслуживаем бензиновые китайские авто. Диагностика подвески, вебасто, радиаторы, сварка. Гарантия до 6 месяцев. Звоните: +375297115091`,
+    title: {
+      absolute: `Автосервис Nexton в ${geo}`,
+    },
+    description:
+      city === "polotsk" || city === "novopolotsk"
+        ? `СТО Nexton в ${cityData.name}: заправка кондиционера, кузовной, антикор, вебасто, вибростенд. С 2010 года. Запись: +375 (29) 711-50-91`
+        : `Автосервис Nexton для клиентов из ${geo}: климат, кузов и ходовая. Работы в Полоцке. Запись: +375 (29) 711-50-91`,
+    keywords: cityData.keywords,
     openGraph: {
-      title: `Автосервис Nexton в ${cityPrep} — климат, кузов и ходовая`,
-      description: `Климат, кузов и ходовая в одном сервисе. Автокондиционеры, кузовной ремонт, бензиновые китайские авто, диагностика подвески.`,
+      title: `Автосервис Nexton в ${geo}`,
+      description: `Климат, кузов и ходовая в одном сервисе. С 2010 года.`,
       url: `https://nexton.vip/${city}`,
       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     },
@@ -94,6 +102,7 @@ export default async function CityPage({
   if (!cityData) notFound();
 
   const cityPrep = cityData.namePrepositional || `${cityData.name}`;
+  const geo = geoPhrase(city, cityPrep);
   const isForeign = cityData.country !== "BY";
   const priceCurrencyLabel =
     cityData.currency === "RUB"
@@ -135,7 +144,38 @@ export default async function CityPage({
         }}
       />
 
-      <HeroSection city={cityPrep} />
+      <HeroSection city={geo} />
+
+      {(city === "polotsk" || city === "novopolotsk") && (
+        <div className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+          <p className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-sm text-gray-700 dark:text-gray-300 text-center">
+            {city === "polotsk" ? (
+              <>
+                Также обслуживаем{" "}
+                <Link
+                  href="/novopolotsk"
+                  className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline-offset-4 hover:underline"
+                >
+                  Новополоцк
+                </Link>
+                {" — "}
+                один сервис на оба города.
+              </>
+            ) : (
+              <>
+                Сервис в Полоцке рядом — также страница{" "}
+                <Link
+                  href="/polotsk"
+                  className="font-semibold text-[#1e3a5f] dark:text-[#7a9bcb] underline-offset-4 hover:underline"
+                >
+                  автосервис Полоцк
+                </Link>
+                .
+              </>
+            )}
+          </p>
+        </div>
+      )}
 
       {isForeign && (
         <div className="bg-[#1e3a5f]/5 dark:bg-[#7a9bcb]/10 border-b border-gray-200 dark:border-gray-800">
