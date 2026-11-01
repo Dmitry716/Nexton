@@ -79,7 +79,7 @@ export async function generateMetadata({
     },
     description:
       city === "polotsk" || city === "novopolotsk"
-        ? `СТО Nexton в ${cityData.name}: заправка кондиционера, кузовной, антикор, вебасто, вибростенд. С 2010 года. Запись: +375 (29) 711-50-91`
+        ? `СТО Nexton в ${cityData.name}: заправка автокондиционера, кузовной, антикор, вебасто, вибростенд. С 2010 года. Запись: +375 (29) 711-50-91`
         : `Автосервис Nexton для клиентов из ${geo}: климат, кузов и ходовая. Работы в Полоцке. Запись: +375 (29) 711-50-91`,
     keywords: cityData.keywords,
     openGraph: {

@@ -493,7 +493,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a5f] dark:bg-[#7a9bcb]" />
-                  Кондиционеры, отопители, радиаторы, кузовные работы // 👈
+                  Автокондиционеры, отопители, радиаторы, кузовные работы // 👈
                   ЗАМЕНИЛИ
                 </li>
                 <li className="flex items-center gap-2">
