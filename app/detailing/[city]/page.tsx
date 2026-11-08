@@ -63,7 +63,7 @@ export default async function DetailingCityPage({ params }: PageProps) {
   const cityPrep = cityData.namePrepositional || cityData.name;
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black pt-[124px] pb-20">
+    <main className="min-h-screen bg-white dark:bg-black pt-[56px] sm:pt-[72px] pb-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

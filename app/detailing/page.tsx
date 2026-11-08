@@ -41,7 +41,7 @@ export default function DetailingHubPage() {
   );
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black pt-[124px] pb-20">
+    <main className="min-h-screen bg-white dark:bg-black pt-[56px] sm:pt-[72px] pb-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
