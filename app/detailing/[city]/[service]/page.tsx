@@ -97,7 +97,7 @@ export default async function DetailingServicePage({ params }: PageProps) {
     },
     {
       q: `Где вы находитесь в ${cityPrep}?`,
-      a: `Приезжайте по адресу студии — уточните при записи по телефону +375 29 711-50-91. Работаем в выходные.`,
+      a: `Приезжайте по адресу студии — уточните при записи по телефону +375 29 711-50-91. `,
     },
   ];
 
@@ -298,7 +298,7 @@ export default async function DetailingServicePage({ params }: PageProps) {
                   Запишитесь на {service.name.toLowerCase()}
                 </h3>
                 <p className="text-sm text-white/85 mb-4">
-                  Рассчитаем стоимость и подберём время. Работаем в выходные.
+                  Рассчитаем стоимость и подберём время. 
                 </p>
                 <a
                   href="tel:+375297115091"
