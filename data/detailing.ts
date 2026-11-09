@@ -655,6 +655,17 @@ export function getDetailingService(
   return detailingServices.find((s) => s.slug === slug);
 }
 
+/** Gallery photos: /images/detailing/{slug}/1.jpg … N.jpg (before/after). */
+export function getDetailingGallery(
+  slug: string,
+  count = 4,
+): string[] {
+  return Array.from(
+    { length: count },
+    (_, i) => `/images/detailing/${slug}/${i + 1}.jpg`,
+  );
+}
+
 export function getDetailingCity(slug: string): DetailingCitySlug | undefined {
   return detailingCitySlugs.find((c) => c === slug);
 }

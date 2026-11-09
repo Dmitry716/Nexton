@@ -12,6 +12,7 @@ import DetailingServicesLinks from "@/components/DetailingServicesLinks";
 import DetailingServiceSteps from "@/components/DetailingServiceSteps";
 import DetailingServiceReviews from "@/components/DetailingServiceReviews";
 import DetailingServiceMistakes from "@/components/DetailingServiceMistakes";
+import DetailingGallery from "@/components/DetailingGallery";
 import { Clock, MapPin, Phone, ShieldCheck } from "lucide-react";
 
 interface PageProps {
@@ -341,6 +342,11 @@ export default async function DetailingServicePage({ params }: PageProps) {
             </div>
           </aside>
         </div>
+      </div>
+
+      {/* Фото до / после */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <DetailingGallery slug={service.slug} serviceName={service.name} />
       </div>
 
       {/* Как проходит услуга — 4 шага */}
