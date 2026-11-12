@@ -125,24 +125,19 @@ export default async function DetailingCityPage({ params }: PageProps) {
         </nav>
       </div>
 
-      {/* HERO — на всю ширину, с видео */}
+      {/* HERO — на всю ширину */}
       <header className="relative w-full overflow-hidden mb-16">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/detailing-hero-poster.jpg"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/detailing-hero-poster.jpg?v=m5"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-[center_70%] sm:object-center"
           aria-hidden="true"
-        >
-          <source src="/detailing-hero.mp4" type="video/mp4" />
-        </video>
+        />
 
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[#1e3a5f]/70 dark:bg-black/75"
+          className="absolute inset-0 bg-[#1e3a5f]/40 dark:bg-black/50"
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 md:py-32 text-center">

@@ -102,28 +102,22 @@ export default function DetailingHubPage() {
 
       {/* HERO — на всю ширину, как WhyChooseUsDetailing */}
       <header className="relative w-full overflow-hidden">
-        {/* Видео-фон */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/detailing-hero-poster.jpg"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/detailing-hero-poster.jpg?v=m5"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-[center_70%] sm:object-center"
           aria-hidden="true"
-        >
-          <source src="/detailing-hero.mp4" type="video/mp4" />
-        </video>
+        />
 
         {/* Оверлей для контраста (WCAG AA) */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[#1e3a5f]/70 dark:bg-black/75"
+          className="absolute inset-0 bg-[#1e3a5f]/40 dark:bg-black/50"
         />
 
         {/* Контент hero — в контейнере, но сам hero на всю ширину */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 md:py-36 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 md:py-36 text-center">
           <h1
             lang="ru"
             className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight text-balance hero-slide-in"

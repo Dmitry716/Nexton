@@ -17,22 +17,6 @@ const covers = [
   ["detailing-dvigatel-cover.jpg", "images/detailing/dvigatel.jpg"],
 ];
 
-const galleries = {
-  "okleyka-avto": ["okleyka-1.jpg", "okleyka-2.jpg", "okleyka-3.jpg", "okleyka-4.jpg"],
-  tonirovka: ["tonirovka-1.jpg", "tonirovka-2.jpg", "tonirovka-3.jpg", "tonirovka-4.jpg"],
-  himchistka: ["himchistka-1.jpg", "himchistka-2.jpg", "himchistka-3.jpg", "himchistka-4.jpg"],
-  polirovka: ["polirovka-1.jpg", "polirovka-2.jpg", "polirovka-3.jpg", "polirovka-4.jpg"],
-  keramika: ["keramika-1.jpg", "keramika-2.jpg", "keramika-3.jpg", "keramika-4.jpg"],
-  antikor: ["antikor-1.jpg", "antikor-2.jpg", "antikor-3.jpg", "antikor-4.jpg"],
-  "vosstanovlenie-lkp": ["lkp-1.jpg", "lkp-2.jpg", "lkp-3.jpg", "lkp-4.jpg"],
-  "himchistka-dvigatelya": [
-    "dvigatel-1.jpg",
-    "dvigatel-2.jpg",
-    "dvigatel-3.jpg",
-    "dvigatel-4.jpg",
-  ],
-};
-
 async function toJpg(src, dest, { w = 1200, h = 800, maxKb = 300 } = {}) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   let quality = 78;
@@ -59,22 +43,6 @@ async function main() {
       continue;
     }
     await toJpg(src, path.join(PUBLIC, rel), { maxKb: 300 });
-  }
-
-  // galleries 1..4
-  for (const [slug, files] of Object.entries(galleries)) {
-    for (let i = 0; i < files.length; i++) {
-      const src = path.join(ASSETS, files[i]);
-      if (!fs.existsSync(src)) {
-        console.warn("MISSING", files[i]);
-        continue;
-      }
-      await toJpg(
-        src,
-        path.join(PUBLIC, "images/detailing", slug, `${i + 1}.jpg`),
-        { maxKb: 300 },
-      );
-    }
   }
 
   // hero poster ≤200 KB, ~1920x1080

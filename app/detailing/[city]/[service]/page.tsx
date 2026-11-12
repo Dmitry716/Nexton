@@ -5,6 +5,7 @@ import {
   detailingServices,
   detailingCitySlugs,
   getDetailingService,
+  getDetailingServiceHero,
 } from "@/data/detailing";
 import { cities } from "@/data/cities";
 import WhyChooseUsDetailing from "@/components/WhyChooseUsDetailing";
@@ -12,7 +13,6 @@ import DetailingServicesLinks from "@/components/DetailingServicesLinks";
 import DetailingServiceSteps from "@/components/DetailingServiceSteps";
 import DetailingServiceReviews from "@/components/DetailingServiceReviews";
 import DetailingServiceMistakes from "@/components/DetailingServiceMistakes";
-import DetailingGallery from "@/components/DetailingGallery";
 import { Clock, MapPin, Phone, ShieldCheck } from "lucide-react";
 
 interface PageProps {
@@ -62,7 +62,13 @@ export async function generateMetadata({
       description,
       url: `https://nexton.vip/detailing/${city}/${serviceSlug}`,
       siteName: "Nexton",
-      images: [{ url: service.image, width: 1200, height: 630 }],
+      images: [
+        {
+          url: getDetailingServiceHero(service.slug),
+          width: 1600,
+          height: 900,
+        },
+      ],
       locale: "ru_RU",
       type: "website",
     },
@@ -82,6 +88,7 @@ export default async function DetailingServicePage({ params }: PageProps) {
   }
 
   const cityPrep = cityData.namePrepositional || cityData.name;
+  const heroSrc = `${getDetailingServiceHero(service.slug)}?v=1`;
 
   const faq = [
     {
@@ -205,45 +212,70 @@ export default async function DetailingServicePage({ params }: PageProps) {
         </nav>
       </div>
 
-      <header className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 hero-fade-in">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black dark:text-white mb-4 leading-tight">
-          {service.name} в{" "}
-          <span className="text-[#1e3a5f] dark:text-[#7a9bcb]">{cityPrep}</span>
-        </h1>
-        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-          {service.description}
-        </p>
+      <header className="relative w-full overflow-hidden mb-12">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={heroSrc}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-[center_55%]"
+          aria-hidden="true"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[#1e3a5f]/45 dark:bg-black/55"
+        />
 
-        <div className="flex flex-wrap gap-2 mb-8">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-[#1e3a5f]/10 dark:bg-[#7a9bcb]/15 text-[#1e3a5f] dark:text-[#7a9bcb] font-medium">
-            <ShieldCheck className="w-4 h-4" aria-hidden="true" />
-            Гарантия до 5 лет
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-[#1e3a5f]/10 dark:bg-[#7a9bcb]/15 text-[#1e3a5f] dark:text-[#7a9bcb] font-medium">
-            <Clock className="w-4 h-4" aria-hidden="true" />
-            {service.duration}
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-[#1e3a5f]/10 dark:bg-[#7a9bcb]/15 text-[#1e3a5f] dark:text-[#7a9bcb] font-medium">
-            <MapPin className="w-4 h-4" aria-hidden="true" />
-            {cityData.name}
-          </span>
-        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 md:py-32 text-center">
+          <h1
+            lang="ru"
+            className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-[1.08] tracking-tight text-balance hero-slide-in"
+          >
+            {service.name} в {cityPrep}
+          </h1>
+          <p
+            className="mt-3 text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed hero-fade-in"
+            style={{ animationDelay: "80ms" }}
+          >
+            {service.description}
+          </p>
 
-        <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800">
-          <div className="flex flex-wrap items-baseline gap-3 mb-4">
-            <p className="text-3xl sm:text-4xl font-bold text-[#1e3a5f] dark:text-[#7a9bcb]">
-              от {service.priceFrom} {cityData.currency}
-            </p>
-            {service.priceTo && (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                до {service.priceTo} {cityData.currency}
-              </p>
-            )}
+          <div
+            className="mt-6 flex flex-wrap justify-center gap-2 hero-fade-in"
+            style={{ animationDelay: "120ms" }}
+          >
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-white/15 text-white font-medium backdrop-blur-sm">
+              <ShieldCheck className="w-4 h-4" aria-hidden="true" />
+              Гарантия до 5 лет
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-white/15 text-white font-medium backdrop-blur-sm">
+              <Clock className="w-4 h-4" aria-hidden="true" />
+              {service.duration}
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-white/15 text-white font-medium backdrop-blur-sm">
+              <MapPin className="w-4 h-4" aria-hidden="true" />
+              {cityData.name}
+            </span>
           </div>
-          <div className="flex flex-wrap gap-3">
+
+          <p
+            className="mt-8 text-3xl sm:text-4xl font-bold text-white hero-fade-in"
+            style={{ animationDelay: "160ms" }}
+          >
+            от {service.priceFrom} {cityData.currency}
+            {service.priceTo ? (
+              <span className="ml-2 text-base sm:text-lg font-medium text-white/70">
+                до {service.priceTo} {cityData.currency}
+              </span>
+            ) : null}
+          </p>
+
+          <div
+            className="mt-8 flex flex-wrap justify-center gap-4 hero-fade-in"
+            style={{ animationDelay: "200ms" }}
+          >
             <a
               href="tel:+375297115091"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1e3a5f] hover:bg-[#2b4c7c] text-white font-semibold rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#1e3a5f] hover:bg-white/90 font-semibold rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1e3a5f]"
               aria-label={`Позвонить и записаться на ${service.name} в ${cityPrep}`}
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
@@ -253,7 +285,7 @@ export default async function DetailingServicePage({ params }: PageProps) {
               href="https://t.me/+375297115091"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#1e3a5f] dark:border-[#7a9bcb] text-[#1e3a5f] dark:text-[#7a9bcb] hover:bg-[#1e3a5f] dark:hover:bg-[#7a9bcb] hover:text-white dark:hover:text-black font-semibold rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] dark:focus-visible:ring-[#7a9bcb] focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/80 text-white hover:bg-white/10 font-semibold rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1e3a5f]"
               aria-label="Написать в Telegram"
             >
               Telegram
@@ -342,11 +374,6 @@ export default async function DetailingServicePage({ params }: PageProps) {
             </div>
           </aside>
         </div>
-      </div>
-
-      {/* Фото до / после */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <DetailingGallery slug={service.slug} serviceName={service.name} />
       </div>
 
       {/* Как проходит услуга — 4 шага */}
