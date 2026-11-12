@@ -1,6 +1,5 @@
 "use client";
 
-import MegaMenu from "./MegaMenu";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
@@ -23,10 +22,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Убрали "Услуги", так как теперь за это отвечает MegaMenu
+  // Десктоп: без Главная / О нас. «Вебасто» коротко, чтобы строка влезала.
   const desktopItems = [
+    { name: "Услуги", href: "/#services" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
-    { name: "Детейлинг", href: "/detailing" },
     { name: "Вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "Антикор", href: "/polotsk/antikorrozijnaya-obrabotka" },
@@ -38,13 +37,9 @@ export default function Navbar() {
     { name: "Главная", href: "/" },
     { name: "Услуги", href: "/#services" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
-    { name: "Детейлинг", href: "/detailing" },
     { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
-    {
-      name: "Антикоррозийная обработка",
-      href: "/polotsk/antikorrozijnaya-obrabotka",
-    },
+    { name: "Антикоррозийная обработка", href: "/polotsk/antikorrozijnaya-obrabotka" },
     { name: "Блог", href: "/blog" },
     { name: "О нас", href: "/#about" },
     { name: "Контакты", href: "/#contacts" },
@@ -52,6 +47,11 @@ export default function Navbar() {
 
   return (
     <nav
+      // className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+      //   scrolled
+      //     ? "bg-white/95 dark:bg-black/95 backdrop-blur-md border-gray-200 dark:border-gray-800 py-3"
+      //     : "bg-white dark:bg-black border-gray-200 dark:border-gray-800 py-5"
+      // }`}
       className={`fixed top-[36px] w-full z-50 transition-all duration-500 border-b ${
         scrolled
           ? "bg-white/95 dark:bg-black/95 backdrop-blur-md border-gray-200 dark:border-gray-800 py-3"
@@ -61,7 +61,7 @@ export default function Navbar() {
       aria-label="Главное меню"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex justify-between items-center gap-6">
           <Link
             href="/"
             className="relative group outline-none focus:outline-none shrink-0"
@@ -74,72 +74,67 @@ export default function Navbar() {
             <span className="sr-only">Автосервис в Полоцке и Новополоцке</span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-3 xl:gap-4 2xl:gap-5 min-w-0">
-            {/* Вставляем MegaMenu первым элементом */}
-            <MegaMenu />
-
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {desktopItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="whitespace-nowrap text-[14px] xl:text-[15px] 2xl:text-base font-medium text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 relative group"
+                className="whitespace-nowrap text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-300 font-medium relative group"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
 
-            <div className="flex items-center gap-1 xl:gap-1.5 ml-1 pl-2 xl:pl-4 border-l border-gray-200 dark:border-gray-700 shrink-0">
+            <div className="flex items-center space-x-3 ml-2 pl-4 border-l border-gray-200 dark:border-gray-700">
               <a
                 href="https://t.me/+375297115091"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
                 aria-label="Telegram"
               >
-                <Send className="w-[18px] h-[18px] xl:w-5 xl:h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
+                <Send className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
               </a>
               <a
                 href="https://vk.com/club164841898"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
                 aria-label="Группа ВКонтакте"
               >
-                <VkIcon className="w-[18px] h-[18px] xl:w-5 xl:h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
+                <VkIcon className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
               </a>
               <a
                 href="https://www.instagram.com/nextonservice/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
                 aria-label="Instagram"
               >
-                <InstagramIcon className="w-[18px] h-[18px] xl:w-5 xl:h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
+                <InstagramIcon className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
               </a>
               <a
                 href="https://tiktok.com/@nextonservice"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
                 aria-label="TikTok"
               >
-                <TikTokIcon className="w-[18px] h-[18px] xl:w-5 xl:h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
+                <TikTokIcon className="w-5 h-5 text-black dark:text-white hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors duration-300" />
               </a>
               <a
                 href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 hover:scale-110"
                 aria-label="Наш YouTube канал"
               >
-                <YoutubeIcon className="w-[18px] h-[18px] xl:w-5 xl:h-5 text-black dark:text-white hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300" />
+                <YoutubeIcon className="w-5 h-5 text-black dark:text-white hover:text-red-600 dark:hover:text-red-400 transition-colors duration-300" />
               </a>
             </div>
 
-            <div className="shrink-0 ml-1">
-              <ThemeSwitcher />
-            </div>
+            <ThemeSwitcher />
           </div>
 
           <div className="lg:hidden flex items-center space-x-2">
@@ -170,6 +165,15 @@ export default function Navbar() {
             >
               <TikTokIcon className="w-5 h-5 text-black dark:text-white" />
             </a>
+            {/* <a
+              href="https://youtube.com/@nextonlife?si=cKMyhJcID9OWUFKQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+              aria-label="Наш YouTube канал"
+            >
+              <YoutubeIcon className="w-5 h-5 text-black dark:text-white" />
+            </a> */}
             <ThemeSwitcher />
             <button
               onClick={() => setIsOpen(!isOpen)}

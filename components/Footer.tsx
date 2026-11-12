@@ -23,7 +23,6 @@ export default function Footer() {
     { name: "Услуги", href: "/#services" },
     { name: "О нас", href: "/#about" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
-    { name: "Детейлинг", href: "/detailing" },
     { name: "Ремонт вебасто", href: "/polotsk/remont-vebasto" },
     { name: "Китайские авто", href: "/polotsk/remont-kitayskih-avto" },
     { name: "Антикоррозийная обработка", href: "/polotsk/antikorrozijnaya-obrabotka" },
@@ -48,7 +47,6 @@ export default function Footer() {
     },
     { name: "Ремонт автопластика", href: "/#plastik" },
     { name: "Кузовной ремонт", href: "/polotsk/kuzovnoy-remont" },
-    { name: "Детейлинг", href: "/detailing" },
     {
       name: "Антикоррозийная обработка",
       href: "/polotsk/antikorrozijnaya-obrabotka",

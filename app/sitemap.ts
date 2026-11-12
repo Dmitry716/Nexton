@@ -1,6 +1,5 @@
 import { services } from "@/data/services";
 import { cities } from "@/data/cities";
-import { detailingServices, detailingCitySlugs } from "@/data/detailing";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://nexton.vip";
@@ -125,34 +124,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  const detailingHubPages: MetadataRoute.Sitemap = [
-    {
-      url: `${BASE_URL}/detailing`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.95,
-    },
-  ];
-
-  const detailingCityPages: MetadataRoute.Sitemap = detailingCitySlugs.flatMap((slug) => {
-    const city = cities.find((c) => c.slug === slug);
-    if (!city) return [];
-    return [
-      {
-        url: `${BASE_URL}/detailing/${slug}`,
-        lastModified,
-        changeFrequency: "weekly" as const,
-        priority: 0.9,
-      },
-      ...detailingServices.map((service) => ({
-        url: `${BASE_URL}/detailing/${slug}/${service.slug}`,
-        lastModified,
-        changeFrequency: "weekly" as const,
-        priority: 0.85,
-      })),
-    ];
-  });
-
   return [
     ...staticPages,
     ...cityPages,
@@ -163,7 +134,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...avtoservisPages,
     ...cityServicePages,
     ...serviceRedirectPages,
-    ...detailingHubPages,
-    ...detailingCityPages,
   ];
 }
