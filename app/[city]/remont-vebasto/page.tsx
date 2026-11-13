@@ -89,7 +89,7 @@ export default async function RemontVebastoPage({ params }: PageProps) {
 
   return (
     <main
-      className="min-h-screen bg-white dark:bg-black pt-16"
+      className="min-h-screen bg-white dark:bg-black"
       role="main"
       aria-label="Страница ремонта вебасто"
     >
@@ -136,9 +136,9 @@ export default async function RemontVebastoPage({ params }: PageProps) {
         }}
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-6 sm:pb-8">
         <nav
-          className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6"
+          className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-4"
           aria-label="Хлебные крошки"
           itemScope
           itemType="https://schema.org/BreadcrumbList"

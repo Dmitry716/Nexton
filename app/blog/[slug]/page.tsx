@@ -85,12 +85,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <main
-      className="min-h-screen bg-white dark:bg-black pt-16 overflow-x-hidden"
+      className="min-h-screen bg-white dark:bg-black overflow-x-hidden"
       role="main"
       aria-label="Страница статьи"
     >
       <article
-        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8"
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-6 sm:pb-8"
         itemScope
         itemType="https://schema.org/Article"
       >

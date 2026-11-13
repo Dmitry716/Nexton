@@ -46,7 +46,7 @@ export default function DetailingHubPage() {
   );
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black pt-[56px] sm:pt-[72px] pb-20">
+    <main className="min-h-screen bg-white dark:bg-black pb-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -87,9 +87,9 @@ export default function DetailingHubPage() {
       />
 
       {/* Хлебные крошки — в контейнере */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4">
         <nav
-          className="text-sm text-gray-500 dark:text-gray-400 mb-6"
+          className="text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-4"
           aria-label="Хлебные крошки"
         >
           <Link

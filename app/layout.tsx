@@ -172,8 +172,8 @@ export default function RootLayout({
           {/* Бегущая строка над шапкой */}
           <PartnershipBanner />
           <Navbar />
-          {/* <main className="min-h-screen bg-white dark:bg-black pt-20"> */}
-          <main className="min-h-screen bg-white dark:bg-black pt-[124px]">
+          {/* Отступ = баннер 36px + шапка (~64–72px). Без лишнего зазора до крошек. */}
+          <main className="min-h-screen bg-white dark:bg-black pt-[100px] sm:pt-[108px]">
             {children}
           </main>
           <Footer />

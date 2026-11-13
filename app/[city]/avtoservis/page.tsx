@@ -135,7 +135,7 @@ export default async function AvtoservisPage({ params }: PageProps) {
 
   return (
     <main
-      className="min-h-screen bg-white dark:bg-black pt-16"
+      className="min-h-screen bg-white dark:bg-black"
       role="main"
       aria-label={`Автосервис Nexton в ${cityPrep}`}
     >
@@ -177,10 +177,10 @@ export default async function AvtoservisPage({ params }: PageProps) {
         }}
       />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-8">
         {/* Хлебные крошки */}
         <nav
-          className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6"
+          className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-4"
           aria-label="Хлебные крошки"
           itemScope
           itemType="https://schema.org/BreadcrumbList"

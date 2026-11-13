@@ -469,7 +469,7 @@ export default async function CityServicePage({
         />
       )}
 
-      <div className="min-h-screen bg-white dark:bg-black pt-20">
+      <div className="min-h-screen bg-white dark:bg-black">
         {(getCategoryVideo(service.category) || categoryImage) && (
           <div className="relative w-full h-56 sm:h-72 md:h-80 bg-gray-100 dark:bg-gray-900">
             <CategoryCover

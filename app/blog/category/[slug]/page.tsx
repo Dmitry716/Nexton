@@ -73,11 +73,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <main
-      className="min-h-screen bg-white dark:bg-black pt-16"
+      className="min-h-screen bg-white dark:bg-black"
       role="main"
       aria-label={`Страница категории: ${categoryName}`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-6 sm:pb-8">
         <nav aria-label="Навигация">
           <Link
             href="/blog"
