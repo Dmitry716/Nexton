@@ -9,28 +9,32 @@ import DetailingServiceCard from "@/components/DetailingServiceCard";
 
 export const metadata: Metadata = {
   title:
-    "Детейлинг в Полоцке, Витебске, Минске — оклейка, тонировка, химчистка | Nexton",
+    "Детейлинг-студия Nexton — Полоцк, Витебск, Минск | оклейка, тонировка, химчистка",
   description:
-    "Профессиональный детейлинг: оклейка авто защитной плёнкой от 660 BYN, тонировка по ГОСТ от 330 BYN, химчистка салона от 708 BYN, керамика, полировка, антикор. Рассрочка до 5 месяцев. Звоните: +375297115091",
+    "Детейлинг-студия Nexton: оклейка защитной плёнкой от 660 BYN, тонировка по ГОСТ от 330 BYN, химчистка салона, полировка, керамика и антикор. Студия в Полоцке — работаем с клиентами из Витебска и Минска. +375297115091",
   keywords: [
-    "детейлинг",
-    "детейлинг Беларусь",
+    "детейлинг-студия",
+    "детейлинг студия Nexton",
+    "детейлинг Полоцк",
+    "детейлинг Витебск",
+    "детейлинг Минск",
     "оклейка авто",
     "тонировка авто",
     "химчистка авто",
     "полировка кузова",
     "керамика авто",
     "антикор",
-    "детейлинг Витебск",
-    "детейлинг Минск",
   ],
   alternates: { canonical: "https://nexton.vip/detailing" },
   openGraph: {
-    title: "Детейлинг — Nexton",
-    description: "Оклейка, тонировка, химчистка, керамика, полировка, антикор.",
+    title: "Детейлинг-студия Nexton",
+    description:
+      "Студия детейлинга: оклейка, тонировка, химчистка, керамика, полировка, антикор.",
     url: "https://nexton.vip/detailing",
     siteName: "Nexton",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    images: [
+      { url: "/detailing-hero-poster.jpg", width: 1920, height: 1080 },
+    ],
     locale: "ru_RU",
     type: "website",
   },
@@ -49,15 +53,18 @@ export default function DetailingHubPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AutoDetailing",
-            name: "Nexton Detailing",
+            name: "Детейлинг-студия Nexton",
+            alternateName: "Nexton Detailing",
             description:
-              "Детейлинг студия: оклейка, тонировка, химчистка, полировка, керамика, антикор.",
+              "Детейлинг-студия Nexton: оклейка защитной плёнкой, тонировка по ГОСТ, химчистка салона, полировка, керамика и антикор.",
             url: "https://nexton.vip/detailing",
             telephone: "+375297115091",
             priceRange: "$$",
             address: {
               "@type": "PostalAddress",
-              addressLocality: "Витебск",
+              streetAddress: "ул. Строительная 21в/3, блок 9, бокс 3",
+              addressLocality: "Полоцк",
+              addressRegion: "Витебская область",
               addressCountry: "BY",
             },
             areaServed: detailingCities.map((c) => ({
@@ -66,7 +73,7 @@ export default function DetailingHubPage() {
             })),
             hasOfferCatalog: {
               "@type": "OfferCatalog",
-              name: "Услуги детейлинга",
+              name: "Услуги детейлинг-студии Nexton",
               itemListElement: detailingServices.map((s) => ({
                 "@type": "Offer",
                 name: s.name,
@@ -95,12 +102,12 @@ export default function DetailingHubPage() {
             /
           </span>
           <span className="text-black dark:text-white font-medium">
-            Детейлинг
+            Детейлинг-студия
           </span>
         </nav>
       </div>
 
-      {/* HERO — на всю ширину, как WhyChooseUsDetailing */}
+      {/* HERO — студия */}
       <header className="relative w-full overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -110,45 +117,42 @@ export default function DetailingHubPage() {
           aria-hidden="true"
         />
 
-        {/* Оверлей для контраста (WCAG AA) */}
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[#1e3a5f]/40 dark:bg-black/50"
         />
 
-        {/* Контент hero — в контейнере, но сам hero на всю ширину */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 md:py-36 text-center">
+          <p
+            className="text-sm sm:text-base font-semibold tracking-[0.2em] uppercase text-[#a8c4e8] mb-4 hero-fade-in"
+          >
+            Nexton Detailing
+          </p>
           <h1
             lang="ru"
             className="text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight text-balance hero-slide-in"
           >
-            Детейлинг автомобилей
+            Детейлинг-студия Nexton
           </h1>
           <p
-            className="mt-4 text-base sm:text-lg md:text-xl font-semibold text-[#a8c4e8] max-w-3xl mx-auto hero-fade-in"
+            lang="ru"
+            className="mt-4 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed hero-fade-in"
             style={{ animationDelay: "80ms" }}
           >
-            Услуги, цены и где заказать в Полоцке, Витебске, Минске
-          </p>
-          <p
-            lang="ru"
-            className="mt-6 text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed hero-fade-in"
-            style={{ animationDelay: "160ms" }}
-          >
-            Оклейка защитной плёнкой, тонировка по ГОСТ, химчистка салона,
-            полировка, керамика и антикор.
+            Защита, блеск и стиль автомобиля — оклейка, тонировка, химчистка,
+            полировка, керамика и антикор в одной студии.
           </p>
 
           <div
             className="mt-10 flex flex-wrap justify-center gap-4 hero-fade-in"
-            style={{ animationDelay: "240ms" }}
+            style={{ animationDelay: "160ms" }}
           >
             <a
               href="tel:+375297115091"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#1e3a5f] hover:bg-gray-100 font-semibold rounded-xl transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1e3a5f]"
               aria-label="Позвонить в детейлинг-студию Nexton по номеру +375 29 711-50-91"
             >
-              <span aria-hidden="true">📞</span> Позвонить
+              <span aria-hidden="true">📞</span> Записаться
             </a>
             <a
               href="https://t.me/+375297115091"
@@ -163,15 +167,20 @@ export default function DetailingHubPage() {
         </div>
       </header>
 
-      {/* Дальше — контент в контейнере */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section aria-labelledby="services-title" className="my-20">
-          <h2
-            id="services-title"
-            className="text-3xl font-bold text-black dark:text-white mb-8 text-center"
-          >
-            Услуги детейлинга
-          </h2>
+          <div className="text-center mb-10">
+            <h2
+              id="services-title"
+              className="text-3xl sm:text-4xl font-bold text-black dark:text-white mb-3"
+            >
+              Услуги студии
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Полный цикл детейлинга: от защиты кузова и стёкол до чистоты салона
+              и моторного отсека. Цены — от указанных, точный расчёт после осмотра.
+            </p>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {detailingServices.map((service) => (
               <DetailingServiceCard
@@ -197,11 +206,11 @@ export default function DetailingHubPage() {
               id="cities-title"
               className="text-3xl sm:text-4xl font-bold text-black dark:text-white mb-3"
             >
-              Где мы работаем
+              Студия и города
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Детейлинг-студии Nexton в Полоцке, Витебске и Минске — приезжайте
-              или запишитесь онлайн.
+              Основная детейлинг-студия Nexton — в Полоцке. Принимаем авто из
+              Новополоцка, Витебска, Минска и области — запишитесь заранее.
             </p>
           </div>
 
@@ -225,7 +234,9 @@ export default function DetailingHubPage() {
                     {city.name}
                   </span>
                   <span className="block text-sm text-gray-600 dark:text-gray-400">
-                    Детейлинг-студия
+                    {city.slug === "polotsk" || city.slug === "novopolotsk"
+                      ? "Студия Nexton"
+                      : "Запись в студию"}
                   </span>
                 </span>
 
@@ -246,10 +257,11 @@ export default function DetailingHubPage() {
       <section className="bg-[#1e3a5f] dark:bg-[#1a2a3a] py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            Готовы записаться на детейлинг?
+            Запишитесь в детейлинг-студию
           </h2>
           <p className="text-white/85 mb-6 max-w-xl mx-auto">
-            Позвоните или напишите — подберём услугу и рассчитаем стоимость.
+            Подберём услугу под ваш авто, рассчитаем стоимость и согласуем время
+            визита в студию.
           </p>
           <a
             href="tel:+375297115091"

@@ -308,19 +308,11 @@ export default async function DetailingServicePage({ params }: PageProps) {
               Кому подходит
             </h2>
             <ul className="text-gray-600 dark:text-gray-400 space-y-2">
-              <li>
-                <strong>Новый автомобиль</strong> — защита ЛКП с первых дней
-              </li>
-              <li>
-                <strong>Авто после покупки с пробегом</strong> — восстановление
-                внешнего вида
-              </li>
-              <li>
-                <strong>Подготовка к продаже</strong> — повышение стоимости
-              </li>
-              <li>
-                <strong>Регулярный уход</strong> — поддержание состояния
-              </li>
+              {service.suitableFor.map((item) => (
+                <li key={item.title}>
+                  <strong>{item.title}</strong> — {item.text}
+                </li>
+              ))}
             </ul>
           </article>
 
