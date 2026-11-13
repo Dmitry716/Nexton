@@ -192,7 +192,7 @@ export default async function DetailingServicePage({ params }: PageProps) {
             href="/detailing"
             className="hover:text-black dark:hover:text-white transition-colors focus:outline-none focus-visible:underline"
           >
-            Детейлинг
+            Детейлинг-студия
           </Link>
           <span className="mx-2" aria-hidden="true">
             /

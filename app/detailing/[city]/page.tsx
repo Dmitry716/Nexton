@@ -26,11 +26,12 @@ export async function generateMetadata({
   const cityPrep = cityData.namePrepositional || cityData.name;
 
   return {
-    title: `Детейлинг в ${cityPrep} — оклейка, тонировка, химчистка | Nexton`,
-    description: `Детейлинг в ${cityPrep}: оклейка авто защитной плёнкой от 660 BYN, тонировка по ГОСТ от 330 BYN, химчистка салона от 708 BYN, полировка, керамика, антикор. Рассрочка до 5 месяцев. Звоните: +375297115091`,
+    title: `Детейлинг-студия Nexton в ${cityPrep} — оклейка, тонировка, химчистка`,
+    description: `Детейлинг-студия Nexton в ${cityPrep}: оклейка авто защитной плёнкой от 660 BYN, тонировка по ГОСТ от 330 BYN, химчистка салона, полировка, керамика, антикор. Звоните: +375297115091`,
     keywords: [
+      `детейлинг-студия ${cityData.name}`,
+      `детейлинг студия ${cityPrep}`,
       `детейлинг ${cityData.name}`,
-      `детейлинг ${cityPrep}`,
       `оклейка авто ${cityData.name}`,
       `тонировка авто ${cityData.name}`,
       `химчистка авто ${cityData.name}`,
@@ -40,11 +41,13 @@ export async function generateMetadata({
       canonical: `https://nexton.vip/detailing/${city}`,
     },
     openGraph: {
-      title: `Детейлинг в ${cityPrep} — Nexton`,
-      description: `Оклейка, тонировка, химчистка, полировка, керамика, антикор в ${cityPrep}.`,
+      title: `Детейлинг-студия Nexton в ${cityPrep}`,
+      description: `Оклейка, тонировка, химчистка, полировка, керамика, антикор в детейлинг-студии Nexton в ${cityPrep}.`,
       url: `https://nexton.vip/detailing/${city}`,
       siteName: "Nexton",
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+      images: [
+        { url: "/detailing-hero-poster.jpg", width: 1920, height: 1080 },
+      ],
       locale: "ru_RU",
       type: "website",
     },
@@ -70,8 +73,9 @@ export default async function DetailingCityPage({ params }: PageProps) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AutoDetailing",
-            name: `Nexton Detailing ${cityData.name}`,
-            description: `Детейлинг в ${cityPrep}.`,
+            name: `Детейлинг-студия Nexton в ${cityData.name}`,
+            alternateName: `Nexton Detailing ${cityData.name}`,
+            description: `Детейлинг-студия Nexton в ${cityPrep}: оклейка, тонировка, химчистка, полировка, керамика, антикор.`,
             url: `https://nexton.vip/detailing/${city}`,
             telephone: "+375297115091",
             priceRange: "$$",
@@ -83,7 +87,7 @@ export default async function DetailingCityPage({ params }: PageProps) {
             areaServed: { "@type": "City", name: cityData.name },
             hasOfferCatalog: {
               "@type": "OfferCatalog",
-              name: "Услуги детейлинга",
+              name: "Услуги детейлинг-студии",
               itemListElement: detailingServices.map((s) => ({
                 "@type": "Offer",
                 name: s.name,
@@ -114,7 +118,7 @@ export default async function DetailingCityPage({ params }: PageProps) {
             href="/detailing"
             className="hover:text-black dark:hover:text-white transition-colors focus:outline-none focus-visible:underline"
           >
-            Детейлинг
+            Детейлинг-студия
           </Link>
           <span className="mx-2" aria-hidden="true">
             /
@@ -141,25 +145,22 @@ export default async function DetailingCityPage({ params }: PageProps) {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 md:py-32 text-center">
+          <p className="text-sm sm:text-base font-semibold tracking-[0.2em] uppercase text-[#a8c4e8] mb-4 hero-fade-in">
+            Nexton Detailing
+          </p>
           <h1
             lang="ru"
             className="text-[2rem] sm:text-5xl md:text-6xl font-bold text-white mb-4 leading-[1.05] tracking-tight text-balance hero-slide-in"
           >
-            Детейлинг автомобилей
+            Детейлинг-студия в {cityPrep}
           </h1>
           <p
-            className="text-base sm:text-lg md:text-xl font-semibold text-[#a8c4e8] max-w-3xl mx-auto hero-fade-in"
+            lang="ru"
+            className="mt-4 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed hero-fade-in"
             style={{ animationDelay: "80ms" }}
           >
-            в {cityPrep} — услуги, цены, запись
-          </p>
-          <p
-            lang="ru"
-            className="mt-6 text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed hero-fade-in"
-            style={{ animationDelay: "160ms" }}
-          >
             Оклейка защитной плёнкой, тонировка по ГОСТ, химчистка салона,
-            полировка, керамика и антикор. Рассрочка до 5 месяцев.
+            полировка, керамика и антикор — услуги студии Nexton.
           </p>
 
           <div
@@ -193,7 +194,7 @@ export default async function DetailingCityPage({ params }: PageProps) {
             id="services-title"
             className="text-3xl font-bold text-black dark:text-white mb-8 text-center"
           >
-            Услуги детейлинга в {cityPrep}
+            Услуги детейлинг-студии в {cityPrep}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {detailingServices.map((service) => (

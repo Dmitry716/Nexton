@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title:
     "Детейлинг-студия Nexton — Полоцк, Витебск, Минск | оклейка, тонировка, химчистка",
   description:
-    "Детейлинг-студия Nexton: оклейка защитной плёнкой от 660 BYN, тонировка по ГОСТ от 330 BYN, химчистка салона, полировка, керамика и антикор. Студия в Полоцке — работаем с клиентами из Витебска и Минска. +375297115091",
+    "Детейлинг-студии Nexton в Полоцке, Витебске, Минске и других городах: оклейка защитной плёнкой от 660 BYN, тонировка по ГОСТ от 330 BYN, химчистка, полировка, керамика и антикор. +375297115091",
   keywords: [
     "детейлинг-студия",
     "детейлинг студия Nexton",
@@ -206,11 +206,10 @@ export default function DetailingHubPage() {
               id="cities-title"
               className="text-3xl sm:text-4xl font-bold text-black dark:text-white mb-3"
             >
-              Студия и города
+              Детейлинг-студии по городам
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Основная детейлинг-студия Nexton — в Полоцке. Принимаем авто из
-              Новополоцка, Витебска, Минска и области — запишитесь заранее.
+              Выберите город — услуги детейлинг-студии Nexton, цены и запись.
             </p>
           </div>
 
@@ -220,7 +219,7 @@ export default function DetailingHubPage() {
                 key={city.slug}
                 href={`/detailing/${city.slug}`}
                 className="group relative flex items-center gap-4 p-5 rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-gradient-to-br from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] dark:focus-visible:ring-[#7a9bcb] focus-visible:ring-offset-2"
-                aria-label={`Детейлинг автомобилей в ${city.namePrepositional} — услуги и цены`}
+                aria-label={`Детейлинг-студия Nexton в ${city.namePrepositional} — услуги и цены`}
               >
                 <span
                   aria-hidden="true"
@@ -234,9 +233,7 @@ export default function DetailingHubPage() {
                     {city.name}
                   </span>
                   <span className="block text-sm text-gray-600 dark:text-gray-400">
-                    {city.slug === "polotsk" || city.slug === "novopolotsk"
-                      ? "Студия Nexton"
-                      : "Запись в студию"}
+                    Детейлинг-студия
                   </span>
                 </span>
 
