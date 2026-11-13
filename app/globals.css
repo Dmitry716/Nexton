@@ -523,3 +523,96 @@ body {
 .prose .bg-red-50 p {
   margin-bottom: 0 !important;
 }
+
+/* ===== ДЕТЕЙЛИНГ: лёгкая бесконечная анимация карточек ===== */
+@keyframes detailingCardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.detailing-card {
+  animation: detailingCardFloat 6s ease-in-out infinite;
+}
+
+.detailing-card:hover {
+  animation-play-state: paused;
+}
+
+/* Задержки для «волны» */
+.detailing-card:nth-child(1) {
+  animation-delay: 0s;
+}
+.detailing-card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.detailing-card:nth-child(3) {
+  animation-delay: 1s;
+}
+.detailing-card:nth-child(4) {
+  animation-delay: 1.5s;
+}
+.detailing-card:nth-child(5) {
+  animation-delay: 2s;
+}
+.detailing-card:nth-child(6) {
+  animation-delay: 2.5s;
+}
+.detailing-card:nth-child(7) {
+  animation-delay: 3s;
+}
+.detailing-card:nth-child(8) {
+  animation-delay: 3.5s;
+}
+/* ===== ДЕТЕЙЛИНГ HERO: отдельные классы, не конфликтуют со старыми ===== */
+@keyframes heroSlideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* По умолчанию — без анимации, но видимо (для reduced-motion и старых браузеров) */
+.hero-slide-in,
+.hero-fade-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-slide-in {
+    animation: heroSlideIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+  .hero-fade-in {
+    animation: heroFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-in,
+  .hero-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
