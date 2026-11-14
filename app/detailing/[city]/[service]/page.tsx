@@ -125,28 +125,31 @@ export default async function DetailingServicePage({ params }: PageProps) {
           __html: JSON.stringify([
             {
               "@context": "https://schema.org",
-              "@type": ["Service", "Product"],
-              name: `${service.name} в ${cityPrep}`,
+              "@type": "AutoDetailing",
+              name: `${service.name} в ${cityPrep} — Nexton Detailing`,
+              alternateName: `Nexton Detailing ${cityData.name}`,
               description: service.longDescription,
               url: `https://nexton.vip/detailing/${city}/${service.slug}`,
               image: `https://nexton.vip${getDetailingServiceHero(service.slug)}`,
-              brand: {
-                "@type": "Brand",
-                name: "Nexton Detailing",
-              },
-              provider: {
-                "@type": "AutoDetailing",
-                name: `Nexton Detailing ${cityData.name}`,
-                url: `https://nexton.vip/detailing/${city}`,
-                telephone: "+375297115091",
+              telephone: "+375297115091",
+              priceRange: `от ${service.priceFrom} ${cityData.currency}`,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: cityData.name,
+                addressCountry: cityData.country,
               },
               areaServed: { "@type": "City", name: cityData.name },
-              offers: {
+              makesOffer: {
                 "@type": "Offer",
                 priceCurrency: cityData.currency,
                 price: service.priceFrom,
                 availability: "https://schema.org/InStock",
                 url: `https://nexton.vip/detailing/${city}/${service.slug}`,
+                itemOffered: {
+                  "@type": "Service",
+                  name: `${service.name} в ${cityPrep}`,
+                  description: service.longDescription,
+                },
               },
               ...(service.reviews.length > 0
                 ? {
