@@ -139,18 +139,6 @@ export default async function DetailingServicePage({ params }: PageProps) {
                 addressCountry: cityData.country,
               },
               areaServed: { "@type": "City", name: cityData.name },
-              makesOffer: {
-                "@type": "Offer",
-                priceCurrency: cityData.currency,
-                price: service.priceFrom,
-                availability: "https://schema.org/InStock",
-                url: `https://nexton.vip/detailing/${city}/${service.slug}`,
-                itemOffered: {
-                  "@type": "Service",
-                  name: `${service.name} в ${cityPrep}`,
-                  description: service.longDescription,
-                },
-              },
               ...(service.reviews.length > 0
                 ? {
                     aggregateRating: {
