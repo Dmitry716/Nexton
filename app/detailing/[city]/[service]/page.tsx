@@ -125,9 +125,15 @@ export default async function DetailingServicePage({ params }: PageProps) {
           __html: JSON.stringify([
             {
               "@context": "https://schema.org",
-              "@type": "Service",
+              "@type": ["Service", "Product"],
               name: `${service.name} в ${cityPrep}`,
               description: service.longDescription,
+              url: `https://nexton.vip/detailing/${city}/${service.slug}`,
+              image: `https://nexton.vip${getDetailingServiceHero(service.slug)}`,
+              brand: {
+                "@type": "Brand",
+                name: "Nexton Detailing",
+              },
               provider: {
                 "@type": "AutoDetailing",
                 name: `Nexton Detailing ${cityData.name}`,
@@ -140,23 +146,28 @@ export default async function DetailingServicePage({ params }: PageProps) {
                 priceCurrency: cityData.currency,
                 price: service.priceFrom,
                 availability: "https://schema.org/InStock",
+                url: `https://nexton.vip/detailing/${city}/${service.slug}`,
               },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: averageRating,
-                reviewCount: service.reviews.length,
-                bestRating: "5",
-              },
-              review: service.reviews.map((r) => ({
-                "@type": "Review",
-                author: { "@type": "Person", name: r.name },
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: r.rating,
-                  bestRating: "5",
-                },
-                reviewBody: r.text,
-              })),
+              ...(service.reviews.length > 0
+                ? {
+                    aggregateRating: {
+                      "@type": "AggregateRating",
+                      ratingValue: averageRating,
+                      reviewCount: service.reviews.length,
+                      bestRating: "5",
+                    },
+                    review: service.reviews.map((r) => ({
+                      "@type": "Review",
+                      author: { "@type": "Person", name: r.name },
+                      reviewRating: {
+                        "@type": "Rating",
+                        ratingValue: r.rating,
+                        bestRating: "5",
+                      },
+                      reviewBody: r.text,
+                    })),
+                  }
+                : {}),
             },
             {
               "@context": "https://schema.org",
@@ -169,6 +180,36 @@ export default async function DetailingServicePage({ params }: PageProps) {
                   text: item.a,
                 },
               })),
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Главная",
+                  item: "https://nexton.vip/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Детейлинг",
+                  item: "https://nexton.vip/detailing",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: cityData.name,
+                  item: `https://nexton.vip/detailing/${city}`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 4,
+                  name: service.name,
+                  item: `https://nexton.vip/detailing/${city}/${service.slug}`,
+                },
+              ],
             },
           ]),
         }}
