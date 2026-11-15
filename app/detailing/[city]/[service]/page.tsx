@@ -109,14 +109,6 @@ export default async function DetailingServicePage({ params }: PageProps) {
     },
   ];
 
-  const averageRating =
-    service.reviews.length > 0
-      ? (
-          service.reviews.reduce((sum, r) => sum + r.rating, 0) /
-          service.reviews.length
-        ).toFixed(1)
-      : "5.0";
-
   return (
     <main className="min-h-screen bg-white dark:bg-black pb-20">
       <script
@@ -139,26 +131,6 @@ export default async function DetailingServicePage({ params }: PageProps) {
                 addressCountry: cityData.country,
               },
               areaServed: { "@type": "City", name: cityData.name },
-              ...(service.reviews.length > 0
-                ? {
-                    aggregateRating: {
-                      "@type": "AggregateRating",
-                      ratingValue: averageRating,
-                      reviewCount: service.reviews.length,
-                      bestRating: "5",
-                    },
-                    review: service.reviews.map((r) => ({
-                      "@type": "Review",
-                      author: { "@type": "Person", name: r.name },
-                      reviewRating: {
-                        "@type": "Rating",
-                        ratingValue: r.rating,
-                        bestRating: "5",
-                      },
-                      reviewBody: r.text,
-                    })),
-                  }
-                : {}),
             },
             {
               "@context": "https://schema.org",
