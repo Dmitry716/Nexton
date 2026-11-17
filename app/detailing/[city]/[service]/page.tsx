@@ -217,12 +217,10 @@ export default async function DetailingServicePage({ params }: PageProps) {
       </div>
 
       <header className="relative w-full overflow-hidden mb-12">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={heroSrc}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-[center_55%]"
+        <div
           aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-[center_55%]"
+          style={{ backgroundImage: `url(${heroSrc})` }}
         />
         <div
           aria-hidden="true"

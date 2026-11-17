@@ -131,12 +131,10 @@ export default async function DetailingCityPage({ params }: PageProps) {
 
       {/* HERO — на всю ширину */}
       <header className="relative w-full overflow-hidden mb-16">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/detailing-hero-poster.jpg?v=m5"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-[center_70%] sm:object-center"
+        <div
           aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-[center_70%] sm:bg-center"
+          style={{ backgroundImage: "url(/detailing-hero-poster.jpg?v=m5)" }}
         />
 
         <div

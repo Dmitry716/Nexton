@@ -108,6 +108,7 @@ export default function MegaMenu() {
                 <li key={service.slug}>
                   <Link
                     href={`/detailing/polotsk/${service.slug}`}
+                    prefetch={false}
                     onClick={() => setIsOpen(false)}
                     className="block text-base font-medium text-gray-700 dark:text-gray-300 hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] transition-colors leading-snug"
                   >

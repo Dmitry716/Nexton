@@ -30,6 +30,7 @@ export default function DetailingServicesLinks({
           <Link
             key={service.slug}
             href={`/detailing/${city}/${service.slug}`}
+            prefetch={false}
             className="px-4 py-2 text-sm rounded-xl border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:text-[#1e3a5f] dark:hover:text-[#7a9bcb] hover:shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] dark:focus-visible:ring-[#7a9bcb] focus-visible:ring-offset-2"
           >
             {service.name}

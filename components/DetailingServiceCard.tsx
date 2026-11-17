@@ -19,6 +19,7 @@ export default function DetailingServiceCard({
   return (
     <Link
       href={href}
+      prefetch={false}
       className="group block rounded-2xl border-2 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden detailing-card hover:border-[#1e3a5f] dark:hover:border-[#7a9bcb] hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1e3a5f] dark:focus-visible:ring-[#7a9bcb] focus-visible:ring-offset-2"
       aria-label={ariaLabel}
     >
