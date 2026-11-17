@@ -53,6 +53,7 @@ function getPosterForCategory(category: string): string {
     "Ремонт Webasto": "/images/blog/posters/webasto-poster.jpg",
     "Ремонт радиаторов": "/images/blog/posters/radiator-poster.jpg",
     "Советы автовладельцам": "/images/blog/posters/maintenance-poster.jpg",
+    "Кузовные работы": "/images/blog/posters/body-poster.jpg",
   };
   return posterMap[category] || "/images/blog/posters/default.jpg";
 }

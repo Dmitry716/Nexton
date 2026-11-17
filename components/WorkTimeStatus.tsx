@@ -66,14 +66,16 @@ interface WorkTimeStatusProps {
 }
 
 export default function WorkTimeStatus({ className = "" }: WorkTimeStatusProps) {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    setNow(new Date());
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
   const data = useMemo(() => {
+    if (!now) return null;
     const parts = getMinskDateParts(now);
     const status = getStatus(parts.weekday, parts.hour);
     return {
@@ -91,15 +93,27 @@ export default function WorkTimeStatus({ className = "" }: WorkTimeStatusProps) 
     >
       <div className="flex items-center justify-between gap-3 mb-2">
         <span className="text-xs text-gray-500 dark:text-gray-400">Минск</span>
-        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${data.statusClasses}`}>
-          <span className="inline-flex items-center gap-1.5">
-            <span className={`w-2 h-2 rounded-full ${getDotClasses(data.status)}`} />
-            {data.statusLabel}
+        {data ? (
+          <span
+            className={`px-2.5 py-1 rounded-full text-xs font-semibold ${data.statusClasses}`}
+          >
+            <span className="inline-flex items-center gap-1.5">
+              <span
+                className={`w-2 h-2 rounded-full ${getDotClasses(data.status)}`}
+              />
+              {data.statusLabel}
+            </span>
           </span>
-        </span>
+        ) : (
+          <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+            Пн–Пт 10–18
+          </span>
+        )}
       </div>
       <p className="text-sm text-black dark:text-white font-medium">
-        {data.weekday}, {String(data.hour).padStart(2, "0")}:{data.minute}
+        {data
+          ? `${data.weekday}, ${String(data.hour).padStart(2, "0")}:${data.minute}`
+          : "График работы"}
       </p>
       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
         График: Пн-Пт 10.00-18.00, Сб-Вс - выходной
